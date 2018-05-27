@@ -1,1 +1,76 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database1" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True" SettingsObjectName="WindowsFormsApp3.Properties.Settings" SettingsPropertyName="Database1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Description" Member="Descriptions">
+    <Type Name="Description">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="decription" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="Description_Dish" Member="Dishes" ThisKey="Id" OtherKey="idDescription" Type="Dish" />
+      <Association Name="Description_Drink" Member="Drinks" ThisKey="Id" OtherKey="idDescription" Type="Drink" />
+      <Association Name="Description_Order" Member="Orders" ThisKey="Id" OtherKey="idDescription" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDrink" Member="OrderDrinks">
+    <Type Name="OrderDrink">
+      <Column Name="idOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idDrink" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Drink_OrderDrink" Member="Drink" ThisKey="idDrink" OtherKey="Id" Type="Drink" IsForeignKey="true" />
+      <Association Name="Order_OrderDrink" Member="Order" ThisKey="idOrder" OtherKey="Id" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Dish" Member="Dishes">
+    <Type Name="Dish">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="kind" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="idDescription" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Dish_ItemDetail" Member="ItemDetails" ThisKey="Id" OtherKey="idItem" Type="ItemDetail" />
+      <Association Name="Dish_OrderDish" Member="OrderDishes" ThisKey="Id" OtherKey="idDish" Type="OrderDish" />
+      <Association Name="Description_Dish" Member="Description" ThisKey="idDescription" OtherKey="Id" Type="Description" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Drink" Member="Drinks">
+    <Type Name="Drink">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="kind" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="adults" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idDescription" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Drink_OrderDrink" Member="OrderDrinks" ThisKey="Id" OtherKey="idDrink" Type="OrderDrink" />
+      <Association Name="Drink_ItemDetail" Member="ItemDetails" ThisKey="Id" OtherKey="idItem" Type="ItemDetail" />
+      <Association Name="Description_Drink" Member="Description" ThisKey="idDescription" OtherKey="Id" Type="Description" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemDetail" Member="ItemDetails">
+    <Type Name="ItemDetail">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="availability" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="size" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="tax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="idItem" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Dish_ItemDetail" Member="Dish" ThisKey="idItem" OtherKey="Id" Type="Dish" IsForeignKey="true" />
+      <Association Name="Drink_ItemDetail" Member="Drink" ThisKey="idItem" OtherKey="Id" Type="Drink" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Order]" Member="Orders">
+    <Type Name="Order">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="type" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="startDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="endDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idDescription" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_OrderDrink" Member="OrderDrinks" ThisKey="Id" OtherKey="idOrder" Type="OrderDrink" />
+      <Association Name="Order_OrderDish" Member="OrderDishes" ThisKey="Id" OtherKey="idOrder" Type="OrderDish" />
+      <Association Name="Description_Order" Member="Description" ThisKey="idDescription" OtherKey="Id" Type="Description" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDish" Member="OrderDishes">
+    <Type Name="OrderDish">
+      <Column Name="idOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idDish" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Dish_OrderDish" Member="Dish" ThisKey="idDish" OtherKey="Id" Type="Dish" IsForeignKey="true" />
+      <Association Name="Order_OrderDish" Member="Order" ThisKey="idOrder" OtherKey="Id" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
