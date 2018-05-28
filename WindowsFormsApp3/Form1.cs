@@ -76,5 +76,11 @@ namespace WindowsFormsApp3
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex != -1)
+                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+        }
     }
 }
