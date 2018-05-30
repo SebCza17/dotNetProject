@@ -30,7 +30,7 @@
         {
             this.butSaveDetail = new System.Windows.Forms.Button();
             this.butEditDetail = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxAva = new System.Windows.Forms.CheckBox();
             this.errorLab2 = new System.Windows.Forms.Label();
             this.textBoxTax = new System.Windows.Forms.TextBox();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
@@ -44,16 +44,18 @@
             this.butAddDetail = new System.Windows.Forms.Button();
             this.butSaveDrink = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxDesc = new System.Windows.Forms.TextBox();
             this.butEditDrink = new System.Windows.Forms.Button();
             this.butDelDrink = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
             this.butAddDrink = new System.Windows.Forms.Button();
             this.butDelDetail = new System.Windows.Forms.Button();
             this.dataGridDetail = new System.Windows.Forms.DataGridView();
             this.butShowDetail = new System.Windows.Forms.Button();
             this.dataGridDrink = new System.Windows.Forms.DataGridView();
+            this.checkBoxIsAdult = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDrink)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +68,7 @@
             this.butSaveDetail.TabIndex = 53;
             this.butSaveDetail.Text = "Save";
             this.butSaveDetail.UseVisualStyleBackColor = true;
+            this.butSaveDetail.Click += new System.EventHandler(this.butSaveDetail_Click);
             // 
             // butEditDetail
             // 
@@ -75,15 +78,16 @@
             this.butEditDetail.TabIndex = 52;
             this.butEditDetail.Text = "Edit Detail";
             this.butEditDetail.UseVisualStyleBackColor = true;
+            this.butEditDetail.Click += new System.EventHandler(this.butEditDetail_Click);
             // 
-            // checkBox1
+            // checkBoxAva
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(75, 389);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 51;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxAva.AutoSize = true;
+            this.checkBoxAva.Location = new System.Drawing.Point(75, 389);
+            this.checkBoxAva.Name = "checkBoxAva";
+            this.checkBoxAva.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAva.TabIndex = 51;
+            this.checkBoxAva.UseVisualStyleBackColor = true;
             // 
             // errorLab2
             // 
@@ -180,6 +184,7 @@
             this.butAddDetail.TabIndex = 40;
             this.butAddDetail.Text = "Add Details";
             this.butAddDetail.UseVisualStyleBackColor = true;
+            this.butAddDetail.Click += new System.EventHandler(this.butAddDetail_Click);
             // 
             // butSaveDrink
             // 
@@ -189,6 +194,7 @@
             this.butSaveDrink.TabIndex = 39;
             this.butSaveDrink.Text = "Save";
             this.butSaveDrink.UseVisualStyleBackColor = true;
+            this.butSaveDrink.Click += new System.EventHandler(this.butSaveDrink_Click);
             // 
             // label3
             // 
@@ -199,12 +205,12 @@
             this.label3.TabIndex = 38;
             this.label3.Text = "Description:";
             // 
-            // textBox2
+            // textBoxDesc
             // 
-            this.textBox2.Location = new System.Drawing.Point(515, 71);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(151, 20);
-            this.textBox2.TabIndex = 37;
+            this.textBoxDesc.Location = new System.Drawing.Point(515, 71);
+            this.textBoxDesc.Name = "textBoxDesc";
+            this.textBoxDesc.Size = new System.Drawing.Size(151, 20);
+            this.textBoxDesc.TabIndex = 37;
             // 
             // butEditDrink
             // 
@@ -214,6 +220,7 @@
             this.butEditDrink.TabIndex = 36;
             this.butEditDrink.Text = "Edit Drink";
             this.butEditDrink.UseVisualStyleBackColor = true;
+            this.butEditDrink.Click += new System.EventHandler(this.butEditDrink_Click);
             // 
             // butDelDrink
             // 
@@ -223,6 +230,7 @@
             this.butDelDrink.TabIndex = 35;
             this.butDelDrink.Text = "Delete Drink";
             this.butDelDrink.UseVisualStyleBackColor = true;
+            this.butDelDrink.Click += new System.EventHandler(this.butDelDrink_Click);
             // 
             // label1
             // 
@@ -233,12 +241,12 @@
             this.label1.TabIndex = 34;
             this.label1.Text = "Dish Name:";
             // 
-            // textBox1
+            // textBoxName
             // 
-            this.textBox1.Location = new System.Drawing.Point(515, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 33;
+            this.textBoxName.Location = new System.Drawing.Point(515, 43);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxName.TabIndex = 33;
             // 
             // butAddDrink
             // 
@@ -248,6 +256,7 @@
             this.butAddDrink.TabIndex = 32;
             this.butAddDrink.Text = "Add Drink";
             this.butAddDrink.UseVisualStyleBackColor = true;
+            this.butAddDrink.Click += new System.EventHandler(this.butAddDrink_Click);
             // 
             // butDelDetail
             // 
@@ -257,6 +266,7 @@
             this.butDelDetail.TabIndex = 31;
             this.butDelDetail.Text = "Delete Details";
             this.butDelDetail.UseVisualStyleBackColor = true;
+            this.butDelDetail.Click += new System.EventHandler(this.butDelDetail_Click);
             // 
             // dataGridDetail
             // 
@@ -277,6 +287,7 @@
             this.butShowDetail.TabIndex = 29;
             this.butShowDetail.Text = "Show Details";
             this.butShowDetail.UseVisualStyleBackColor = true;
+            this.butShowDetail.Click += new System.EventHandler(this.butShowDetail_Click);
             // 
             // dataGridDrink
             // 
@@ -286,14 +297,34 @@
             this.dataGridDrink.Size = new System.Drawing.Size(350, 150);
             this.dataGridDrink.TabIndex = 28;
             // 
+            // checkBoxIsAdult
+            // 
+            this.checkBoxIsAdult.AutoSize = true;
+            this.checkBoxIsAdult.Location = new System.Drawing.Point(515, 103);
+            this.checkBoxIsAdult.Name = "checkBoxIsAdult";
+            this.checkBoxIsAdult.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxIsAdult.TabIndex = 54;
+            this.checkBoxIsAdult.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(451, 104);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 55;
+            this.label2.Text = "Adults:";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 543);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.checkBoxIsAdult);
             this.Controls.Add(this.butSaveDetail);
             this.Controls.Add(this.butEditDetail);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxAva);
             this.Controls.Add(this.errorLab2);
             this.Controls.Add(this.textBoxTax);
             this.Controls.Add(this.textBoxPrice);
@@ -307,11 +338,11 @@
             this.Controls.Add(this.butAddDetail);
             this.Controls.Add(this.butSaveDrink);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBoxDesc);
             this.Controls.Add(this.butEditDrink);
             this.Controls.Add(this.butDelDrink);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.butAddDrink);
             this.Controls.Add(this.butDelDetail);
             this.Controls.Add(this.dataGridDetail);
@@ -330,7 +361,7 @@
 
         private System.Windows.Forms.Button butSaveDetail;
         private System.Windows.Forms.Button butEditDetail;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxAva;
         private System.Windows.Forms.Label errorLab2;
         private System.Windows.Forms.TextBox textBoxTax;
         private System.Windows.Forms.TextBox textBoxPrice;
@@ -344,15 +375,17 @@
         private System.Windows.Forms.Button butAddDetail;
         private System.Windows.Forms.Button butSaveDrink;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxDesc;
         private System.Windows.Forms.Button butEditDrink;
         private System.Windows.Forms.Button butDelDrink;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Button butAddDrink;
         private System.Windows.Forms.Button butDelDetail;
         private System.Windows.Forms.DataGridView dataGridDetail;
         private System.Windows.Forms.Button butShowDetail;
         private System.Windows.Forms.DataGridView dataGridDrink;
+        private System.Windows.Forms.CheckBox checkBoxIsAdult;
+        private System.Windows.Forms.Label label2;
     }
 }

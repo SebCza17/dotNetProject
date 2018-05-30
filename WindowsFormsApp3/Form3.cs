@@ -23,14 +23,16 @@ namespace WindowsFormsApp3
             loadDish();
 
             var result = from size in data.Sizes
-                         select new { Id = size.Id, text = size.text, value = size.value };
+                         where size.Id < 10
+                         select new { Id = size.Id, text = size.text, value = size.value + " d(cm)" };
 
 
-            comboBoxSize.DisplayMember = "text";
+            comboBoxSize.DisplayMember = "value";
             comboBoxSize.ValueMember = "Id";
             comboBoxSize.DataSource = result;
 
             var result2 = from kind in data.Kinds
+                          where kind.Id < 10
                           select new { Id = kind.Id, text = kind.text };
 
             comboBoxKind.DisplayMember = "text";
@@ -76,13 +78,13 @@ namespace WindowsFormsApp3
             return selected;
         }
 
-        private void errorLog(String s)
+        private void errorShow(String s)
         {
             errorLab2.Text = s;
             errorLab2.Visible = true;
         }
 
-        private void errorEnd()
+        private void errorHide()
         {
             errorLab2.Visible = false;
         }
@@ -141,11 +143,11 @@ namespace WindowsFormsApp3
 
                 loadDish();
 
-                errorEnd();
+                errorHide();
             }
             else
             {
-                errorLog("Dish name isEmpty!");
+                errorShow("Dish name isEmpty!");
             }
         }
 
@@ -167,12 +169,12 @@ namespace WindowsFormsApp3
 
                 data.SubmitChanges();
 
-                errorEnd();
+                errorHide();
                 loadDish();
             }
             else
             {
-                errorLog("Before delete Dish, delete all Details");
+                errorShow("Before delete Dish, delete all Details");
             }
         }
 
@@ -253,11 +255,11 @@ namespace WindowsFormsApp3
 
                 loadDishDetail();
 
-                errorEnd();
+                errorHide();
             }
             else
             {
-                errorLog("Need PRICE and TAX!");
+                errorShow("Need PRICE and TAX!");
             }
             
 
