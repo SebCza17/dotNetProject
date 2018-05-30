@@ -39,21 +39,21 @@ namespace WindowsFormsApp3
     partial void InsertDish(Dish instance);
     partial void UpdateDish(Dish instance);
     partial void DeleteDish(Dish instance);
-    partial void InsertDishDetail(DishDetail instance);
-    partial void UpdateDishDetail(DishDetail instance);
-    partial void DeleteDishDetail(DishDetail instance);
     partial void InsertDrink(Drink instance);
     partial void UpdateDrink(Drink instance);
     partial void DeleteDrink(Drink instance);
-    partial void InsertDrinkDetail(DrinkDetail instance);
-    partial void UpdateDrinkDetail(DrinkDetail instance);
-    partial void DeleteDrinkDetail(DrinkDetail instance);
     partial void InsertKind(Kind instance);
     partial void UpdateKind(Kind instance);
     partial void DeleteKind(Kind instance);
     partial void InsertOrder(Order instance);
     partial void UpdateOrder(Order instance);
     partial void DeleteOrder(Order instance);
+    partial void InsertDishDetail(DishDetail instance);
+    partial void UpdateDishDetail(DishDetail instance);
+    partial void DeleteDishDetail(DishDetail instance);
+    partial void InsertDrinkDetail(DrinkDetail instance);
+    partial void UpdateDrinkDetail(DrinkDetail instance);
+    partial void DeleteDrinkDetail(DrinkDetail instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -110,27 +110,11 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		public System.Data.Linq.Table<DishDetail> DishDetails
-		{
-			get
-			{
-				return this.GetTable<DishDetail>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Drink> Drinks
 		{
 			get
 			{
 				return this.GetTable<Drink>();
-			}
-		}
-		
-		public System.Data.Linq.Table<DrinkDetail> DrinkDetails
-		{
-			get
-			{
-				return this.GetTable<DrinkDetail>();
 			}
 		}
 		
@@ -163,6 +147,22 @@ namespace WindowsFormsApp3
 			get
 			{
 				return this.GetTable<OrderDrink>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DishDetail> DishDetails
+		{
+			get
+			{
+				return this.GetTable<DishDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DrinkDetail> DrinkDetails
+		{
+			get
+			{
+				return this.GetTable<DrinkDetail>();
 			}
 		}
 	}
@@ -682,335 +682,6 @@ namespace WindowsFormsApp3
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DishDetail")]
-	public partial class DishDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<bool> _availability;
-		
-		private System.Nullable<byte> _idSize;
-		
-		private System.Nullable<byte> _idKind;
-		
-		private System.Nullable<decimal> _price;
-		
-		private System.Nullable<float> _tax;
-		
-		private int _idDish;
-		
-		private EntityRef<Dish> _Dish;
-		
-		private EntityRef<Size> _Size;
-		
-		private EntityRef<Kind> _Kind;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnavailabilityChanging(System.Nullable<bool> value);
-    partial void OnavailabilityChanged();
-    partial void OnidSizeChanging(System.Nullable<byte> value);
-    partial void OnidSizeChanged();
-    partial void OnidKindChanging(System.Nullable<byte> value);
-    partial void OnidKindChanged();
-    partial void OnpriceChanging(System.Nullable<decimal> value);
-    partial void OnpriceChanged();
-    partial void OntaxChanging(System.Nullable<float> value);
-    partial void OntaxChanged();
-    partial void OnidDishChanging(int value);
-    partial void OnidDishChanged();
-    #endregion
-		
-		public DishDetail()
-		{
-			this._Dish = default(EntityRef<Dish>);
-			this._Size = default(EntityRef<Size>);
-			this._Kind = default(EntityRef<Kind>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_availability", DbType="Bit")]
-		public System.Nullable<bool> availability
-		{
-			get
-			{
-				return this._availability;
-			}
-			set
-			{
-				if ((this._availability != value))
-				{
-					this.OnavailabilityChanging(value);
-					this.SendPropertyChanging();
-					this._availability = value;
-					this.SendPropertyChanged("availability");
-					this.OnavailabilityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSize", DbType="TinyInt")]
-		public System.Nullable<byte> idSize
-		{
-			get
-			{
-				return this._idSize;
-			}
-			set
-			{
-				if ((this._idSize != value))
-				{
-					if (this._Size.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidSizeChanging(value);
-					this.SendPropertyChanging();
-					this._idSize = value;
-					this.SendPropertyChanged("idSize");
-					this.OnidSizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKind", DbType="TinyInt")]
-		public System.Nullable<byte> idKind
-		{
-			get
-			{
-				return this._idKind;
-			}
-			set
-			{
-				if ((this._idKind != value))
-				{
-					if (this._Kind.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidKindChanging(value);
-					this.SendPropertyChanging();
-					this._idKind = value;
-					this.SendPropertyChanged("idKind");
-					this.OnidKindChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Money")]
-		public System.Nullable<decimal> price
-		{
-			get
-			{
-				return this._price;
-			}
-			set
-			{
-				if ((this._price != value))
-				{
-					this.OnpriceChanging(value);
-					this.SendPropertyChanging();
-					this._price = value;
-					this.SendPropertyChanged("price");
-					this.OnpriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tax", DbType="Real")]
-		public System.Nullable<float> tax
-		{
-			get
-			{
-				return this._tax;
-			}
-			set
-			{
-				if ((this._tax != value))
-				{
-					this.OntaxChanging(value);
-					this.SendPropertyChanging();
-					this._tax = value;
-					this.SendPropertyChanged("tax");
-					this.OntaxChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDish", DbType="Int NOT NULL")]
-		public int idDish
-		{
-			get
-			{
-				return this._idDish;
-			}
-			set
-			{
-				if ((this._idDish != value))
-				{
-					if (this._Dish.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidDishChanging(value);
-					this.SendPropertyChanging();
-					this._idDish = value;
-					this.SendPropertyChanged("idDish");
-					this.OnidDishChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Dish_DishDetail", Storage="_Dish", ThisKey="idDish", OtherKey="Id", IsForeignKey=true)]
-		public Dish Dish
-		{
-			get
-			{
-				return this._Dish.Entity;
-			}
-			set
-			{
-				Dish previousValue = this._Dish.Entity;
-				if (((previousValue != value) 
-							|| (this._Dish.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Dish.Entity = null;
-						previousValue.DishDetails.Remove(this);
-					}
-					this._Dish.Entity = value;
-					if ((value != null))
-					{
-						value.DishDetails.Add(this);
-						this._idDish = value.Id;
-					}
-					else
-					{
-						this._idDish = default(int);
-					}
-					this.SendPropertyChanged("Dish");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Size_DishDetail", Storage="_Size", ThisKey="idSize", OtherKey="Id", IsForeignKey=true)]
-		public Size Size
-		{
-			get
-			{
-				return this._Size.Entity;
-			}
-			set
-			{
-				Size previousValue = this._Size.Entity;
-				if (((previousValue != value) 
-							|| (this._Size.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Size.Entity = null;
-						previousValue.DishDetails.Remove(this);
-					}
-					this._Size.Entity = value;
-					if ((value != null))
-					{
-						value.DishDetails.Add(this);
-						this._idSize = value.Id;
-					}
-					else
-					{
-						this._idSize = default(Nullable<byte>);
-					}
-					this.SendPropertyChanged("Size");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_DishDetail", Storage="_Kind", ThisKey="idKind", OtherKey="Id", IsForeignKey=true)]
-		public Kind Kind
-		{
-			get
-			{
-				return this._Kind.Entity;
-			}
-			set
-			{
-				Kind previousValue = this._Kind.Entity;
-				if (((previousValue != value) 
-							|| (this._Kind.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Kind.Entity = null;
-						previousValue.DishDetails.Remove(this);
-					}
-					this._Kind.Entity = value;
-					if ((value != null))
-					{
-						value.DishDetails.Add(this);
-						this._idKind = value.Id;
-					}
-					else
-					{
-						this._idKind = default(Nullable<byte>);
-					}
-					this.SendPropertyChanged("Kind");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Drink")]
 	public partial class Drink : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1211,335 +882,6 @@ namespace WindowsFormsApp3
 		{
 			this.SendPropertyChanging();
 			entity.Drink = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DrinkDetail")]
-	public partial class DrinkDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<bool> _availability;
-		
-		private System.Nullable<byte> _idSize;
-		
-		private System.Nullable<byte> _idKind;
-		
-		private System.Nullable<decimal> _price;
-		
-		private System.Nullable<float> _tax;
-		
-		private int _idDrink;
-		
-		private EntityRef<Drink> _Drink;
-		
-		private EntityRef<Size> _Size;
-		
-		private EntityRef<Kind> _Kind;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnavailabilityChanging(System.Nullable<bool> value);
-    partial void OnavailabilityChanged();
-    partial void OnidSizeChanging(System.Nullable<byte> value);
-    partial void OnidSizeChanged();
-    partial void OnidKindChanging(System.Nullable<byte> value);
-    partial void OnidKindChanged();
-    partial void OnpriceChanging(System.Nullable<decimal> value);
-    partial void OnpriceChanged();
-    partial void OntaxChanging(System.Nullable<float> value);
-    partial void OntaxChanged();
-    partial void OnidDrinkChanging(int value);
-    partial void OnidDrinkChanged();
-    #endregion
-		
-		public DrinkDetail()
-		{
-			this._Drink = default(EntityRef<Drink>);
-			this._Size = default(EntityRef<Size>);
-			this._Kind = default(EntityRef<Kind>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_availability", DbType="Bit")]
-		public System.Nullable<bool> availability
-		{
-			get
-			{
-				return this._availability;
-			}
-			set
-			{
-				if ((this._availability != value))
-				{
-					this.OnavailabilityChanging(value);
-					this.SendPropertyChanging();
-					this._availability = value;
-					this.SendPropertyChanged("availability");
-					this.OnavailabilityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSize", DbType="TinyInt")]
-		public System.Nullable<byte> idSize
-		{
-			get
-			{
-				return this._idSize;
-			}
-			set
-			{
-				if ((this._idSize != value))
-				{
-					if (this._Size.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidSizeChanging(value);
-					this.SendPropertyChanging();
-					this._idSize = value;
-					this.SendPropertyChanged("idSize");
-					this.OnidSizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKind", DbType="TinyInt")]
-		public System.Nullable<byte> idKind
-		{
-			get
-			{
-				return this._idKind;
-			}
-			set
-			{
-				if ((this._idKind != value))
-				{
-					if (this._Kind.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidKindChanging(value);
-					this.SendPropertyChanging();
-					this._idKind = value;
-					this.SendPropertyChanged("idKind");
-					this.OnidKindChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Money")]
-		public System.Nullable<decimal> price
-		{
-			get
-			{
-				return this._price;
-			}
-			set
-			{
-				if ((this._price != value))
-				{
-					this.OnpriceChanging(value);
-					this.SendPropertyChanging();
-					this._price = value;
-					this.SendPropertyChanged("price");
-					this.OnpriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tax", DbType="Real")]
-		public System.Nullable<float> tax
-		{
-			get
-			{
-				return this._tax;
-			}
-			set
-			{
-				if ((this._tax != value))
-				{
-					this.OntaxChanging(value);
-					this.SendPropertyChanging();
-					this._tax = value;
-					this.SendPropertyChanged("tax");
-					this.OntaxChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDrink", DbType="Int NOT NULL")]
-		public int idDrink
-		{
-			get
-			{
-				return this._idDrink;
-			}
-			set
-			{
-				if ((this._idDrink != value))
-				{
-					if (this._Drink.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidDrinkChanging(value);
-					this.SendPropertyChanging();
-					this._idDrink = value;
-					this.SendPropertyChanged("idDrink");
-					this.OnidDrinkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_DrinkDetail", Storage="_Drink", ThisKey="idDrink", OtherKey="Id", IsForeignKey=true)]
-		public Drink Drink
-		{
-			get
-			{
-				return this._Drink.Entity;
-			}
-			set
-			{
-				Drink previousValue = this._Drink.Entity;
-				if (((previousValue != value) 
-							|| (this._Drink.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Drink.Entity = null;
-						previousValue.DrinkDetails.Remove(this);
-					}
-					this._Drink.Entity = value;
-					if ((value != null))
-					{
-						value.DrinkDetails.Add(this);
-						this._idDrink = value.Id;
-					}
-					else
-					{
-						this._idDrink = default(int);
-					}
-					this.SendPropertyChanged("Drink");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Size_DrinkDetail", Storage="_Size", ThisKey="idSize", OtherKey="Id", IsForeignKey=true)]
-		public Size Size
-		{
-			get
-			{
-				return this._Size.Entity;
-			}
-			set
-			{
-				Size previousValue = this._Size.Entity;
-				if (((previousValue != value) 
-							|| (this._Size.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Size.Entity = null;
-						previousValue.DrinkDetails.Remove(this);
-					}
-					this._Size.Entity = value;
-					if ((value != null))
-					{
-						value.DrinkDetails.Add(this);
-						this._idSize = value.Id;
-					}
-					else
-					{
-						this._idSize = default(Nullable<byte>);
-					}
-					this.SendPropertyChanged("Size");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_DrinkDetail", Storage="_Kind", ThisKey="idKind", OtherKey="Id", IsForeignKey=true)]
-		public Kind Kind
-		{
-			get
-			{
-				return this._Kind.Entity;
-			}
-			set
-			{
-				Kind previousValue = this._Kind.Entity;
-				if (((previousValue != value) 
-							|| (this._Kind.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Kind.Entity = null;
-						previousValue.DrinkDetails.Remove(this);
-					}
-					this._Kind.Entity = value;
-					if ((value != null))
-					{
-						value.DrinkDetails.Add(this);
-						this._idKind = value.Id;
-					}
-					else
-					{
-						this._idKind = default(Nullable<byte>);
-					}
-					this.SendPropertyChanged("Kind");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -1994,6 +1336,664 @@ namespace WindowsFormsApp3
 				{
 					this._idDrink = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DishDetail")]
+	public partial class DishDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<bool> _availability;
+		
+		private System.Nullable<byte> _idSize;
+		
+		private System.Nullable<byte> _idKind;
+		
+		private System.Nullable<decimal> _price;
+		
+		private System.Nullable<int> _tax;
+		
+		private int _idDish;
+		
+		private EntityRef<Dish> _Dish;
+		
+		private EntityRef<Kind> _Kind;
+		
+		private EntityRef<Size> _Size;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnavailabilityChanging(System.Nullable<bool> value);
+    partial void OnavailabilityChanged();
+    partial void OnidSizeChanging(System.Nullable<byte> value);
+    partial void OnidSizeChanged();
+    partial void OnidKindChanging(System.Nullable<byte> value);
+    partial void OnidKindChanged();
+    partial void OnpriceChanging(System.Nullable<decimal> value);
+    partial void OnpriceChanged();
+    partial void OntaxChanging(System.Nullable<int> value);
+    partial void OntaxChanged();
+    partial void OnidDishChanging(int value);
+    partial void OnidDishChanged();
+    #endregion
+		
+		public DishDetail()
+		{
+			this._Dish = default(EntityRef<Dish>);
+			this._Kind = default(EntityRef<Kind>);
+			this._Size = default(EntityRef<Size>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_availability", DbType="Bit")]
+		public System.Nullable<bool> availability
+		{
+			get
+			{
+				return this._availability;
+			}
+			set
+			{
+				if ((this._availability != value))
+				{
+					this.OnavailabilityChanging(value);
+					this.SendPropertyChanging();
+					this._availability = value;
+					this.SendPropertyChanged("availability");
+					this.OnavailabilityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSize", DbType="TinyInt")]
+		public System.Nullable<byte> idSize
+		{
+			get
+			{
+				return this._idSize;
+			}
+			set
+			{
+				if ((this._idSize != value))
+				{
+					if (this._Size.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidSizeChanging(value);
+					this.SendPropertyChanging();
+					this._idSize = value;
+					this.SendPropertyChanged("idSize");
+					this.OnidSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKind", DbType="TinyInt")]
+		public System.Nullable<byte> idKind
+		{
+			get
+			{
+				return this._idKind;
+			}
+			set
+			{
+				if ((this._idKind != value))
+				{
+					if (this._Kind.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidKindChanging(value);
+					this.SendPropertyChanging();
+					this._idKind = value;
+					this.SendPropertyChanged("idKind");
+					this.OnidKindChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Money")]
+		public System.Nullable<decimal> price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this.OnpriceChanging(value);
+					this.SendPropertyChanging();
+					this._price = value;
+					this.SendPropertyChanged("price");
+					this.OnpriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tax", DbType="Int")]
+		public System.Nullable<int> tax
+		{
+			get
+			{
+				return this._tax;
+			}
+			set
+			{
+				if ((this._tax != value))
+				{
+					this.OntaxChanging(value);
+					this.SendPropertyChanging();
+					this._tax = value;
+					this.SendPropertyChanged("tax");
+					this.OntaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDish", DbType="Int NOT NULL")]
+		public int idDish
+		{
+			get
+			{
+				return this._idDish;
+			}
+			set
+			{
+				if ((this._idDish != value))
+				{
+					if (this._Dish.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidDishChanging(value);
+					this.SendPropertyChanging();
+					this._idDish = value;
+					this.SendPropertyChanged("idDish");
+					this.OnidDishChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Dish_DishDetail", Storage="_Dish", ThisKey="idDish", OtherKey="Id", IsForeignKey=true)]
+		public Dish Dish
+		{
+			get
+			{
+				return this._Dish.Entity;
+			}
+			set
+			{
+				Dish previousValue = this._Dish.Entity;
+				if (((previousValue != value) 
+							|| (this._Dish.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Dish.Entity = null;
+						previousValue.DishDetails.Remove(this);
+					}
+					this._Dish.Entity = value;
+					if ((value != null))
+					{
+						value.DishDetails.Add(this);
+						this._idDish = value.Id;
+					}
+					else
+					{
+						this._idDish = default(int);
+					}
+					this.SendPropertyChanged("Dish");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_DishDetail", Storage="_Kind", ThisKey="idKind", OtherKey="Id", IsForeignKey=true)]
+		public Kind Kind
+		{
+			get
+			{
+				return this._Kind.Entity;
+			}
+			set
+			{
+				Kind previousValue = this._Kind.Entity;
+				if (((previousValue != value) 
+							|| (this._Kind.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Kind.Entity = null;
+						previousValue.DishDetails.Remove(this);
+					}
+					this._Kind.Entity = value;
+					if ((value != null))
+					{
+						value.DishDetails.Add(this);
+						this._idKind = value.Id;
+					}
+					else
+					{
+						this._idKind = default(Nullable<byte>);
+					}
+					this.SendPropertyChanged("Kind");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Size_DishDetail", Storage="_Size", ThisKey="idSize", OtherKey="Id", IsForeignKey=true)]
+		public Size Size
+		{
+			get
+			{
+				return this._Size.Entity;
+			}
+			set
+			{
+				Size previousValue = this._Size.Entity;
+				if (((previousValue != value) 
+							|| (this._Size.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Size.Entity = null;
+						previousValue.DishDetails.Remove(this);
+					}
+					this._Size.Entity = value;
+					if ((value != null))
+					{
+						value.DishDetails.Add(this);
+						this._idSize = value.Id;
+					}
+					else
+					{
+						this._idSize = default(Nullable<byte>);
+					}
+					this.SendPropertyChanged("Size");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DrinkDetail")]
+	public partial class DrinkDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<bool> _availability;
+		
+		private System.Nullable<byte> _idSize;
+		
+		private System.Nullable<byte> _idKind;
+		
+		private System.Nullable<decimal> _price;
+		
+		private System.Nullable<int> _tax;
+		
+		private int _idDrink;
+		
+		private EntityRef<Drink> _Drink;
+		
+		private EntityRef<Kind> _Kind;
+		
+		private EntityRef<Size> _Size;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnavailabilityChanging(System.Nullable<bool> value);
+    partial void OnavailabilityChanged();
+    partial void OnidSizeChanging(System.Nullable<byte> value);
+    partial void OnidSizeChanged();
+    partial void OnidKindChanging(System.Nullable<byte> value);
+    partial void OnidKindChanged();
+    partial void OnpriceChanging(System.Nullable<decimal> value);
+    partial void OnpriceChanged();
+    partial void OntaxChanging(System.Nullable<int> value);
+    partial void OntaxChanged();
+    partial void OnidDrinkChanging(int value);
+    partial void OnidDrinkChanged();
+    #endregion
+		
+		public DrinkDetail()
+		{
+			this._Drink = default(EntityRef<Drink>);
+			this._Kind = default(EntityRef<Kind>);
+			this._Size = default(EntityRef<Size>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_availability", DbType="Bit")]
+		public System.Nullable<bool> availability
+		{
+			get
+			{
+				return this._availability;
+			}
+			set
+			{
+				if ((this._availability != value))
+				{
+					this.OnavailabilityChanging(value);
+					this.SendPropertyChanging();
+					this._availability = value;
+					this.SendPropertyChanged("availability");
+					this.OnavailabilityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSize", DbType="TinyInt")]
+		public System.Nullable<byte> idSize
+		{
+			get
+			{
+				return this._idSize;
+			}
+			set
+			{
+				if ((this._idSize != value))
+				{
+					if (this._Size.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidSizeChanging(value);
+					this.SendPropertyChanging();
+					this._idSize = value;
+					this.SendPropertyChanged("idSize");
+					this.OnidSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKind", DbType="TinyInt")]
+		public System.Nullable<byte> idKind
+		{
+			get
+			{
+				return this._idKind;
+			}
+			set
+			{
+				if ((this._idKind != value))
+				{
+					if (this._Kind.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidKindChanging(value);
+					this.SendPropertyChanging();
+					this._idKind = value;
+					this.SendPropertyChanged("idKind");
+					this.OnidKindChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Money")]
+		public System.Nullable<decimal> price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this.OnpriceChanging(value);
+					this.SendPropertyChanging();
+					this._price = value;
+					this.SendPropertyChanged("price");
+					this.OnpriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tax", DbType="Int")]
+		public System.Nullable<int> tax
+		{
+			get
+			{
+				return this._tax;
+			}
+			set
+			{
+				if ((this._tax != value))
+				{
+					this.OntaxChanging(value);
+					this.SendPropertyChanging();
+					this._tax = value;
+					this.SendPropertyChanged("tax");
+					this.OntaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDrink", DbType="Int NOT NULL")]
+		public int idDrink
+		{
+			get
+			{
+				return this._idDrink;
+			}
+			set
+			{
+				if ((this._idDrink != value))
+				{
+					if (this._Drink.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidDrinkChanging(value);
+					this.SendPropertyChanging();
+					this._idDrink = value;
+					this.SendPropertyChanged("idDrink");
+					this.OnidDrinkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_DrinkDetail", Storage="_Drink", ThisKey="idDrink", OtherKey="Id", IsForeignKey=true)]
+		public Drink Drink
+		{
+			get
+			{
+				return this._Drink.Entity;
+			}
+			set
+			{
+				Drink previousValue = this._Drink.Entity;
+				if (((previousValue != value) 
+							|| (this._Drink.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Drink.Entity = null;
+						previousValue.DrinkDetails.Remove(this);
+					}
+					this._Drink.Entity = value;
+					if ((value != null))
+					{
+						value.DrinkDetails.Add(this);
+						this._idDrink = value.Id;
+					}
+					else
+					{
+						this._idDrink = default(int);
+					}
+					this.SendPropertyChanged("Drink");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_DrinkDetail", Storage="_Kind", ThisKey="idKind", OtherKey="Id", IsForeignKey=true)]
+		public Kind Kind
+		{
+			get
+			{
+				return this._Kind.Entity;
+			}
+			set
+			{
+				Kind previousValue = this._Kind.Entity;
+				if (((previousValue != value) 
+							|| (this._Kind.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Kind.Entity = null;
+						previousValue.DrinkDetails.Remove(this);
+					}
+					this._Kind.Entity = value;
+					if ((value != null))
+					{
+						value.DrinkDetails.Add(this);
+						this._idKind = value.Id;
+					}
+					else
+					{
+						this._idKind = default(Nullable<byte>);
+					}
+					this.SendPropertyChanged("Kind");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Size_DrinkDetail", Storage="_Size", ThisKey="idSize", OtherKey="Id", IsForeignKey=true)]
+		public Size Size
+		{
+			get
+			{
+				return this._Size.Entity;
+			}
+			set
+			{
+				Size previousValue = this._Size.Entity;
+				if (((previousValue != value) 
+							|| (this._Size.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Size.Entity = null;
+						previousValue.DrinkDetails.Remove(this);
+					}
+					this._Size.Entity = value;
+					if ((value != null))
+					{
+						value.DrinkDetails.Add(this);
+						this._idSize = value.Id;
+					}
+					else
+					{
+						this._idSize = default(Nullable<byte>);
+					}
+					this.SendPropertyChanged("Size");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
