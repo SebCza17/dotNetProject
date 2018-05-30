@@ -290,5 +290,6 @@ namespace WindowsFormsApp3
             data.SubmitChanges();
             loadDishDetail();
         }
+        
     }
 }

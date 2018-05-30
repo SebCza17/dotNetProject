@@ -92,11 +92,11 @@
             // errorLab2
             // 
             this.errorLab2.AutoSize = true;
-            this.errorLab2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.errorLab2.ForeColor = System.Drawing.Color.Red;
-            this.errorLab2.Location = new System.Drawing.Point(303, 513);
+            this.errorLab2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.errorLab2.ForeColor = System.Drawing.Color.Brown;
+            this.errorLab2.Location = new System.Drawing.Point(333, 173);
             this.errorLab2.Name = "errorLab2";
-            this.errorLab2.Size = new System.Drawing.Size(59, 25);
+            this.errorLab2.Size = new System.Drawing.Size(29, 13);
             this.errorLab2.TabIndex = 50;
             this.errorLab2.Text = "Error";
             this.errorLab2.Visible = false;
