@@ -56,6 +56,7 @@
             this.dataGridDrink = new System.Windows.Forms.DataGridView();
             this.checkBoxIsAdult = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.butBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDrink)).BeginInit();
             this.SuspendLayout();
@@ -315,11 +316,22 @@
             this.label2.TabIndex = 55;
             this.label2.Text = "Adults:";
             // 
+            // butBack
+            // 
+            this.butBack.Location = new System.Drawing.Point(591, 508);
+            this.butBack.Name = "butBack";
+            this.butBack.Size = new System.Drawing.Size(75, 23);
+            this.butBack.TabIndex = 56;
+            this.butBack.Text = "Back";
+            this.butBack.UseVisualStyleBackColor = true;
+            this.butBack.Click += new System.EventHandler(this.butBack_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 543);
+            this.Controls.Add(this.butBack);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBoxIsAdult);
             this.Controls.Add(this.butSaveDetail);
@@ -387,5 +399,6 @@
         private System.Windows.Forms.DataGridView dataGridDrink;
         private System.Windows.Forms.CheckBox checkBoxIsAdult;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button butBack;
     }
 }

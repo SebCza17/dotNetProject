@@ -19,9 +19,14 @@ namespace WindowsFormsApp3
             
             data = new DataClasses1DataContext();
 
+            loadBox();
+
+        }
+        public void loadBox()
+        {
             var result = from dish in data.Dishes
-                         select new { Id = dish.Id, name = dish.name} ;
-            
+                         select new { Id = dish.Id, name = dish.name };
+
             comboBox1.DisplayMember = "name";
             comboBox1.ValueMember = "Id";
             comboBox1.DataSource = result;
@@ -43,9 +48,25 @@ namespace WindowsFormsApp3
             comboBox3.DataSource = result3;
 
 
+            var result4 = from drink in data.Drinks
+                          select new { drink.Id, drink.name };
+
+            comboBoxDrink.DisplayMember = "name";
+            comboBoxDrink.ValueMember = "Id";
+            comboBoxDrink.DataSource = result4;
+
+            var result5 = from size in data.Sizes
+                          where size.Id > 10
+                          select new { size.Id, size.value };
+
+            comboBoxDrinkSize.DisplayMember = "value";
+            comboBoxDrinkSize.ValueMember = "Id";
+            comboBoxDrinkSize.DataSource = result5;
+
 
 
         }
+
 
         private void errorShow(String s)
         {
@@ -60,14 +81,16 @@ namespace WindowsFormsApp3
 
         private void butDrink_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Form2 form2 = new Form2(this);
             form2.Show();
+            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
+            Form3 form3 = new Form3(this);
             form3.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)

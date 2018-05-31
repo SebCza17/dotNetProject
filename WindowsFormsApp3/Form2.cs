@@ -15,9 +15,11 @@ namespace WindowsFormsApp3
         DataClasses1DataContext data;
         Drink toUpdateDrink;
         DrinkDetail toUpdateDetail;
-        public Form2()
+        Form1 formHandler;
+        public Form2(Form1 form)
         {
             InitializeComponent();
+            formHandler = form;
             data = new DataClasses1DataContext();
 
             loadDrink();
@@ -41,6 +43,7 @@ namespace WindowsFormsApp3
         }
         private void loadDrink()
         {
+            
             var result = from dish in data.Drinks
                          select new { dish.Id, dish.name, dish.Description.decription, dish.adults };
 
@@ -284,6 +287,14 @@ namespace WindowsFormsApp3
 
             data.SubmitChanges();
             loadDrinkDetail();
+        }
+
+        private void butBack_Click(object sender, EventArgs e)
+        {
+            formHandler.loadBox();
+            formHandler.Show();
+            
+            this.Close();
         }
     }
 }

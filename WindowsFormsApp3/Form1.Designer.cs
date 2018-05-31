@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.butDel = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.butDrink = new System.Windows.Forms.Button();
             this.errorLab2 = new System.Windows.Forms.Label();
@@ -44,6 +44,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBoxDrinkSize = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBoxDrink = new System.Windows.Forms.ComboBox();
+            this.butAddDrink = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -109,14 +114,14 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Kind";
             // 
-            // button2
+            // butDel
             // 
-            this.button2.Location = new System.Drawing.Point(383, 171);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = true;
+            this.butDel.Location = new System.Drawing.Point(383, 171);
+            this.butDel.Name = "butDel";
+            this.butDel.Size = new System.Drawing.Size(75, 23);
+            this.butDel.TabIndex = 9;
+            this.butDel.Text = "Delete";
+            this.butDel.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -192,11 +197,61 @@
             this.label7.TabIndex = 19;
             this.label7.Text = "Price";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(218, 52);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(27, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Size";
+            // 
+            // comboBoxDrinkSize
+            // 
+            this.comboBoxDrinkSize.FormattingEnabled = true;
+            this.comboBoxDrinkSize.Location = new System.Drawing.Point(221, 68);
+            this.comboBoxDrinkSize.Name = "comboBoxDrinkSize";
+            this.comboBoxDrinkSize.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDrinkSize.TabIndex = 23;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(90, 52);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 13);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Select Drink";
+            // 
+            // comboBoxDrink
+            // 
+            this.comboBoxDrink.DisplayMember = "Id";
+            this.comboBoxDrink.FormattingEnabled = true;
+            this.comboBoxDrink.Location = new System.Drawing.Point(93, 68);
+            this.comboBoxDrink.Name = "comboBoxDrink";
+            this.comboBoxDrink.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDrink.TabIndex = 21;
+            this.comboBoxDrink.ValueMember = "Id";
+            // 
+            // butAddDrink
+            // 
+            this.butAddDrink.Location = new System.Drawing.Point(12, 66);
+            this.butAddDrink.Name = "butAddDrink";
+            this.butAddDrink.Size = new System.Drawing.Size(75, 23);
+            this.butAddDrink.TabIndex = 20;
+            this.butAddDrink.Text = "Add";
+            this.butAddDrink.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.comboBoxDrinkSize);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.comboBoxDrink);
+            this.Controls.Add(this.butAddDrink);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -205,7 +260,7 @@
             this.Controls.Add(this.errorLab2);
             this.Controls.Add(this.butDrink);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.butDel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label2);
@@ -229,7 +284,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button butDel;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button butDrink;
         private System.Windows.Forms.Label errorLab2;
@@ -238,6 +293,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBoxDrinkSize;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBoxDrink;
+        private System.Windows.Forms.Button butAddDrink;
     }
 }
 

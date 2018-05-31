@@ -54,6 +54,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.butEditDetail = new System.Windows.Forms.Button();
             this.butSaveDetail = new System.Windows.Forms.Button();
+            this.butBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -248,11 +249,11 @@
             // errorLab2
             // 
             this.errorLab2.AutoSize = true;
-            this.errorLab2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.errorLab2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.errorLab2.ForeColor = System.Drawing.Color.Red;
-            this.errorLab2.Location = new System.Drawing.Point(304, 514);
+            this.errorLab2.Location = new System.Drawing.Point(315, 183);
             this.errorLab2.Name = "errorLab2";
-            this.errorLab2.Size = new System.Drawing.Size(59, 25);
+            this.errorLab2.Size = new System.Drawing.Size(29, 13);
             this.errorLab2.TabIndex = 24;
             this.errorLab2.Text = "Error";
             this.errorLab2.Visible = false;
@@ -295,11 +296,22 @@
             this.butSaveDetail.UseVisualStyleBackColor = true;
             this.butSaveDetail.Click += new System.EventHandler(this.butSaveDetail_Click);
             // 
+            // butBack
+            // 
+            this.butBack.Location = new System.Drawing.Point(592, 513);
+            this.butBack.Name = "butBack";
+            this.butBack.Size = new System.Drawing.Size(75, 23);
+            this.butBack.TabIndex = 28;
+            this.butBack.Text = "Back";
+            this.butBack.UseVisualStyleBackColor = true;
+            this.butBack.Click += new System.EventHandler(this.butBack_Click);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 548);
+            this.Controls.Add(this.butBack);
             this.Controls.Add(this.butSaveDetail);
             this.Controls.Add(this.butEditDetail);
             this.Controls.Add(this.checkBox1);
@@ -363,5 +375,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button butEditDetail;
         private System.Windows.Forms.Button butSaveDetail;
+        private System.Windows.Forms.Button butBack;
     }
 }

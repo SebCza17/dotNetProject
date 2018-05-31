@@ -15,9 +15,11 @@ namespace WindowsFormsApp3
         DataClasses1DataContext data;
         Dish toUpdateDish;
         DishDetail toUpdateDetail;
-        public Form3()
+        Form1 formHandler;
+        public Form3(Form1 form)
         {
             InitializeComponent();
+            formHandler = form;
             data = new DataClasses1DataContext();
 
             loadDish();
@@ -290,6 +292,13 @@ namespace WindowsFormsApp3
             data.SubmitChanges();
             loadDishDetail();
         }
-        
+
+        private void butBack_Click(object sender, EventArgs e)
+        {
+            formHandler.loadBox();
+            formHandler.Show();
+
+            this.Close();
+        }
     }
 }
