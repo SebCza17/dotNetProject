@@ -296,7 +296,6 @@ namespace WindowsFormsApp3
         private void butBack_Click(object sender, EventArgs e)
         {
             formHandler.loadBox();
-            formHandler.Show();
 
             this.Close();
         }

@@ -134,22 +134,6 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		public System.Data.Linq.Table<OrderDish> OrderDishes
-		{
-			get
-			{
-				return this.GetTable<OrderDish>();
-			}
-		}
-		
-		public System.Data.Linq.Table<OrderDrink> OrderDrinks
-		{
-			get
-			{
-				return this.GetTable<OrderDrink>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DishDetail> DishDetails
 		{
 			get
@@ -163,6 +147,22 @@ namespace WindowsFormsApp3
 			get
 			{
 				return this.GetTable<DrinkDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OrderDish> OrderDishes
+		{
+			get
+			{
+				return this.GetTable<OrderDish>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OrderDrink> OrderDrinks
+		{
+			get
+			{
+				return this.GetTable<OrderDrink>();
 			}
 		}
 	}
@@ -1250,96 +1250,6 @@ namespace WindowsFormsApp3
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderDish")]
-	public partial class OrderDish
-	{
-		
-		private int _idOrder;
-		
-		private int _idDish;
-		
-		public OrderDish()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idOrder", DbType="Int NOT NULL")]
-		public int idOrder
-		{
-			get
-			{
-				return this._idOrder;
-			}
-			set
-			{
-				if ((this._idOrder != value))
-				{
-					this._idOrder = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDish", DbType="Int NOT NULL")]
-		public int idDish
-		{
-			get
-			{
-				return this._idDish;
-			}
-			set
-			{
-				if ((this._idDish != value))
-				{
-					this._idDish = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderDrink")]
-	public partial class OrderDrink
-	{
-		
-		private int _idOrder;
-		
-		private int _idDrink;
-		
-		public OrderDrink()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idOrder", DbType="Int NOT NULL")]
-		public int idOrder
-		{
-			get
-			{
-				return this._idOrder;
-			}
-			set
-			{
-				if ((this._idOrder != value))
-				{
-					this._idOrder = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDrink", DbType="Int NOT NULL")]
-		public int idDrink
-		{
-			get
-			{
-				return this._idDrink;
-			}
-			set
-			{
-				if ((this._idDrink != value))
-				{
-					this._idDrink = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DishDetail")]
 	public partial class DishDetail : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1994,6 +1904,96 @@ namespace WindowsFormsApp3
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderDish")]
+	public partial class OrderDish
+	{
+		
+		private int _idOrder;
+		
+		private int _idDishDetail;
+		
+		public OrderDish()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idOrder", DbType="Int NOT NULL")]
+		public int idOrder
+		{
+			get
+			{
+				return this._idOrder;
+			}
+			set
+			{
+				if ((this._idOrder != value))
+				{
+					this._idOrder = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDishDetail", DbType="Int NOT NULL")]
+		public int idDishDetail
+		{
+			get
+			{
+				return this._idDishDetail;
+			}
+			set
+			{
+				if ((this._idDishDetail != value))
+				{
+					this._idDishDetail = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderDrink")]
+	public partial class OrderDrink
+	{
+		
+		private int _idOrder;
+		
+		private int _idDrinkDetail;
+		
+		public OrderDrink()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idOrder", DbType="Int NOT NULL")]
+		public int idOrder
+		{
+			get
+			{
+				return this._idOrder;
+			}
+			set
+			{
+				if ((this._idOrder != value))
+				{
+					this._idOrder = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDrinkDetail", DbType="Int NOT NULL")]
+		public int idDrinkDetail
+		{
+			get
+			{
+				return this._idDrinkDetail;
+			}
+			set
+			{
+				if ((this._idDrinkDetail != value))
+				{
+					this._idDrinkDetail = value;
+				}
 			}
 		}
 	}

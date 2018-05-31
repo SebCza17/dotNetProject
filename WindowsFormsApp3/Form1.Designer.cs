@@ -30,11 +30,11 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelDishName = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelDishSize = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelDishKind = new System.Windows.Forms.Label();
             this.butDel = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.butDrink = new System.Windows.Forms.Button();
@@ -44,11 +44,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.labelDrinkSize = new System.Windows.Forms.Label();
             this.comboBoxDrinkSize = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.labelDrinkName = new System.Windows.Forms.Label();
             this.comboBoxDrink = new System.Windows.Forms.ComboBox();
             this.butAddDrink = new System.Windows.Forms.Button();
+            this.butSubmitOrder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -70,15 +71,16 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.ValueMember = "Id";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // label1
+            // labelDishName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(90, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Select Pizza";
+            this.labelDishName.AutoSize = true;
+            this.labelDishName.Location = new System.Drawing.Point(90, 12);
+            this.labelDishName.Name = "labelDishName";
+            this.labelDishName.Size = new System.Drawing.Size(65, 13);
+            this.labelDishName.TabIndex = 2;
+            this.labelDishName.Text = "Select Pizza";
             // 
             // comboBox2
             // 
@@ -87,15 +89,16 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 4;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
-            // label2
+            // labelDishSize
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(218, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Size";
+            this.labelDishSize.AutoSize = true;
+            this.labelDishSize.Location = new System.Drawing.Point(218, 12);
+            this.labelDishSize.Name = "labelDishSize";
+            this.labelDishSize.Size = new System.Drawing.Size(27, 13);
+            this.labelDishSize.TabIndex = 5;
+            this.labelDishSize.Text = "Size";
             // 
             // comboBox3
             // 
@@ -104,15 +107,16 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 6;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
-            // label3
+            // labelDishKind
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(349, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Kind";
+            this.labelDishKind.AutoSize = true;
+            this.labelDishKind.Location = new System.Drawing.Point(349, 12);
+            this.labelDishKind.Name = "labelDishKind";
+            this.labelDishKind.Size = new System.Drawing.Size(28, 13);
+            this.labelDishKind.TabIndex = 7;
+            this.labelDishKind.Text = "Kind";
             // 
             // butDel
             // 
@@ -122,6 +126,7 @@
             this.butDel.TabIndex = 9;
             this.butDel.Text = "Delete";
             this.butDel.UseVisualStyleBackColor = true;
+            this.butDel.Click += new System.EventHandler(this.butDel_Click);
             // 
             // button3
             // 
@@ -197,14 +202,14 @@
             this.label7.TabIndex = 19;
             this.label7.Text = "Price";
             // 
-            // label9
+            // labelDrinkSize
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(218, 52);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(27, 13);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Size";
+            this.labelDrinkSize.AutoSize = true;
+            this.labelDrinkSize.Location = new System.Drawing.Point(218, 52);
+            this.labelDrinkSize.Name = "labelDrinkSize";
+            this.labelDrinkSize.Size = new System.Drawing.Size(27, 13);
+            this.labelDrinkSize.TabIndex = 24;
+            this.labelDrinkSize.Text = "Size";
             // 
             // comboBoxDrinkSize
             // 
@@ -213,15 +218,16 @@
             this.comboBoxDrinkSize.Name = "comboBoxDrinkSize";
             this.comboBoxDrinkSize.Size = new System.Drawing.Size(121, 21);
             this.comboBoxDrinkSize.TabIndex = 23;
+            this.comboBoxDrinkSize.SelectedIndexChanged += new System.EventHandler(this.comboBoxDrinkSize_SelectedIndexChanged);
             // 
-            // label10
+            // labelDrinkName
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(90, 52);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 13);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Select Drink";
+            this.labelDrinkName.AutoSize = true;
+            this.labelDrinkName.Location = new System.Drawing.Point(90, 52);
+            this.labelDrinkName.Name = "labelDrinkName";
+            this.labelDrinkName.Size = new System.Drawing.Size(65, 13);
+            this.labelDrinkName.TabIndex = 22;
+            this.labelDrinkName.Text = "Select Drink";
             // 
             // comboBoxDrink
             // 
@@ -232,6 +238,7 @@
             this.comboBoxDrink.Size = new System.Drawing.Size(121, 21);
             this.comboBoxDrink.TabIndex = 21;
             this.comboBoxDrink.ValueMember = "Id";
+            this.comboBoxDrink.SelectedIndexChanged += new System.EventHandler(this.comboBoxDrink_SelectedIndexChanged);
             // 
             // butAddDrink
             // 
@@ -241,15 +248,27 @@
             this.butAddDrink.TabIndex = 20;
             this.butAddDrink.Text = "Add";
             this.butAddDrink.UseVisualStyleBackColor = true;
+            this.butAddDrink.Click += new System.EventHandler(this.butAddDrink_Click);
+            // 
+            // butSubmitOrder
+            // 
+            this.butSubmitOrder.Location = new System.Drawing.Point(386, 201);
+            this.butSubmitOrder.Name = "butSubmitOrder";
+            this.butSubmitOrder.Size = new System.Drawing.Size(75, 23);
+            this.butSubmitOrder.TabIndex = 25;
+            this.butSubmitOrder.Text = "Submit";
+            this.butSubmitOrder.UseVisualStyleBackColor = true;
+            this.butSubmitOrder.Click += new System.EventHandler(this.butSubmitOrder_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.butSubmitOrder);
+            this.Controls.Add(this.labelDrinkSize);
             this.Controls.Add(this.comboBoxDrinkSize);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.labelDrinkName);
             this.Controls.Add(this.comboBoxDrink);
             this.Controls.Add(this.butAddDrink);
             this.Controls.Add(this.label7);
@@ -261,11 +280,11 @@
             this.Controls.Add(this.butDrink);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.butDel);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelDishKind);
             this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelDishSize);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelDishName);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
@@ -279,11 +298,11 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelDishName;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelDishSize;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelDishKind;
         private System.Windows.Forms.Button butDel;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button butDrink;
@@ -293,11 +312,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelDrinkSize;
         private System.Windows.Forms.ComboBox comboBoxDrinkSize;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelDrinkName;
         private System.Windows.Forms.ComboBox comboBoxDrink;
         private System.Windows.Forms.Button butAddDrink;
+        private System.Windows.Forms.Button butSubmitOrder;
     }
 }
 
