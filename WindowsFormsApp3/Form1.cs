@@ -13,8 +13,8 @@ namespace WindowsFormsApp3
     public partial class Form1 : Form
     {
         DataClasses1DataContext data;
-        List<int> dishOrderList = new List<int>();
-        List<int> drinkOrderList = new List<int>();
+        private List<MyItems> myItems = new List<MyItems>();
+        private int ndx = 0;
         public Form1()
         {
             InitializeComponent();
@@ -22,6 +22,7 @@ namespace WindowsFormsApp3
             data = new DataClasses1DataContext();
 
             loadBox();
+            
 
         }
         public void loadBox()
@@ -155,10 +156,11 @@ namespace WindowsFormsApp3
 
 
 
-                listBoxOrder.Items.Insert(0, result.name + "\t\t" + result.value + "\t\t" + result.text + "\t\t" + result.price);
+                listBoxOrder.Items.Insert(listBoxOrder.Items.Count, result.name + "\t\t" + result.value + "\t\t" + result.text + "\t\t" + result.price);
                 errorHide();
 
-                dishOrderList.Add(result.Id);
+                myItems.Add(new MyItems { n = ndx, id = result.Id, type = "Dish"});
+                ndx++;
 
             }
             catch (Exception ex)
@@ -185,11 +187,12 @@ namespace WindowsFormsApp3
 
 
 
-                listBoxOrder.Items.Insert(0, result.name + "\t\t" + result.value + "\t\t" + result.text + "\t\t" + result.price);
+                listBoxOrder.Items.Insert(listBoxOrder.Items.Count, result.name + "\t\t" + result.value + "\t\t" + result.text + "\t\t" + result.price);
                 errorHide();
 
 
-                drinkOrderList.Add(result.Id);
+                myItems.Add(new MyItems { n = ndx, id = result.Id, type = "Drink" });
+                ndx++;
 
             }
             catch (Exception ex)
@@ -204,7 +207,10 @@ namespace WindowsFormsApp3
         {
             try
             {
+                myItems.RemoveAt(listBoxOrder.SelectedIndex);
                 listBoxOrder.Items.RemoveAt(listBoxOrder.SelectedIndex);
+                ndx--;
+                
             }catch(Exception ex)
             {
                 Console.WriteLine(ex);
@@ -277,12 +283,23 @@ namespace WindowsFormsApp3
 
         private void butSubmitOrder_Click(object sender, EventArgs e)
         {
-            foreach(var item in dishOrderList)
-            {
-                Console.WriteLine(item);
-            }
+            Form4 form4 = new Form4(this, myItems);
+            form4.Show();
+        }
+
+        public void clearAll()
+        {
+            listBoxOrder.Items.Clear();
+            myItems.Clear();
+            ndx = 0;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            clearAll();
         }
     }
+    
 
     
 }

@@ -50,6 +50,7 @@
             this.comboBoxDrink = new System.Windows.Forms.ComboBox();
             this.butAddDrink = new System.Windows.Forms.Button();
             this.butSubmitOrder = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -130,7 +131,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(713, 415);
+            this.button3.Location = new System.Drawing.Point(713, 41);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 10;
@@ -140,7 +141,7 @@
             // 
             // butDrink
             // 
-            this.butDrink.Location = new System.Drawing.Point(713, 386);
+            this.butDrink.Location = new System.Drawing.Point(713, 12);
             this.butDrink.Name = "butDrink";
             this.butDrink.Size = new System.Drawing.Size(75, 23);
             this.butDrink.TabIndex = 12;
@@ -252,7 +253,7 @@
             // 
             // butSubmitOrder
             // 
-            this.butSubmitOrder.Location = new System.Drawing.Point(386, 201);
+            this.butSubmitOrder.Location = new System.Drawing.Point(383, 230);
             this.butSubmitOrder.Name = "butSubmitOrder";
             this.butSubmitOrder.Size = new System.Drawing.Size(75, 23);
             this.butSubmitOrder.TabIndex = 25;
@@ -260,11 +261,22 @@
             this.butSubmitOrder.UseVisualStyleBackColor = true;
             this.butSubmitOrder.Click += new System.EventHandler(this.butSubmitOrder_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(384, 201);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "Clear All";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.butSubmitOrder);
             this.Controls.Add(this.labelDrinkSize);
             this.Controls.Add(this.comboBoxDrinkSize);
@@ -318,6 +330,7 @@
         private System.Windows.Forms.ComboBox comboBoxDrink;
         private System.Windows.Forms.Button butAddDrink;
         private System.Windows.Forms.Button butSubmitOrder;
+        private System.Windows.Forms.Button button2;
     }
 }
 

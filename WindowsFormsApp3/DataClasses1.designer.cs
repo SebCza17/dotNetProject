@@ -45,15 +45,18 @@ namespace WindowsFormsApp3
     partial void InsertKind(Kind instance);
     partial void UpdateKind(Kind instance);
     partial void DeleteKind(Kind instance);
-    partial void InsertOrder(Order instance);
-    partial void UpdateOrder(Order instance);
-    partial void DeleteOrder(Order instance);
     partial void InsertDishDetail(DishDetail instance);
     partial void UpdateDishDetail(DishDetail instance);
     partial void DeleteDishDetail(DishDetail instance);
     partial void InsertDrinkDetail(DrinkDetail instance);
     partial void UpdateDrinkDetail(DrinkDetail instance);
     partial void DeleteDrinkDetail(DrinkDetail instance);
+    partial void InsertStatus(Status instance);
+    partial void UpdateStatus(Status instance);
+    partial void DeleteStatus(Status instance);
+    partial void InsertOrder(Order instance);
+    partial void UpdateOrder(Order instance);
+    partial void DeleteOrder(Order instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -126,14 +129,6 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		public System.Data.Linq.Table<Order> Orders
-		{
-			get
-			{
-				return this.GetTable<Order>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DishDetail> DishDetails
 		{
 			get
@@ -163,6 +158,22 @@ namespace WindowsFormsApp3
 			get
 			{
 				return this.GetTable<OrderDrink>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Status> Status
+		{
+			get
+			{
+				return this.GetTable<Status>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Order> Orders
+		{
+			get
+			{
+				return this.GetTable<Order>();
 			}
 		}
 	}
@@ -899,6 +910,8 @@ namespace WindowsFormsApp3
 		
 		private EntitySet<DrinkDetail> _DrinkDetails;
 		
+		private EntitySet<Order> _Orders;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -913,6 +926,7 @@ namespace WindowsFormsApp3
 		{
 			this._DishDetails = new EntitySet<DishDetail>(new Action<DishDetail>(this.attach_DishDetails), new Action<DishDetail>(this.detach_DishDetails));
 			this._DrinkDetails = new EntitySet<DrinkDetail>(new Action<DrinkDetail>(this.attach_DrinkDetails), new Action<DrinkDetail>(this.detach_DrinkDetails));
+			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
 			OnCreated();
 		}
 		
@@ -982,6 +996,19 @@ namespace WindowsFormsApp3
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_Order", Storage="_Orders", ThisKey="Id", OtherKey="idKind")]
+		public EntitySet<Order> Orders
+		{
+			get
+			{
+				return this._Orders;
+			}
+			set
+			{
+				this._Orders.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1025,228 +1052,17 @@ namespace WindowsFormsApp3
 			this.SendPropertyChanging();
 			entity.Kind = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
-	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<byte> _status;
-		
-		private System.Nullable<byte> _type;
-		
-		private System.Nullable<System.DateTime> _startDateTime;
-		
-		private System.Nullable<System.DateTime> _endDateTime;
-		
-		private System.Nullable<int> _idDescription;
-		
-		private EntityRef<Description> _Description;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnstatusChanging(System.Nullable<byte> value);
-    partial void OnstatusChanged();
-    partial void OntypeChanging(System.Nullable<byte> value);
-    partial void OntypeChanged();
-    partial void OnstartDateTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnstartDateTimeChanged();
-    partial void OnendDateTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnendDateTimeChanged();
-    partial void OnidDescriptionChanging(System.Nullable<int> value);
-    partial void OnidDescriptionChanged();
-    #endregion
-		
-		public Order()
+		private void attach_Orders(Order entity)
 		{
-			this._Description = default(EntityRef<Description>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Kind = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		private void detach_Orders(Order entity)
 		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="TinyInt")]
-		public System.Nullable<byte> status
-		{
-			get
-			{
-				return this._status;
-			}
-			set
-			{
-				if ((this._status != value))
-				{
-					this.OnstatusChanging(value);
-					this.SendPropertyChanging();
-					this._status = value;
-					this.SendPropertyChanged("status");
-					this.OnstatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type", DbType="TinyInt")]
-		public System.Nullable<byte> type
-		{
-			get
-			{
-				return this._type;
-			}
-			set
-			{
-				if ((this._type != value))
-				{
-					this.OntypeChanging(value);
-					this.SendPropertyChanging();
-					this._type = value;
-					this.SendPropertyChanged("type");
-					this.OntypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_startDateTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> startDateTime
-		{
-			get
-			{
-				return this._startDateTime;
-			}
-			set
-			{
-				if ((this._startDateTime != value))
-				{
-					this.OnstartDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._startDateTime = value;
-					this.SendPropertyChanged("startDateTime");
-					this.OnstartDateTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_endDateTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> endDateTime
-		{
-			get
-			{
-				return this._endDateTime;
-			}
-			set
-			{
-				if ((this._endDateTime != value))
-				{
-					this.OnendDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._endDateTime = value;
-					this.SendPropertyChanged("endDateTime");
-					this.OnendDateTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDescription", DbType="Int")]
-		public System.Nullable<int> idDescription
-		{
-			get
-			{
-				return this._idDescription;
-			}
-			set
-			{
-				if ((this._idDescription != value))
-				{
-					if (this._Description.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._idDescription = value;
-					this.SendPropertyChanged("idDescription");
-					this.OnidDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Description_Order", Storage="_Description", ThisKey="idDescription", OtherKey="Id", IsForeignKey=true)]
-		public Description Description
-		{
-			get
-			{
-				return this._Description.Entity;
-			}
-			set
-			{
-				Description previousValue = this._Description.Entity;
-				if (((previousValue != value) 
-							|| (this._Description.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Description.Entity = null;
-						previousValue.Orders.Remove(this);
-					}
-					this._Description.Entity = value;
-					if ((value != null))
-					{
-						value.Orders.Add(this);
-						this._idDescription = value.Id;
-					}
-					else
-					{
-						this._idDescription = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Description");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Kind = null;
 		}
 	}
 	
@@ -1994,6 +1810,425 @@ namespace WindowsFormsApp3
 				{
 					this._idDrinkDetail = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Status")]
+	public partial class Status : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private byte _Id;
+		
+		private string _text;
+		
+		private EntitySet<Order> _Orders;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(byte value);
+    partial void OnIdChanged();
+    partial void OntextChanging(string value);
+    partial void OntextChanged();
+    #endregion
+		
+		public Status()
+		{
+			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
+		public byte Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="VarChar(50)")]
+		public string text
+		{
+			get
+			{
+				return this._text;
+			}
+			set
+			{
+				if ((this._text != value))
+				{
+					this.OntextChanging(value);
+					this.SendPropertyChanging();
+					this._text = value;
+					this.SendPropertyChanged("text");
+					this.OntextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Status_Order", Storage="_Orders", ThisKey="Id", OtherKey="idStatus")]
+		public EntitySet<Order> Orders
+		{
+			get
+			{
+				return this._Orders;
+			}
+			set
+			{
+				this._Orders.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Orders(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Status = this;
+		}
+		
+		private void detach_Orders(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Status = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
+	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<byte> _idStatus;
+		
+		private System.Nullable<byte> _idKind;
+		
+		private System.Nullable<System.DateTime> _startDateTime;
+		
+		private System.Nullable<System.DateTime> _endDateTime;
+		
+		private System.Nullable<int> _idDescription;
+		
+		private EntityRef<Description> _Description;
+		
+		private EntityRef<Kind> _Kind;
+		
+		private EntityRef<Status> _Status;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnidStatusChanging(System.Nullable<byte> value);
+    partial void OnidStatusChanged();
+    partial void OnidKindChanging(System.Nullable<byte> value);
+    partial void OnidKindChanged();
+    partial void OnstartDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnstartDateTimeChanged();
+    partial void OnendDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnendDateTimeChanged();
+    partial void OnidDescriptionChanging(System.Nullable<int> value);
+    partial void OnidDescriptionChanged();
+    #endregion
+		
+		public Order()
+		{
+			this._Description = default(EntityRef<Description>);
+			this._Kind = default(EntityRef<Kind>);
+			this._Status = default(EntityRef<Status>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idStatus", DbType="TinyInt")]
+		public System.Nullable<byte> idStatus
+		{
+			get
+			{
+				return this._idStatus;
+			}
+			set
+			{
+				if ((this._idStatus != value))
+				{
+					if (this._Status.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidStatusChanging(value);
+					this.SendPropertyChanging();
+					this._idStatus = value;
+					this.SendPropertyChanged("idStatus");
+					this.OnidStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKind", DbType="TinyInt")]
+		public System.Nullable<byte> idKind
+		{
+			get
+			{
+				return this._idKind;
+			}
+			set
+			{
+				if ((this._idKind != value))
+				{
+					if (this._Kind.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidKindChanging(value);
+					this.SendPropertyChanging();
+					this._idKind = value;
+					this.SendPropertyChanged("idKind");
+					this.OnidKindChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_startDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> startDateTime
+		{
+			get
+			{
+				return this._startDateTime;
+			}
+			set
+			{
+				if ((this._startDateTime != value))
+				{
+					this.OnstartDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._startDateTime = value;
+					this.SendPropertyChanged("startDateTime");
+					this.OnstartDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_endDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> endDateTime
+		{
+			get
+			{
+				return this._endDateTime;
+			}
+			set
+			{
+				if ((this._endDateTime != value))
+				{
+					this.OnendDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._endDateTime = value;
+					this.SendPropertyChanged("endDateTime");
+					this.OnendDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDescription", DbType="Int")]
+		public System.Nullable<int> idDescription
+		{
+			get
+			{
+				return this._idDescription;
+			}
+			set
+			{
+				if ((this._idDescription != value))
+				{
+					if (this._Description.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._idDescription = value;
+					this.SendPropertyChanged("idDescription");
+					this.OnidDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Description_Order", Storage="_Description", ThisKey="idDescription", OtherKey="Id", IsForeignKey=true)]
+		public Description Description
+		{
+			get
+			{
+				return this._Description.Entity;
+			}
+			set
+			{
+				Description previousValue = this._Description.Entity;
+				if (((previousValue != value) 
+							|| (this._Description.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Description.Entity = null;
+						previousValue.Orders.Remove(this);
+					}
+					this._Description.Entity = value;
+					if ((value != null))
+					{
+						value.Orders.Add(this);
+						this._idDescription = value.Id;
+					}
+					else
+					{
+						this._idDescription = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Description");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_Order", Storage="_Kind", ThisKey="idKind", OtherKey="Id", IsForeignKey=true)]
+		public Kind Kind
+		{
+			get
+			{
+				return this._Kind.Entity;
+			}
+			set
+			{
+				Kind previousValue = this._Kind.Entity;
+				if (((previousValue != value) 
+							|| (this._Kind.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Kind.Entity = null;
+						previousValue.Orders.Remove(this);
+					}
+					this._Kind.Entity = value;
+					if ((value != null))
+					{
+						value.Orders.Add(this);
+						this._idKind = value.Id;
+					}
+					else
+					{
+						this._idKind = default(Nullable<byte>);
+					}
+					this.SendPropertyChanged("Kind");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Status_Order", Storage="_Status", ThisKey="idStatus", OtherKey="Id", IsForeignKey=true)]
+		public Status Status
+		{
+			get
+			{
+				return this._Status.Entity;
+			}
+			set
+			{
+				Status previousValue = this._Status.Entity;
+				if (((previousValue != value) 
+							|| (this._Status.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Status.Entity = null;
+						previousValue.Orders.Remove(this);
+					}
+					this._Status.Entity = value;
+					if ((value != null))
+					{
+						value.Orders.Add(this);
+						this._idStatus = value.Id;
+					}
+					else
+					{
+						this._idStatus = default(Nullable<byte>);
+					}
+					this.SendPropertyChanged("Status");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
