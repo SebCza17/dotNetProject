@@ -67,7 +67,35 @@ namespace WindowsFormsApp3
             comboBoxDrinkSize.DataSource = result5;
 
 
+            var result6 = from order in data.Orders
+                          select new { order.Id, Kind = order.Kind.text,  Status = order.Status.text, order.startDateTime, order.endDateTime, order.Description.decription};
 
+            dataGridOrder.DataSource = result6;
+
+
+            for (int i = 0; i < dataGridOrder.Columns.Count; i++)
+            {
+                dataGridOrder.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+
+            var result7 = from status in data.Status
+                          select status;
+
+            comboBoxStatus.DisplayMember = "text";
+            comboBoxStatus.ValueMember = "Id";
+            comboBoxStatus.DataSource = result7;
+
+        }
+        private int getSelectedIdx(DataGridView dataGridView, String columnName)
+        {
+
+            int idx = dataGridView.SelectedCells[0].RowIndex;
+
+            DataGridViewRow selectedRow = dataGridView.Rows[idx];
+
+            int selected = Convert.ToInt32(selectedRow.Cells[columnName].Value);
+
+            return selected;
         }
 
         private Boolean inDishStock()
@@ -297,6 +325,32 @@ namespace WindowsFormsApp3
         private void button2_Click(object sender, EventArgs e)
         {
             clearAll();
+        }
+
+        private void butChangeStatus_Click(object sender, EventArgs e)
+        {
+            DateTime myDateTime = DateTime.Now;
+
+
+            int idx = getSelectedIdx(dataGridOrder, "Id");
+
+            var result = (from order in data.Orders
+                          where order.Id == idx
+                          select order).First();
+
+            result.idStatus = (byte) comboBoxStatus.SelectedValue;
+            result.endDateTime = myDateTime;
+            
+            data.SubmitChanges();
+
+            loadBox();
+
+        }
+
+        private void butProfit_Click(object sender, EventArgs e)
+        {
+            Form5 form5 = new Form5();
+            form5.Show();
         }
     }
     

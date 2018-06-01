@@ -14,10 +14,12 @@ namespace WindowsFormsApp3
     {
         DataClasses1DataContext data;
         Form1 form1;
+        List<MyItems> myItems;
         public Form4(Form1 form1, List<MyItems> menuItems)
         {
             InitializeComponent();
             this.form1 = form1;
+            myItems = menuItems;
             data = new DataClasses1DataContext();
             decimal toPay = 0;
 
@@ -84,11 +86,41 @@ namespace WindowsFormsApp3
             order.idKind = (byte) comboBoxKind.SelectedValue;
             order.idStatus = 1;
             
+            
             data.Orders.InsertOnSubmit(order);
             data.SubmitChanges();
 
+            foreach (var item in myItems)
+            {
+                if (item.type.Equals("Dish"))
+                {
+                    var result = (from dishDetail in data.DishDetails
+                                  where dishDetail.Id == item.id
+                                  select dishDetail).First();
+
+                    OrderDish orderDish = new OrderDish();
+                    orderDish.idOrder = order.Id;
+                    orderDish.idDishDetail = result.Id;
+                    data.OrderDishes.InsertOnSubmit(orderDish);
+                }
+                else
+                {
+                    var result = (from drinkDetail in data.DrinkDetails
+                                  where drinkDetail.Id == item.id
+                                  select drinkDetail).First();
+
+
+                    OrderDrink orderDrink = new OrderDrink();
+                    orderDrink.idOrder = order.Id;
+                    orderDrink.idDrinkDetail = result.Id;
+                    data.OrderDrinks.InsertOnSubmit(orderDrink);
+                }
+            }
+
+
             this.Close();
             form1.clearAll();
+            form1.loadBox();
         }
         
     }

@@ -70,9 +70,9 @@ namespace WindowsFormsApp3
 
         private int getSelectedIdx(DataGridView dataGridView, String columnName)
         {
-           
-               int idx = dataGridView.SelectedCells[0].RowIndex;
-          
+
+            int idx = dataGridView.SelectedCells[0].RowIndex;
+
             DataGridViewRow selectedRow = dataGridView.Rows[idx];
 
             int selected = Convert.ToInt32(selectedRow.Cells[columnName].Value);
@@ -295,5 +295,6 @@ namespace WindowsFormsApp3
             
             this.Close();
         }
+        
     }
 }
