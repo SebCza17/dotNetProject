@@ -29,6 +29,7 @@ namespace WindowsFormsApp3
         private void butShow_Click(object sender, EventArgs e)
         {
             var result = from profit in data.Profits
+                         where profit.date >= dateTimeOd.Value.Date && profit.date <= dateTimeDo.Value.Date
                          select profit;
 
             dataGridOrder.DataSource = result;
