@@ -443,6 +443,12 @@ namespace WindowsFormsApp3
             form6.Show();
 
         }
+
+        private void butSize_Click(object sender, EventArgs e)
+        {
+            Form7 form7 = new Form7(this);
+            form7.Show();
+        }
     }
     
 

@@ -57,6 +57,7 @@
             this.butProfit = new System.Windows.Forms.Button();
             this.butLook = new System.Windows.Forms.Button();
             this.butKindMenu = new System.Windows.Forms.Button();
+            this.butSize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrder)).BeginInit();
             this.SuspendLayout();
             // 
@@ -334,11 +335,22 @@
             this.butKindMenu.UseVisualStyleBackColor = true;
             this.butKindMenu.Click += new System.EventHandler(this.butKindMenu_Click);
             // 
+            // butSize
+            // 
+            this.butSize.Location = new System.Drawing.Point(938, 100);
+            this.butSize.Name = "butSize";
+            this.butSize.Size = new System.Drawing.Size(75, 23);
+            this.butSize.TabIndex = 33;
+            this.butSize.Text = "Size Menu";
+            this.butSize.UseVisualStyleBackColor = true;
+            this.butSize.Click += new System.EventHandler(this.butSize_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 450);
+            this.Controls.Add(this.butSize);
             this.Controls.Add(this.butKindMenu);
             this.Controls.Add(this.butLook);
             this.Controls.Add(this.butProfit);
@@ -407,6 +419,7 @@
         private System.Windows.Forms.Button butProfit;
         private System.Windows.Forms.Button butLook;
         private System.Windows.Forms.Button butKindMenu;
+        private System.Windows.Forms.Button butSize;
     }
 }
 

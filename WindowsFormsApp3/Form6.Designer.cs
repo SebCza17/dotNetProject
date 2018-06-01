@@ -34,10 +34,10 @@
             this.butEdit = new System.Windows.Forms.Button();
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.butAdd = new System.Windows.Forms.Button();
-            this.textBoxId = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.butSave = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridKind)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,22 +98,6 @@
             this.butAdd.UseVisualStyleBackColor = true;
             this.butAdd.Click += new System.EventHandler(this.butAdd_Click);
             // 
-            // textBoxId
-            // 
-            this.textBoxId.Location = new System.Drawing.Point(349, 218);
-            this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(100, 20);
-            this.textBoxId.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(314, 218);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(22, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Id: ";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -132,6 +116,22 @@
             this.butSave.Text = "Save";
             this.butSave.UseVisualStyleBackColor = true;
             this.butSave.Click += new System.EventHandler(this.butSave_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(314, 218);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(22, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Id: ";
+            // 
+            // textBoxId
+            // 
+            this.textBoxId.Location = new System.Drawing.Point(349, 218);
+            this.textBoxId.Name = "textBoxId";
+            this.textBoxId.Size = new System.Drawing.Size(100, 20);
+            this.textBoxId.TabIndex = 11;
             // 
             // Form6
             // 
@@ -164,9 +164,9 @@
         private System.Windows.Forms.Button butEdit;
         private System.Windows.Forms.TextBox textBoxText;
         private System.Windows.Forms.Button butAdd;
-        private System.Windows.Forms.TextBox textBoxId;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button butSave;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxId;
     }
 }
