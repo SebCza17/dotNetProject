@@ -102,6 +102,7 @@ namespace WindowsFormsApp3
                     orderDish.idOrder = order.Id;
                     orderDish.idDishDetail = result.Id;
                     data.OrderDishes.InsertOnSubmit(orderDish);
+                    data.SubmitChanges();
                 }
                 else
                 {
@@ -114,8 +115,11 @@ namespace WindowsFormsApp3
                     orderDrink.idOrder = order.Id;
                     orderDrink.idDrinkDetail = result.Id;
                     data.OrderDrinks.InsertOnSubmit(orderDrink);
+                    data.SubmitChanges();
                 }
             }
+
+            
 
 
             this.Close();

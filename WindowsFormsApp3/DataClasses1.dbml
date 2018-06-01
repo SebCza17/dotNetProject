@@ -116,4 +116,13 @@
       <Association Name="Order_OrderDish" Member="Order" ThisKey="idOrder" OtherKey="Id" Type="Order" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Profit" Member="Profits">
+    <Type Name="Profit">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="inCash" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="onHand" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="tax" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

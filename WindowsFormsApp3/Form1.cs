@@ -79,6 +79,7 @@ namespace WindowsFormsApp3
             }
 
             var result7 = from status in data.Status
+                          where status.Id > 1
                           select status;
 
             comboBoxStatus.DisplayMember = "text";
@@ -338,10 +339,68 @@ namespace WindowsFormsApp3
                           where order.Id == idx
                           select order).First();
 
-            result.idStatus = (byte) comboBoxStatus.SelectedValue;
-            result.endDateTime = myDateTime;
-            
-            data.SubmitChanges();
+            if (result.idStatus == 1)
+            {
+                result.idStatus = (byte)comboBoxStatus.SelectedValue;
+                result.endDateTime = myDateTime;
+
+                data.SubmitChanges();
+
+                if (Convert.ToByte(comboBoxStatus.SelectedValue) == 2)
+                {
+
+                    var result2 = from profit in data.Profits
+                                  where profit.date == result.endDateTime.Value.Date
+                                  select profit;
+
+                    decimal toPay = 0;
+                    decimal withoutTax = 0;
+
+                    foreach (var dish in result.OrderDishes)
+                    {
+                        toPay += (decimal)dish.DishDetail.price;
+                        withoutTax += (decimal)(dish.DishDetail.price * 100 / (100 + dish.DishDetail.tax));
+                    }
+                    foreach (var drink in result.OrderDrinks)
+                    {
+                        toPay += (decimal)drink.DrinkDetail.price;
+                        withoutTax += (decimal)(drink.DrinkDetail.price * 100 / (100 + drink.DrinkDetail.tax));
+                    }
+
+                    Console.WriteLine(toPay);
+                    Console.WriteLine(withoutTax);
+
+                    if (result2.Count() == 0)
+                    {
+                        Console.WriteLine("Nowy" + result2);
+
+                        Profit profit = new Profit();
+                        profit.date = result.endDateTime.Value.Date;
+                        profit.inCash = toPay;
+                        profit.onHand = withoutTax;
+                        profit.tax = toPay - withoutTax;
+
+                        data.Profits.InsertOnSubmit(profit);
+                        data.SubmitChanges();
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Stary" + result2);
+
+                        foreach (var profit in result2)
+                        {
+                            profit.inCash += toPay;
+                            profit.onHand += withoutTax;
+                            profit.tax += toPay - withoutTax;
+
+                            data.SubmitChanges();
+                        }
+
+
+                    }
+                }
+            }
 
             loadBox();
 
