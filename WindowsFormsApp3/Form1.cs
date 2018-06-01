@@ -411,6 +411,31 @@ namespace WindowsFormsApp3
             Form5 form5 = new Form5();
             form5.Show();
         }
+
+        private void butLook_Click(object sender, EventArgs e)
+        {
+            int idx = getSelectedIdx(dataGridOrder, "Id");
+            List<MyItems> myItems = new List<MyItems>();
+            int ndx = 0;
+
+            var result = (from order in data.Orders
+                         where order.Id == idx
+                         select order).First();
+
+            foreach (var dish in result.OrderDishes)
+            {
+                myItems.Add(new MyItems { id = dish.DishDetail.Id, n = ndx, type = "Dish" });
+                ndx++;
+            }
+            foreach (var drink in result.OrderDrinks)
+            {
+                myItems.Add(new MyItems { id = drink.DrinkDetail.Id, n = ndx, type = "Drink" });
+                ndx++;
+            }
+
+            Form4 form4 = new Form4(myItems);
+            form4.Show();
+        }
     }
     
 

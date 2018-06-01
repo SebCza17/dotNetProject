@@ -55,6 +55,7 @@
             this.butChangeStatus = new System.Windows.Forms.Button();
             this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.butProfit = new System.Windows.Forms.Button();
+            this.butLook = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrder)).BeginInit();
             this.SuspendLayout();
             // 
@@ -286,7 +287,7 @@
             // 
             // butChangeStatus
             // 
-            this.butChangeStatus.Location = new System.Drawing.Point(478, 141);
+            this.butChangeStatus.Location = new System.Drawing.Point(559, 141);
             this.butChangeStatus.Name = "butChangeStatus";
             this.butChangeStatus.Size = new System.Drawing.Size(93, 23);
             this.butChangeStatus.TabIndex = 28;
@@ -297,7 +298,7 @@
             // comboBoxStatus
             // 
             this.comboBoxStatus.FormattingEnabled = true;
-            this.comboBoxStatus.Location = new System.Drawing.Point(578, 141);
+            this.comboBoxStatus.Location = new System.Drawing.Point(658, 142);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(121, 21);
             this.comboBoxStatus.TabIndex = 29;
@@ -312,11 +313,22 @@
             this.butProfit.UseVisualStyleBackColor = true;
             this.butProfit.Click += new System.EventHandler(this.butProfit_Click);
             // 
+            // butLook
+            // 
+            this.butLook.Location = new System.Drawing.Point(478, 142);
+            this.butLook.Name = "butLook";
+            this.butLook.Size = new System.Drawing.Size(75, 23);
+            this.butLook.TabIndex = 31;
+            this.butLook.Text = "Look Into";
+            this.butLook.UseVisualStyleBackColor = true;
+            this.butLook.Click += new System.EventHandler(this.butLook_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 450);
+            this.Controls.Add(this.butLook);
             this.Controls.Add(this.butProfit);
             this.Controls.Add(this.comboBoxStatus);
             this.Controls.Add(this.butChangeStatus);
@@ -381,6 +393,7 @@
         private System.Windows.Forms.Button butChangeStatus;
         private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.Button butProfit;
+        private System.Windows.Forms.Button butLook;
     }
 }
 
