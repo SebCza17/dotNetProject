@@ -56,6 +56,7 @@
             this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.butProfit = new System.Windows.Forms.Button();
             this.butLook = new System.Windows.Forms.Button();
+            this.butKindMenu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrder)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,7 +148,7 @@
             // 
             // butDrink
             // 
-            this.butDrink.Location = new System.Drawing.Point(857, 12);
+            this.butDrink.Location = new System.Drawing.Point(938, 41);
             this.butDrink.Name = "butDrink";
             this.butDrink.Size = new System.Drawing.Size(75, 23);
             this.butDrink.TabIndex = 12;
@@ -323,11 +324,22 @@
             this.butLook.UseVisualStyleBackColor = true;
             this.butLook.Click += new System.EventHandler(this.butLook_Click);
             // 
+            // butKindMenu
+            // 
+            this.butKindMenu.Location = new System.Drawing.Point(938, 70);
+            this.butKindMenu.Name = "butKindMenu";
+            this.butKindMenu.Size = new System.Drawing.Size(75, 23);
+            this.butKindMenu.TabIndex = 32;
+            this.butKindMenu.Text = "Kind Menu";
+            this.butKindMenu.UseVisualStyleBackColor = true;
+            this.butKindMenu.Click += new System.EventHandler(this.butKindMenu_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 450);
+            this.Controls.Add(this.butKindMenu);
             this.Controls.Add(this.butLook);
             this.Controls.Add(this.butProfit);
             this.Controls.Add(this.comboBoxStatus);
@@ -394,6 +406,7 @@
         private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.Button butProfit;
         private System.Windows.Forms.Button butLook;
+        private System.Windows.Forms.Button butKindMenu;
     }
 }
 

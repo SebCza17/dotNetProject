@@ -436,6 +436,13 @@ namespace WindowsFormsApp3
             Form4 form4 = new Form4(myItems);
             form4.Show();
         }
+
+        private void butKindMenu_Click(object sender, EventArgs e)
+        {
+            Form6 form6 = new Form6(this);
+            form6.Show();
+
+        }
     }
     
 
