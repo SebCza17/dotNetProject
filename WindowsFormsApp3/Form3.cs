@@ -203,9 +203,13 @@ namespace WindowsFormsApp3
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            try{
             toUpdateDish.name = textBox1.Text;
             toUpdateDish.Description.decription = textBox2.Text;
+                }catch(Exception e1){
+                Console.Write("Exception");
+                }
+
 
             data.SubmitChanges();
             loadDish();
