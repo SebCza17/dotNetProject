@@ -10,23 +10,23 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
-    public partial class Form3 : Form
+    public partial class FormDrink : Form
     {
         DataClasses1DataContext data;
-        Dish toUpdateDish;
-        DishDetail toUpdateDetail;
-        Form1 formHandler;
-        public Form3(Form1 form)
+        Drink toUpdateDrink;
+        DrinkDetail toUpdateDetail;
+        FormMain formHandler;
+        public FormDrink(FormMain form)
         {
             InitializeComponent();
             formHandler = form;
             data = new DataClasses1DataContext();
 
-            loadDish();
+            loadDrink();
 
             var result = from size in data.Sizes
-                         where size.Id < 10
-                         select new { Id = size.Id, text = size.text, value = size.value + " d(cm)" };
+                         where size.Id > 10
+                         select new { Id = size.Id, text = size.text, value = (Convert.ToDecimal(size.value) / 1000 + " L").Replace("0", string.Empty) };
 
 
             comboBoxSize.DisplayMember = "value";
@@ -34,43 +34,43 @@ namespace WindowsFormsApp3
             comboBoxSize.DataSource = result;
 
             var result2 = from kind in data.Kinds
-                          where kind.Id < 10
+                          where kind.Id > 10
                           select new { Id = kind.Id, text = kind.text };
 
             comboBoxKind.DisplayMember = "text";
             comboBoxKind.ValueMember = "Id";
             comboBoxKind.DataSource = result2;
-
         }
-
-        private void loadDish()
+        private void loadDrink()
         {
-            var result = from dish in data.Dishes
-                         select new { dish.Id, dish.name, dish.Description.decription };
+            
+            var result = from dish in data.Drinks
+                         select new { dish.Id, dish.name, dish.Description.decription, dish.adults };
 
-            dataGridView1.DataSource = result;
+            dataGridDrink.DataSource = result;
 
-            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            for (int i = 0; i < dataGridDrink.Columns.Count; i++)
             {
-                dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridDrink.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
         }
 
-        private void loadDishDetail()
+        private void loadDrinkDetail()
         {
-            
-                int selected = getSelectedIdx(dataGridView1, "Id");
-            
-                var result = from dishDetail in data.DishDetails
-                             where dishDetail.idDish == selected
-                             select new { dishDetail.Id, dishDetail.availability, Size = dishDetail.Size.text, Kind = dishDetail.Kind.text, dishDetail.price, dishDetail.tax };
 
-                dataGridView2.DataSource = result;
-           
+            int selected = getSelectedIdx(dataGridDrink, "Id");
+
+            var result = from drinkDetail in data.DrinkDetails
+                         where drinkDetail.idDrink == selected
+                         select new { drinkDetail.Id, drinkDetail.availability, Size = drinkDetail.Size.text, Kind = drinkDetail.Kind.text, drinkDetail.price, drinkDetail.tax };
+
+            dataGridDetail.DataSource = result;
+
         }
 
         private int getSelectedIdx(DataGridView dataGridView, String columnName)
         {
+
             int idx = dataGridView.SelectedCells[0].RowIndex;
 
             DataGridViewRow selectedRow = dataGridView.Rows[idx];
@@ -91,17 +91,14 @@ namespace WindowsFormsApp3
             errorLab2.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            loadDishDetail();
-        }
 
-        private void button3_Click(object sender, EventArgs e)
+
+        private void butAddDrink_Click(object sender, EventArgs e)
         {
             Description description;
-            if (!textBox1.Text.Equals(""))
+            if (!textBoxName.Text.Equals(""))
             {
-                if (textBox2.Text.Equals(""))
+                if (textBoxDesc.Text.Equals(""))
                 {
                     description = new Description
                     {
@@ -112,7 +109,7 @@ namespace WindowsFormsApp3
                 {
                     description = new Description
                     {
-                        decription = textBox2.Text
+                        decription = textBoxDesc.Text
                     };
 
                 }
@@ -120,59 +117,60 @@ namespace WindowsFormsApp3
                 data.Descriptions.InsertOnSubmit(description);
                 data.SubmitChanges();
 
-                Dish dish = new Dish
+                Drink drink = new Drink
                 {
-                    name = textBox1.Text,
-                    idDescription = description.Id
-
+                    name = textBoxName.Text,
+                    idDescription = description.Id,
+                    adults = checkBoxIsAdult.Checked
                 };
 
-                data.Dishes.InsertOnSubmit(dish);
+                data.Drinks.InsertOnSubmit(drink);
                 data.SubmitChanges();
 
-                DishDetail dishDetail = new DishDetail
+                DrinkDetail drinkDetail = new DrinkDetail
                 {
                     availability = false,
                     idSize = 1,
                     idKind = 1,
                     price = 0,
                     tax = 0,
-                    Dish = dish
+                    Drink = drink
                 };
 
-                data.DishDetails.InsertOnSubmit(dishDetail);
+                data.DrinkDetails.InsertOnSubmit(drinkDetail);
                 data.SubmitChanges();
 
-                loadDish();
+                loadDrink();
 
                 errorHide();
             }
             else
             {
-                errorShow("Dish name isEmpty!");
+                errorShow("Drink name isEmpty!");
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void butDelDrink_Click(object sender, EventArgs e)
         {
-            int selected = getSelectedIdx(dataGridView1, "Id");
+            int selected = getSelectedIdx(dataGridDrink, "Id");
 
-            var count = (from dishDetails in data.DishDetails
-                         where dishDetails.idDish == selected
-                         select dishDetails).Count();
-            
-            if (count == 0) {
-                var result = (from dish in data.Dishes
-                              where dish.Id == selected
-                              select dish).First();
+            var count = (from drinkDetails in data.DrinkDetails
+                         where drinkDetails.idDrink == selected
+                         select drinkDetails).Count();
+
+            if (count == 0)
+            {
+                var result = (from drink in data.Drinks
+                              where drink.Id == selected
+                              select drink).First();
 
 
-                data.Dishes.DeleteOnSubmit(result);
+                data.Drinks.DeleteOnSubmit(result);
 
                 data.SubmitChanges();
 
                 errorHide();
-                loadDish();
+                loadDrink();
             }
             else
             {
@@ -180,89 +178,83 @@ namespace WindowsFormsApp3
             }
         }
 
-
-        private void button5_Click(object sender, EventArgs e)
+        private void butShowDetail_Click(object sender, EventArgs e)
         {
-            int selected = getSelectedIdx(dataGridView1, "Id");
-
-            Dish result = data.Dishes.SingleOrDefault(x => x.Id == selected);
-
-            textBox1.Text = result.name;
-            try
-            {
-                textBox2.Text = result.Description.decription;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-
-            toUpdateDish = result;
-
+            loadDrinkDetail();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void butDelDetail_Click(object sender, EventArgs e)
         {
             try
             {
-                toUpdateDish.name = textBox1.Text;
-                toUpdateDish.Description.decription = textBox2.Text;
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex);
-            }
+                int selected = getSelectedIdx(dataGridDetail, "Id");
 
+                DrinkDetail result = data.DrinkDetails.SingleOrDefault(x => x.Id == selected);
 
-            data.SubmitChanges();
-            loadDish();
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int selected = getSelectedIdx(dataGridView2, "Id");
-
-                DishDetail result = data.DishDetails.SingleOrDefault(x => x.Id == selected);
-
-                data.DishDetails.DeleteOnSubmit(result);
+                data.DrinkDetails.DeleteOnSubmit(result);
 
                 data.SubmitChanges();
-                
-            }catch(Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
 
-            loadDishDetail();
+            loadDrinkDetail();
+        }
+
+        private void butEditDrink_Click(object sender, EventArgs e)
+        {
+            int selected = getSelectedIdx(dataGridDrink, "Id");
+
+            Drink result = data.Drinks.SingleOrDefault(x => x.Id == selected);
+
+            textBoxName.Text = result.name;
+            try
+            {
+                textBoxDesc.Text = result.Description.decription;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            toUpdateDrink = result;
+        }
+
+        private void butSaveDrink_Click(object sender, EventArgs e)
+        {
+            toUpdateDrink.name = textBoxName.Text;
+            toUpdateDrink.Description.decription = textBoxDesc.Text;
+            toUpdateDrink.adults = checkBoxIsAdult.Checked;
+
+            data.SubmitChanges();
+            loadDrink();
         }
 
         private void butAddDetail_Click(object sender, EventArgs e)
         {
-            DishDetail dishDetail = null;
-
-
-
+            DrinkDetail drinkDetail = null;
+            
             if (!textBoxPrice.Text.Equals("") || !textBoxTax.Text.Equals(""))
             {
 
-                dishDetail = new DishDetail
+                drinkDetail = new DrinkDetail
                 {
-                    availability = checkBox1.Checked,
+                    availability = checkBoxAva.Checked,
                     idSize = Convert.ToByte(comboBoxSize.SelectedValue),
                     idKind = Convert.ToByte(comboBoxKind.SelectedValue),
                     price = Convert.ToDecimal(textBoxPrice.Text),
                     tax = Convert.ToInt32(textBoxTax.Text),
-                    idDish = getSelectedIdx(dataGridView1, "Id")
+                    idDrink = getSelectedIdx(dataGridDrink, "Id")
                 };
 
 
-                data.DishDetails.InsertOnSubmit(dishDetail);
+                data.DrinkDetails.InsertOnSubmit(drinkDetail);
                 data.SubmitChanges();
 
-                loadDishDetail();
+                loadDrinkDetail();
 
                 errorHide();
             }
@@ -270,41 +262,39 @@ namespace WindowsFormsApp3
             {
                 errorShow("Need PRICE and TAX!");
             }
-            
-
         }
 
         private void butEditDetail_Click(object sender, EventArgs e)
         {
-            int selected = getSelectedIdx(dataGridView2, "Id");
+            int selected = getSelectedIdx(dataGridDetail, "Id");
 
-            toUpdateDetail = data.DishDetails.SingleOrDefault(x => x.Id == selected);
+            toUpdateDetail = data.DrinkDetails.SingleOrDefault(x => x.Id == selected);
 
-            checkBox1.Checked = Convert.ToBoolean(toUpdateDetail.availability);
+            checkBoxAva.Checked = Convert.ToBoolean(toUpdateDetail.availability);
             comboBoxSize.SelectedValue = toUpdateDetail.idSize;
             comboBoxKind.SelectedValue = toUpdateDetail.idKind;
             textBoxPrice.Text = toUpdateDetail.price.ToString();
             textBoxTax.Text = toUpdateDetail.tax.ToString();
-
         }
 
         private void butSaveDetail_Click(object sender, EventArgs e)
         {
-            toUpdateDetail.availability = checkBox1.Checked;
+            toUpdateDetail.availability = checkBoxAva.Checked;
             toUpdateDetail.idSize = Convert.ToByte(comboBoxSize.SelectedValue);
             toUpdateDetail.idKind = Convert.ToByte(comboBoxKind.SelectedValue);
             toUpdateDetail.price = Convert.ToDecimal(textBoxPrice.Text);
             toUpdateDetail.tax = Convert.ToInt32(textBoxTax.Text);
 
             data.SubmitChanges();
-            loadDishDetail();
+            loadDrinkDetail();
         }
 
         private void butBack_Click(object sender, EventArgs e)
         {
             formHandler.loadBox();
-
+            
             this.Close();
         }
+        
     }
 }

@@ -7,12 +7,12 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
         DataClasses1DataContext data;
         private List<MyItems> myItems = new List<MyItems>();
         private int ndx = 0;
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
             
@@ -157,13 +157,13 @@ namespace WindowsFormsApp3
 
         private void butDrink_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2(this);
-            form2.Show();
+            FormDrink formDrink = new FormDrink(this);
+            formDrink.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3(this);
+            FormDish form3 = new FormDish(this);
             form3.Show();
         }
 
@@ -309,7 +309,7 @@ namespace WindowsFormsApp3
 
         private void butSubmitOrder_Click(object sender, EventArgs e)
         {
-            Form4 form4 = new Form4(this, myItems);
+            FormBill form4 = new FormBill(this, myItems);
             form4.Show();
         }
 
@@ -405,8 +405,8 @@ namespace WindowsFormsApp3
 
         private void butProfit_Click(object sender, EventArgs e)
         {
-            Form5 form5 = new Form5();
-            form5.Show();
+            FormProfit formProfit = new FormProfit();
+            formProfit.Show();
         }
 
         private void butLook_Click(object sender, EventArgs e)
@@ -430,21 +430,42 @@ namespace WindowsFormsApp3
                 ndx++;
             }
 
-            Form4 form4 = new Form4(myItems);
+            FormBill form4 = new FormBill(myItems);
             form4.Show();
         }
 
         private void butKindMenu_Click(object sender, EventArgs e)
         {
-            Form6 form6 = new Form6(this);
-            form6.Show();
+            FormKind formKind = new FormKind(this);
+            formKind.Show();
 
         }
 
         private void butSize_Click(object sender, EventArgs e)
         {
-            Form7 form7 = new Form7(this);
-            form7.Show();
+            FormSize formSize = new FormSize(this);
+            formSize.Show();
+        }
+
+        private void butLog_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void listBoxOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void butReg_Click(object sender, EventArgs e)
+        {
+            FormRegister form8 = new FormRegister(this);
+            form8.Show();
         }
     }
     

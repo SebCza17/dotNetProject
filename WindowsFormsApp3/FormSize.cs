@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
-    public partial class Form7 : Form
+    public partial class FormSize : Form
     {
         DataClasses1DataContext data;
-        Form1 form1;
+        FormMain form1;
         Size toUpdate;
-        public Form7(Form1 form1)
+        public FormSize(FormMain form1)
         {
             InitializeComponent();
             this.form1 = form1;

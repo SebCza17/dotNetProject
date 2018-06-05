@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp3
 {
-    partial class Form6
+    partial class FormKind
     {
         /// <summary>
         /// Required designer variable.

@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
-    public partial class Form6 : Form
+    public partial class FormKind : Form
     {
         DataClasses1DataContext data;
-        Form1 form1;
+        FormMain form1;
         Kind toUpdate;
-        public Form6(Form1 form1)
+        public FormKind(FormMain form1)
         {
             InitializeComponent();
             this.form1 = form1;

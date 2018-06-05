@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp3
 {
-    partial class Form5
+    partial class FormProfit
     {
         /// <summary>
         /// Required designer variable.

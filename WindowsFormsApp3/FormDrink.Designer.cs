@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp3
 {
-    partial class Form2
+    partial class FormDrink
     {
         /// <summary>
         /// Required designer variable.

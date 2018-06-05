@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
-    public partial class Form5 : Form
+    public partial class FormProfit : Form
     {
         DataClasses1DataContext data;
-        public Form5()
+        public FormProfit()
         {
             InitializeComponent();
             data = new DataClasses1DataContext();

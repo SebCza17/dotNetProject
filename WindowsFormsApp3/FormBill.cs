@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
-    public partial class Form4 : Form
+    public partial class FormBill : Form
     {
         DataClasses1DataContext data;
-        Form1 form1;
+        FormMain form1;
         List<MyItems> myItems;
-        public Form4(Form1 form1, List<MyItems> menuItems)
+        public FormBill(FormMain form1, List<MyItems> menuItems)
         {
             InitializeComponent();
             this.form1 = form1;
@@ -59,7 +59,7 @@ namespace WindowsFormsApp3
         }
 
 
-        public Form4(List<MyItems> menuItems)
+        public FormBill(List<MyItems> menuItems)
         {
             InitializeComponent();
             myItems = menuItems;

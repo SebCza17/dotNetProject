@@ -1,0 +1,4 @@
+1. Rejestracja, logowanie, panel admina ( dodawanie usuwanie nadawanie praw user, profit tylko dla boss)
+2. Jakieœ zdjêcia dla produktów albo userów
+3. status po³¹czenia (korzystamy z bazy lokalnej wiec chyba wyjebane) 
+4. Mo¿liwoœæ dropa i postawienia bazy na nowo z przyk³adowymi dan

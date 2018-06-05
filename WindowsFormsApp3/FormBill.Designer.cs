@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp3
 {
-    partial class Form4
+    partial class FormBill
     {
         /// <summary>
         /// Required designer variable.
