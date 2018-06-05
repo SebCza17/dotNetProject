@@ -22,7 +22,7 @@ namespace WindowsFormsApp3
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Database1")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DataSource")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,46 +33,46 @@ namespace WindowsFormsApp3
     partial void InsertDescription(Description instance);
     partial void UpdateDescription(Description instance);
     partial void DeleteDescription(Description instance);
-    partial void InsertSize(Size instance);
-    partial void UpdateSize(Size instance);
-    partial void DeleteSize(Size instance);
-    partial void InsertDish(Dish instance);
-    partial void UpdateDish(Dish instance);
-    partial void DeleteDish(Dish instance);
-    partial void InsertDrink(Drink instance);
-    partial void UpdateDrink(Drink instance);
-    partial void DeleteDrink(Drink instance);
-    partial void InsertKind(Kind instance);
-    partial void UpdateKind(Kind instance);
-    partial void DeleteKind(Kind instance);
-    partial void InsertDishDetail(DishDetail instance);
-    partial void UpdateDishDetail(DishDetail instance);
-    partial void DeleteDishDetail(DishDetail instance);
-    partial void InsertDrinkDetail(DrinkDetail instance);
-    partial void UpdateDrinkDetail(DrinkDetail instance);
-    partial void DeleteDrinkDetail(DrinkDetail instance);
-    partial void InsertStatus(Status instance);
-    partial void UpdateStatus(Status instance);
-    partial void DeleteStatus(Status instance);
-    partial void InsertOrder(Order instance);
-    partial void UpdateOrder(Order instance);
-    partial void DeleteOrder(Order instance);
-    partial void InsertOrderDrink(OrderDrink instance);
-    partial void UpdateOrderDrink(OrderDrink instance);
-    partial void DeleteOrderDrink(OrderDrink instance);
-    partial void InsertOrderDish(OrderDish instance);
-    partial void UpdateOrderDish(OrderDish instance);
-    partial void DeleteOrderDish(OrderDish instance);
-    partial void InsertProfit(Profit instance);
-    partial void UpdateProfit(Profit instance);
-    partial void DeleteProfit(Profit instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertDish(Dish instance);
+    partial void UpdateDish(Dish instance);
+    partial void DeleteDish(Dish instance);
+    partial void InsertDishDetail(DishDetail instance);
+    partial void UpdateDishDetail(DishDetail instance);
+    partial void DeleteDishDetail(DishDetail instance);
+    partial void InsertDrink(Drink instance);
+    partial void UpdateDrink(Drink instance);
+    partial void DeleteDrink(Drink instance);
+    partial void InsertDrinkDetail(DrinkDetail instance);
+    partial void UpdateDrinkDetail(DrinkDetail instance);
+    partial void DeleteDrinkDetail(DrinkDetail instance);
+    partial void InsertKind(Kind instance);
+    partial void UpdateKind(Kind instance);
+    partial void DeleteKind(Kind instance);
+    partial void InsertOrder(Order instance);
+    partial void UpdateOrder(Order instance);
+    partial void DeleteOrder(Order instance);
+    partial void InsertOrderDish(OrderDish instance);
+    partial void UpdateOrderDish(OrderDish instance);
+    partial void DeleteOrderDish(OrderDish instance);
+    partial void InsertOrderDrink(OrderDrink instance);
+    partial void UpdateOrderDrink(OrderDrink instance);
+    partial void DeleteOrderDrink(OrderDrink instance);
+    partial void InsertProfit(Profit instance);
+    partial void UpdateProfit(Profit instance);
+    partial void DeleteProfit(Profit instance);
+    partial void InsertSize(Size instance);
+    partial void UpdateSize(Size instance);
+    partial void DeleteSize(Size instance);
+    partial void InsertStatus(Status instance);
+    partial void UpdateStatus(Status instance);
+    partial void DeleteStatus(Status instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::WindowsFormsApp3.Properties.Settings.Default.Database1ConnectionString, mappingSource)
+				base(global::WindowsFormsApp3.Properties.Settings.Default.DataSourceConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -109,11 +109,11 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		public System.Data.Linq.Table<Size> Sizes
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this.GetTable<Size>();
+				return this.GetTable<User>();
 			}
 		}
 		
@@ -125,27 +125,19 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		public System.Data.Linq.Table<Drink> Drinks
-		{
-			get
-			{
-				return this.GetTable<Drink>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Kind> Kinds
-		{
-			get
-			{
-				return this.GetTable<Kind>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DishDetail> DishDetails
 		{
 			get
 			{
 				return this.GetTable<DishDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Drink> Drinks
+		{
+			get
+			{
+				return this.GetTable<Drink>();
 			}
 		}
 		
@@ -157,11 +149,11 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		public System.Data.Linq.Table<Status> Status
+		public System.Data.Linq.Table<Kind> Kinds
 		{
 			get
 			{
-				return this.GetTable<Status>();
+				return this.GetTable<Kind>();
 			}
 		}
 		
@@ -173,19 +165,19 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		public System.Data.Linq.Table<OrderDrink> OrderDrinks
-		{
-			get
-			{
-				return this.GetTable<OrderDrink>();
-			}
-		}
-		
 		public System.Data.Linq.Table<OrderDish> OrderDishes
 		{
 			get
 			{
 				return this.GetTable<OrderDish>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OrderDrink> OrderDrinks
+		{
+			get
+			{
+				return this.GetTable<OrderDrink>();
 			}
 		}
 		
@@ -197,11 +189,19 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
+		public System.Data.Linq.Table<Size> Sizes
 		{
 			get
 			{
-				return this.GetTable<User>();
+				return this.GetTable<Size>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Status> Status
+		{
+			get
+			{
+				return this.GetTable<Status>();
 			}
 		}
 	}
@@ -376,124 +376,116 @@ namespace WindowsFormsApp3
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Size")]
-	public partial class Size : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private byte _Id;
+		private int _IdUser;
 		
-		private string _text;
+		private string _nick;
 		
-		private System.Nullable<int> _value;
+		private string _pass;
 		
-		private EntitySet<DishDetail> _DishDetails;
-		
-		private EntitySet<DrinkDetail> _DrinkDetails;
+		private string _role;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(byte value);
-    partial void OnIdChanged();
-    partial void OntextChanging(string value);
-    partial void OntextChanged();
-    partial void OnvalueChanging(System.Nullable<int> value);
-    partial void OnvalueChanged();
+    partial void OnIdUserChanging(int value);
+    partial void OnIdUserChanged();
+    partial void OnnickChanging(string value);
+    partial void OnnickChanged();
+    partial void OnpassChanging(string value);
+    partial void OnpassChanged();
+    partial void OnroleChanging(string value);
+    partial void OnroleChanged();
     #endregion
 		
-		public Size()
+		public User()
 		{
-			this._DishDetails = new EntitySet<DishDetail>(new Action<DishDetail>(this.attach_DishDetails), new Action<DishDetail>(this.detach_DishDetails));
-			this._DrinkDetails = new EntitySet<DrinkDetail>(new Action<DrinkDetail>(this.attach_DrinkDetails), new Action<DrinkDetail>(this.detach_DrinkDetails));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
-		public byte Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUser", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IdUser
 		{
 			get
 			{
-				return this._Id;
+				return this._IdUser;
 			}
 			set
 			{
-				if ((this._Id != value))
+				if ((this._IdUser != value))
 				{
-					this.OnIdChanging(value);
+					this.OnIdUserChanging(value);
 					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
+					this._IdUser = value;
+					this.SendPropertyChanged("IdUser");
+					this.OnIdUserChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="VarChar(50)")]
-		public string text
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nick", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string nick
 		{
 			get
 			{
-				return this._text;
+				return this._nick;
 			}
 			set
 			{
-				if ((this._text != value))
+				if ((this._nick != value))
 				{
-					this.OntextChanging(value);
+					this.OnnickChanging(value);
 					this.SendPropertyChanging();
-					this._text = value;
-					this.SendPropertyChanged("text");
-					this.OntextChanged();
+					this._nick = value;
+					this.SendPropertyChanged("nick");
+					this.OnnickChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_value", DbType="Int")]
-		public System.Nullable<int> value
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string pass
 		{
 			get
 			{
-				return this._value;
+				return this._pass;
 			}
 			set
 			{
-				if ((this._value != value))
+				if ((this._pass != value))
 				{
-					this.OnvalueChanging(value);
+					this.OnpassChanging(value);
 					this.SendPropertyChanging();
-					this._value = value;
-					this.SendPropertyChanged("value");
-					this.OnvalueChanged();
+					this._pass = value;
+					this.SendPropertyChanged("pass");
+					this.OnpassChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Size_DishDetail", Storage="_DishDetails", ThisKey="Id", OtherKey="idSize")]
-		public EntitySet<DishDetail> DishDetails
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="VarChar(50)")]
+		public string role
 		{
 			get
 			{
-				return this._DishDetails;
+				return this._role;
 			}
 			set
 			{
-				this._DishDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Size_DrinkDetail", Storage="_DrinkDetails", ThisKey="Id", OtherKey="idSize")]
-		public EntitySet<DrinkDetail> DrinkDetails
-		{
-			get
-			{
-				return this._DrinkDetails;
-			}
-			set
-			{
-				this._DrinkDetails.Assign(value);
+				if ((this._role != value))
+				{
+					this.OnroleChanging(value);
+					this.SendPropertyChanging();
+					this._role = value;
+					this.SendPropertyChanged("role");
+					this.OnroleChanged();
+				}
 			}
 		}
 		
@@ -515,30 +507,6 @@ namespace WindowsFormsApp3
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_DishDetails(DishDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Size = this;
-		}
-		
-		private void detach_DishDetails(DishDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Size = null;
-		}
-		
-		private void attach_DrinkDetails(DrinkDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Size = this;
-		}
-		
-		private void detach_DrinkDetails(DrinkDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Size = null;
 		}
 	}
 	
@@ -718,379 +686,6 @@ namespace WindowsFormsApp3
 		{
 			this.SendPropertyChanging();
 			entity.Dish = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Drink")]
-	public partial class Drink : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _name;
-		
-		private System.Nullable<bool> _adults;
-		
-		private System.Nullable<int> _idDescription;
-		
-		private EntitySet<DrinkDetail> _DrinkDetails;
-		
-		private EntityRef<Description> _Description;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OnadultsChanging(System.Nullable<bool> value);
-    partial void OnadultsChanged();
-    partial void OnidDescriptionChanging(System.Nullable<int> value);
-    partial void OnidDescriptionChanged();
-    #endregion
-		
-		public Drink()
-		{
-			this._DrinkDetails = new EntitySet<DrinkDetail>(new Action<DrinkDetail>(this.attach_DrinkDetails), new Action<DrinkDetail>(this.detach_DrinkDetails));
-			this._Description = default(EntityRef<Description>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(100)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_adults", DbType="Bit")]
-		public System.Nullable<bool> adults
-		{
-			get
-			{
-				return this._adults;
-			}
-			set
-			{
-				if ((this._adults != value))
-				{
-					this.OnadultsChanging(value);
-					this.SendPropertyChanging();
-					this._adults = value;
-					this.SendPropertyChanged("adults");
-					this.OnadultsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDescription", DbType="Int")]
-		public System.Nullable<int> idDescription
-		{
-			get
-			{
-				return this._idDescription;
-			}
-			set
-			{
-				if ((this._idDescription != value))
-				{
-					if (this._Description.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._idDescription = value;
-					this.SendPropertyChanged("idDescription");
-					this.OnidDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_DrinkDetail", Storage="_DrinkDetails", ThisKey="Id", OtherKey="idDrink")]
-		public EntitySet<DrinkDetail> DrinkDetails
-		{
-			get
-			{
-				return this._DrinkDetails;
-			}
-			set
-			{
-				this._DrinkDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Description_Drink", Storage="_Description", ThisKey="idDescription", OtherKey="Id", IsForeignKey=true)]
-		public Description Description
-		{
-			get
-			{
-				return this._Description.Entity;
-			}
-			set
-			{
-				Description previousValue = this._Description.Entity;
-				if (((previousValue != value) 
-							|| (this._Description.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Description.Entity = null;
-						previousValue.Drinks.Remove(this);
-					}
-					this._Description.Entity = value;
-					if ((value != null))
-					{
-						value.Drinks.Add(this);
-						this._idDescription = value.Id;
-					}
-					else
-					{
-						this._idDescription = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Description");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DrinkDetails(DrinkDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Drink = this;
-		}
-		
-		private void detach_DrinkDetails(DrinkDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Drink = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Kind")]
-	public partial class Kind : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private byte _Id;
-		
-		private string _text;
-		
-		private EntitySet<DishDetail> _DishDetails;
-		
-		private EntitySet<DrinkDetail> _DrinkDetails;
-		
-		private EntitySet<Order> _Orders;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(byte value);
-    partial void OnIdChanged();
-    partial void OntextChanging(string value);
-    partial void OntextChanged();
-    #endregion
-		
-		public Kind()
-		{
-			this._DishDetails = new EntitySet<DishDetail>(new Action<DishDetail>(this.attach_DishDetails), new Action<DishDetail>(this.detach_DishDetails));
-			this._DrinkDetails = new EntitySet<DrinkDetail>(new Action<DrinkDetail>(this.attach_DrinkDetails), new Action<DrinkDetail>(this.detach_DrinkDetails));
-			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
-		public byte Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="VarChar(50)")]
-		public string text
-		{
-			get
-			{
-				return this._text;
-			}
-			set
-			{
-				if ((this._text != value))
-				{
-					this.OntextChanging(value);
-					this.SendPropertyChanging();
-					this._text = value;
-					this.SendPropertyChanged("text");
-					this.OntextChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_DishDetail", Storage="_DishDetails", ThisKey="Id", OtherKey="idKind")]
-		public EntitySet<DishDetail> DishDetails
-		{
-			get
-			{
-				return this._DishDetails;
-			}
-			set
-			{
-				this._DishDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_DrinkDetail", Storage="_DrinkDetails", ThisKey="Id", OtherKey="idKind")]
-		public EntitySet<DrinkDetail> DrinkDetails
-		{
-			get
-			{
-				return this._DrinkDetails;
-			}
-			set
-			{
-				this._DrinkDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_Order", Storage="_Orders", ThisKey="Id", OtherKey="idKind")]
-		public EntitySet<Order> Orders
-		{
-			get
-			{
-				return this._Orders;
-			}
-			set
-			{
-				this._Orders.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DishDetails(DishDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Kind = this;
-		}
-		
-		private void detach_DishDetails(DishDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Kind = null;
-		}
-		
-		private void attach_DrinkDetails(DrinkDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Kind = this;
-		}
-		
-		private void detach_DrinkDetails(DrinkDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Kind = null;
-		}
-		
-		private void attach_Orders(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Kind = this;
-		}
-		
-		private void detach_Orders(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Kind = null;
 		}
 	}
 	
@@ -1451,6 +1046,209 @@ namespace WindowsFormsApp3
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Drink")]
+	public partial class Drink : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _name;
+		
+		private System.Nullable<bool> _adults;
+		
+		private System.Nullable<int> _idDescription;
+		
+		private EntitySet<DrinkDetail> _DrinkDetails;
+		
+		private EntityRef<Description> _Description;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnadultsChanging(System.Nullable<bool> value);
+    partial void OnadultsChanged();
+    partial void OnidDescriptionChanging(System.Nullable<int> value);
+    partial void OnidDescriptionChanged();
+    #endregion
+		
+		public Drink()
+		{
+			this._DrinkDetails = new EntitySet<DrinkDetail>(new Action<DrinkDetail>(this.attach_DrinkDetails), new Action<DrinkDetail>(this.detach_DrinkDetails));
+			this._Description = default(EntityRef<Description>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(100)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_adults", DbType="Bit")]
+		public System.Nullable<bool> adults
+		{
+			get
+			{
+				return this._adults;
+			}
+			set
+			{
+				if ((this._adults != value))
+				{
+					this.OnadultsChanging(value);
+					this.SendPropertyChanging();
+					this._adults = value;
+					this.SendPropertyChanged("adults");
+					this.OnadultsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDescription", DbType="Int")]
+		public System.Nullable<int> idDescription
+		{
+			get
+			{
+				return this._idDescription;
+			}
+			set
+			{
+				if ((this._idDescription != value))
+				{
+					if (this._Description.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._idDescription = value;
+					this.SendPropertyChanged("idDescription");
+					this.OnidDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_DrinkDetail", Storage="_DrinkDetails", ThisKey="Id", OtherKey="idDrink")]
+		public EntitySet<DrinkDetail> DrinkDetails
+		{
+			get
+			{
+				return this._DrinkDetails;
+			}
+			set
+			{
+				this._DrinkDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Description_Drink", Storage="_Description", ThisKey="idDescription", OtherKey="Id", IsForeignKey=true)]
+		public Description Description
+		{
+			get
+			{
+				return this._Description.Entity;
+			}
+			set
+			{
+				Description previousValue = this._Description.Entity;
+				if (((previousValue != value) 
+							|| (this._Description.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Description.Entity = null;
+						previousValue.Drinks.Remove(this);
+					}
+					this._Description.Entity = value;
+					if ((value != null))
+					{
+						value.Drinks.Add(this);
+						this._idDescription = value.Id;
+					}
+					else
+					{
+						this._idDescription = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Description");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_DrinkDetails(DrinkDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Drink = this;
+		}
+		
+		private void detach_DrinkDetails(DrinkDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Drink = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DrinkDetail")]
 	public partial class DrinkDetail : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1808,8 +1606,8 @@ namespace WindowsFormsApp3
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Status")]
-	public partial class Status : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Kind")]
+	public partial class Kind : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1817,6 +1615,10 @@ namespace WindowsFormsApp3
 		private byte _Id;
 		
 		private string _text;
+		
+		private EntitySet<DishDetail> _DishDetails;
+		
+		private EntitySet<DrinkDetail> _DrinkDetails;
 		
 		private EntitySet<Order> _Orders;
 		
@@ -1830,8 +1632,10 @@ namespace WindowsFormsApp3
     partial void OntextChanged();
     #endregion
 		
-		public Status()
+		public Kind()
 		{
+			this._DishDetails = new EntitySet<DishDetail>(new Action<DishDetail>(this.attach_DishDetails), new Action<DishDetail>(this.detach_DishDetails));
+			this._DrinkDetails = new EntitySet<DrinkDetail>(new Action<DrinkDetail>(this.attach_DrinkDetails), new Action<DrinkDetail>(this.detach_DrinkDetails));
 			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
 			OnCreated();
 		}
@@ -1876,7 +1680,33 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Status_Order", Storage="_Orders", ThisKey="Id", OtherKey="idStatus")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_DishDetail", Storage="_DishDetails", ThisKey="Id", OtherKey="idKind")]
+		public EntitySet<DishDetail> DishDetails
+		{
+			get
+			{
+				return this._DishDetails;
+			}
+			set
+			{
+				this._DishDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_DrinkDetail", Storage="_DrinkDetails", ThisKey="Id", OtherKey="idKind")]
+		public EntitySet<DrinkDetail> DrinkDetails
+		{
+			get
+			{
+				return this._DrinkDetails;
+			}
+			set
+			{
+				this._DrinkDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Kind_Order", Storage="_Orders", ThisKey="Id", OtherKey="idKind")]
 		public EntitySet<Order> Orders
 		{
 			get
@@ -1909,16 +1739,40 @@ namespace WindowsFormsApp3
 			}
 		}
 		
+		private void attach_DishDetails(DishDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Kind = this;
+		}
+		
+		private void detach_DishDetails(DishDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Kind = null;
+		}
+		
+		private void attach_DrinkDetails(DrinkDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Kind = this;
+		}
+		
+		private void detach_DrinkDetails(DrinkDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Kind = null;
+		}
+		
 		private void attach_Orders(Order entity)
 		{
 			this.SendPropertyChanging();
-			entity.Status = this;
+			entity.Kind = this;
 		}
 		
 		private void detach_Orders(Order entity)
 		{
 			this.SendPropertyChanging();
-			entity.Status = null;
+			entity.Kind = null;
 		}
 	}
 	
@@ -1940,9 +1794,9 @@ namespace WindowsFormsApp3
 		
 		private System.Nullable<int> _idDescription;
 		
-		private EntitySet<OrderDrink> _OrderDrinks;
-		
 		private EntitySet<OrderDish> _OrderDishes;
+		
+		private EntitySet<OrderDrink> _OrderDrinks;
 		
 		private EntityRef<Description> _Description;
 		
@@ -1970,8 +1824,8 @@ namespace WindowsFormsApp3
 		
 		public Order()
 		{
-			this._OrderDrinks = new EntitySet<OrderDrink>(new Action<OrderDrink>(this.attach_OrderDrinks), new Action<OrderDrink>(this.detach_OrderDrinks));
 			this._OrderDishes = new EntitySet<OrderDish>(new Action<OrderDish>(this.attach_OrderDishes), new Action<OrderDish>(this.detach_OrderDishes));
+			this._OrderDrinks = new EntitySet<OrderDrink>(new Action<OrderDrink>(this.attach_OrderDrinks), new Action<OrderDrink>(this.detach_OrderDrinks));
 			this._Description = default(EntityRef<Description>);
 			this._Kind = default(EntityRef<Kind>);
 			this._Status = default(EntityRef<Status>);
@@ -2110,19 +1964,6 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderDrink", Storage="_OrderDrinks", ThisKey="Id", OtherKey="idOrder")]
-		public EntitySet<OrderDrink> OrderDrinks
-		{
-			get
-			{
-				return this._OrderDrinks;
-			}
-			set
-			{
-				this._OrderDrinks.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderDish", Storage="_OrderDishes", ThisKey="Id", OtherKey="idOrder")]
 		public EntitySet<OrderDish> OrderDishes
 		{
@@ -2133,6 +1974,19 @@ namespace WindowsFormsApp3
 			set
 			{
 				this._OrderDishes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderDrink", Storage="_OrderDrinks", ThisKey="Id", OtherKey="idOrder")]
+		public EntitySet<OrderDrink> OrderDrinks
+		{
+			get
+			{
+				return this._OrderDrinks;
+			}
+			set
+			{
+				this._OrderDrinks.Assign(value);
 			}
 		}
 		
@@ -2258,18 +2112,6 @@ namespace WindowsFormsApp3
 			}
 		}
 		
-		private void attach_OrderDrinks(OrderDrink entity)
-		{
-			this.SendPropertyChanging();
-			entity.Order = this;
-		}
-		
-		private void detach_OrderDrinks(OrderDrink entity)
-		{
-			this.SendPropertyChanging();
-			entity.Order = null;
-		}
-		
 		private void attach_OrderDishes(OrderDish entity)
 		{
 			this.SendPropertyChanging();
@@ -2281,197 +2123,17 @@ namespace WindowsFormsApp3
 			this.SendPropertyChanging();
 			entity.Order = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderDrink")]
-	public partial class OrderDrink : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _idOrder;
-		
-		private int _idDrinkDetail;
-		
-		private EntityRef<DrinkDetail> _DrinkDetail;
-		
-		private EntityRef<Order> _Order;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnidOrderChanging(int value);
-    partial void OnidOrderChanged();
-    partial void OnidDrinkDetailChanging(int value);
-    partial void OnidDrinkDetailChanged();
-    #endregion
-		
-		public OrderDrink()
+		private void attach_OrderDrinks(OrderDrink entity)
 		{
-			this._DrinkDetail = default(EntityRef<DrinkDetail>);
-			this._Order = default(EntityRef<Order>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Order = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		private void detach_OrderDrinks(OrderDrink entity)
 		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idOrder", DbType="Int NOT NULL")]
-		public int idOrder
-		{
-			get
-			{
-				return this._idOrder;
-			}
-			set
-			{
-				if ((this._idOrder != value))
-				{
-					if (this._Order.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidOrderChanging(value);
-					this.SendPropertyChanging();
-					this._idOrder = value;
-					this.SendPropertyChanged("idOrder");
-					this.OnidOrderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDrinkDetail", DbType="Int NOT NULL")]
-		public int idDrinkDetail
-		{
-			get
-			{
-				return this._idDrinkDetail;
-			}
-			set
-			{
-				if ((this._idDrinkDetail != value))
-				{
-					if (this._DrinkDetail.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidDrinkDetailChanging(value);
-					this.SendPropertyChanging();
-					this._idDrinkDetail = value;
-					this.SendPropertyChanged("idDrinkDetail");
-					this.OnidDrinkDetailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrinkDetail_OrderDrink", Storage="_DrinkDetail", ThisKey="idDrinkDetail", OtherKey="Id", IsForeignKey=true)]
-		public DrinkDetail DrinkDetail
-		{
-			get
-			{
-				return this._DrinkDetail.Entity;
-			}
-			set
-			{
-				DrinkDetail previousValue = this._DrinkDetail.Entity;
-				if (((previousValue != value) 
-							|| (this._DrinkDetail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DrinkDetail.Entity = null;
-						previousValue.OrderDrinks.Remove(this);
-					}
-					this._DrinkDetail.Entity = value;
-					if ((value != null))
-					{
-						value.OrderDrinks.Add(this);
-						this._idDrinkDetail = value.Id;
-					}
-					else
-					{
-						this._idDrinkDetail = default(int);
-					}
-					this.SendPropertyChanged("DrinkDetail");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderDrink", Storage="_Order", ThisKey="idOrder", OtherKey="Id", IsForeignKey=true)]
-		public Order Order
-		{
-			get
-			{
-				return this._Order.Entity;
-			}
-			set
-			{
-				Order previousValue = this._Order.Entity;
-				if (((previousValue != value) 
-							|| (this._Order.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Order.Entity = null;
-						previousValue.OrderDrinks.Remove(this);
-					}
-					this._Order.Entity = value;
-					if ((value != null))
-					{
-						value.OrderDrinks.Add(this);
-						this._idOrder = value.Id;
-					}
-					else
-					{
-						this._idOrder = default(int);
-					}
-					this.SendPropertyChanged("Order");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Order = null;
 		}
 	}
 	
@@ -2667,6 +2329,198 @@ namespace WindowsFormsApp3
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderDrink")]
+	public partial class OrderDrink : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _idOrder;
+		
+		private int _idDrinkDetail;
+		
+		private EntityRef<DrinkDetail> _DrinkDetail;
+		
+		private EntityRef<Order> _Order;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnidOrderChanging(int value);
+    partial void OnidOrderChanged();
+    partial void OnidDrinkDetailChanging(int value);
+    partial void OnidDrinkDetailChanged();
+    #endregion
+		
+		public OrderDrink()
+		{
+			this._DrinkDetail = default(EntityRef<DrinkDetail>);
+			this._Order = default(EntityRef<Order>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idOrder", DbType="Int NOT NULL")]
+		public int idOrder
+		{
+			get
+			{
+				return this._idOrder;
+			}
+			set
+			{
+				if ((this._idOrder != value))
+				{
+					if (this._Order.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidOrderChanging(value);
+					this.SendPropertyChanging();
+					this._idOrder = value;
+					this.SendPropertyChanged("idOrder");
+					this.OnidOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDrinkDetail", DbType="Int NOT NULL")]
+		public int idDrinkDetail
+		{
+			get
+			{
+				return this._idDrinkDetail;
+			}
+			set
+			{
+				if ((this._idDrinkDetail != value))
+				{
+					if (this._DrinkDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidDrinkDetailChanging(value);
+					this.SendPropertyChanging();
+					this._idDrinkDetail = value;
+					this.SendPropertyChanged("idDrinkDetail");
+					this.OnidDrinkDetailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrinkDetail_OrderDrink", Storage="_DrinkDetail", ThisKey="idDrinkDetail", OtherKey="Id", IsForeignKey=true)]
+		public DrinkDetail DrinkDetail
+		{
+			get
+			{
+				return this._DrinkDetail.Entity;
+			}
+			set
+			{
+				DrinkDetail previousValue = this._DrinkDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._DrinkDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DrinkDetail.Entity = null;
+						previousValue.OrderDrinks.Remove(this);
+					}
+					this._DrinkDetail.Entity = value;
+					if ((value != null))
+					{
+						value.OrderDrinks.Add(this);
+						this._idDrinkDetail = value.Id;
+					}
+					else
+					{
+						this._idDrinkDetail = default(int);
+					}
+					this.SendPropertyChanged("DrinkDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderDrink", Storage="_Order", ThisKey="idOrder", OtherKey="Id", IsForeignKey=true)]
+		public Order Order
+		{
+			get
+			{
+				return this._Order.Entity;
+			}
+			set
+			{
+				Order previousValue = this._Order.Entity;
+				if (((previousValue != value) 
+							|| (this._Order.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Order.Entity = null;
+						previousValue.OrderDrinks.Remove(this);
+					}
+					this._Order.Entity = value;
+					if ((value != null))
+					{
+						value.OrderDrinks.Add(this);
+						this._idOrder = value.Id;
+					}
+					else
+					{
+						this._idOrder = default(int);
+					}
+					this.SendPropertyChanged("Order");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Profit")]
 	public partial class Profit : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2825,116 +2679,124 @@ namespace WindowsFormsApp3
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Size")]
+	public partial class Size : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IdUser;
+		private byte _Id;
 		
-		private string _nick;
+		private string _text;
 		
-		private string _pass;
+		private System.Nullable<int> _value;
 		
-		private string _role;
+		private EntitySet<DishDetail> _DishDetails;
+		
+		private EntitySet<DrinkDetail> _DrinkDetails;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdUserChanging(int value);
-    partial void OnIdUserChanged();
-    partial void OnnickChanging(string value);
-    partial void OnnickChanged();
-    partial void OnpassChanging(string value);
-    partial void OnpassChanged();
-    partial void OnroleChanging(string value);
-    partial void OnroleChanged();
+    partial void OnIdChanging(byte value);
+    partial void OnIdChanged();
+    partial void OntextChanging(string value);
+    partial void OntextChanged();
+    partial void OnvalueChanging(System.Nullable<int> value);
+    partial void OnvalueChanged();
     #endregion
 		
-		public User()
+		public Size()
 		{
+			this._DishDetails = new EntitySet<DishDetail>(new Action<DishDetail>(this.attach_DishDetails), new Action<DishDetail>(this.detach_DishDetails));
+			this._DrinkDetails = new EntitySet<DrinkDetail>(new Action<DrinkDetail>(this.attach_DrinkDetails), new Action<DrinkDetail>(this.detach_DrinkDetails));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUser", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IdUser
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
+		public byte Id
 		{
 			get
 			{
-				return this._IdUser;
+				return this._Id;
 			}
 			set
 			{
-				if ((this._IdUser != value))
+				if ((this._Id != value))
 				{
-					this.OnIdUserChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
-					this._IdUser = value;
-					this.SendPropertyChanged("IdUser");
-					this.OnIdUserChanged();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nick", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string nick
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="VarChar(50)")]
+		public string text
 		{
 			get
 			{
-				return this._nick;
+				return this._text;
 			}
 			set
 			{
-				if ((this._nick != value))
+				if ((this._text != value))
 				{
-					this.OnnickChanging(value);
+					this.OntextChanging(value);
 					this.SendPropertyChanging();
-					this._nick = value;
-					this.SendPropertyChanged("nick");
-					this.OnnickChanged();
+					this._text = value;
+					this.SendPropertyChanged("text");
+					this.OntextChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string pass
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_value", DbType="Int")]
+		public System.Nullable<int> value
 		{
 			get
 			{
-				return this._pass;
+				return this._value;
 			}
 			set
 			{
-				if ((this._pass != value))
+				if ((this._value != value))
 				{
-					this.OnpassChanging(value);
+					this.OnvalueChanging(value);
 					this.SendPropertyChanging();
-					this._pass = value;
-					this.SendPropertyChanged("pass");
-					this.OnpassChanged();
+					this._value = value;
+					this.SendPropertyChanged("value");
+					this.OnvalueChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="VarChar(50)")]
-		public string role
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Size_DishDetail", Storage="_DishDetails", ThisKey="Id", OtherKey="idSize")]
+		public EntitySet<DishDetail> DishDetails
 		{
 			get
 			{
-				return this._role;
+				return this._DishDetails;
 			}
 			set
 			{
-				if ((this._role != value))
-				{
-					this.OnroleChanging(value);
-					this.SendPropertyChanging();
-					this._role = value;
-					this.SendPropertyChanged("role");
-					this.OnroleChanged();
-				}
+				this._DishDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Size_DrinkDetail", Storage="_DrinkDetails", ThisKey="Id", OtherKey="idSize")]
+		public EntitySet<DrinkDetail> DrinkDetails
+		{
+			get
+			{
+				return this._DrinkDetails;
+			}
+			set
+			{
+				this._DrinkDetails.Assign(value);
 			}
 		}
 		
@@ -2956,6 +2818,144 @@ namespace WindowsFormsApp3
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_DishDetails(DishDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Size = this;
+		}
+		
+		private void detach_DishDetails(DishDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Size = null;
+		}
+		
+		private void attach_DrinkDetails(DrinkDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Size = this;
+		}
+		
+		private void detach_DrinkDetails(DrinkDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Size = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Status")]
+	public partial class Status : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private byte _Id;
+		
+		private string _text;
+		
+		private EntitySet<Order> _Orders;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(byte value);
+    partial void OnIdChanged();
+    partial void OntextChanging(string value);
+    partial void OntextChanged();
+    #endregion
+		
+		public Status()
+		{
+			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
+		public byte Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="VarChar(50)")]
+		public string text
+		{
+			get
+			{
+				return this._text;
+			}
+			set
+			{
+				if ((this._text != value))
+				{
+					this.OntextChanging(value);
+					this.SendPropertyChanging();
+					this._text = value;
+					this.SendPropertyChanged("text");
+					this.OntextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Status_Order", Storage="_Orders", ThisKey="Id", OtherKey="idStatus")]
+		public EntitySet<Order> Orders
+		{
+			get
+			{
+				return this._Orders;
+			}
+			set
+			{
+				this._Orders.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Orders(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Status = this;
+		}
+		
+		private void detach_Orders(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Status = null;
 		}
 	}
 }

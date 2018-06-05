@@ -63,12 +63,16 @@ namespace WindowsFormsApp3
             comboBoxDrinkSize.ValueMember = "Id";
             comboBoxDrinkSize.DataSource = result5;
 
+            try
+            {
+                var result6 = from order in data.Orders
+                              select new { order.Id, Kind = order.Kind.text, Status = order.Status.text, order.startDateTime, order.endDateTime, order.Description.decription };
 
-            var result6 = from order in data.Orders
-                          select new { order.Id, Kind = order.Kind.text,  Status = order.Status.text, order.startDateTime, order.endDateTime, order.Description.decription};
-
-            dataGridOrder.DataSource = result6;
-
+                dataGridOrder.DataSource = result6;
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
             for (int i = 0; i < dataGridOrder.Columns.Count; i++)
             {
