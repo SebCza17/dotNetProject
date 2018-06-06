@@ -35,6 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.labelMsg = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxLog
@@ -108,11 +109,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // labelMsg
+            // 
+            this.labelMsg.AutoSize = true;
+            this.labelMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.labelMsg.Location = new System.Drawing.Point(395, 376);
+            this.labelMsg.Name = "labelMsg";
+            this.labelMsg.Size = new System.Drawing.Size(198, 29);
+            this.labelMsg.TabIndex = 7;
+            this.labelMsg.Text = "Zarejestrowano!!!";
+            this.labelMsg.Visible = false;
+            // 
             // FormRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelMsg);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.label3);
@@ -137,5 +150,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelMsg;
     }
 }

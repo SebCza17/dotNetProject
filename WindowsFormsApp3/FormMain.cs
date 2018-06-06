@@ -453,7 +453,8 @@ namespace WindowsFormsApp3
 
         private void butLog_Click(object sender, EventArgs e)
         {
-
+            FormLogin formLogin = new FormLogin(this);
+            formLogin.Show();
         }
 
         private void dataGridOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)

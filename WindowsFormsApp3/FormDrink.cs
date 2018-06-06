@@ -225,10 +225,14 @@ namespace WindowsFormsApp3
 
         private void butSaveDrink_Click(object sender, EventArgs e)
         {
+            try{
             toUpdateDrink.name = textBoxName.Text;
             toUpdateDrink.Description.decription = textBoxDesc.Text;
             toUpdateDrink.adults = checkBoxIsAdult.Checked;
-
+                }catch(Exception ex)
+                {
+                    Console.Write(ex);
+               }
             data.SubmitChanges();
             loadDrink();
         }

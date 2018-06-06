@@ -15,9 +15,6 @@ namespace WindowsFormsApp3
         private FormMain form1;
         DataClasses1DataContext data;
 
-        //FormMain formHandler;
-
-
         public FormRegister(FormMain form1)
         {
             InitializeComponent();
@@ -47,7 +44,7 @@ namespace WindowsFormsApp3
                 //             where user.nick == "micek30"
                 //             select new { user.nick }).Single();
                 //MessageBox.Show(result.nick);
-                MessageBox.Show(textBoxLog.Text + " " + textBoxPass.Text);
+                labelMsg.Visible = true;
             }
             else { MessageBox.Show("Enter login and password"); }            
         }

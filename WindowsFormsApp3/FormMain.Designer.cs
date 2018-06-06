@@ -308,11 +308,13 @@
             // 
             // dataGridOrder
             // 
+            this.dataGridOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridOrder.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridOrder.Location = new System.Drawing.Point(717, 263);
             this.dataGridOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridOrder.Name = "dataGridOrder";
-            this.dataGridOrder.Size = new System.Drawing.Size(802, 411);
+            this.dataGridOrder.Size = new System.Drawing.Size(744, 404);
             this.dataGridOrder.TabIndex = 27;
             this.dataGridOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridOrder_CellContentClick);
             // 
@@ -338,7 +340,7 @@
             // 
             // butProfit
             // 
-            this.butProfit.Location = new System.Drawing.Point(1407, 214);
+            this.butProfit.Location = new System.Drawing.Point(1349, 211);
             this.butProfit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.butProfit.Name = "butProfit";
             this.butProfit.Size = new System.Drawing.Size(112, 35);
@@ -382,7 +384,7 @@
             // 
             // butLog
             // 
-            this.butLog.Location = new System.Drawing.Point(1407, 11);
+            this.butLog.Location = new System.Drawing.Point(1349, 15);
             this.butLog.Name = "butLog";
             this.butLog.Size = new System.Drawing.Size(112, 35);
             this.butLog.TabIndex = 34;
@@ -392,7 +394,7 @@
             // 
             // butReg
             // 
-            this.butReg.Location = new System.Drawing.Point(1407, 60);
+            this.butReg.Location = new System.Drawing.Point(1349, 60);
             this.butReg.Name = "butReg";
             this.butReg.Size = new System.Drawing.Size(112, 35);
             this.butReg.TabIndex = 35;
@@ -404,7 +406,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1538, 692);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1480, 693);
             this.Controls.Add(this.butReg);
             this.Controls.Add(this.butLog);
             this.Controls.Add(this.butSize);
