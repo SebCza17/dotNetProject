@@ -34,16 +34,12 @@ namespace WindowsFormsApp3
                 User toUpdateUser = new User
                 {
                     nick = textBoxLog.Text,
-                    pass = textBoxPass.Text
+                    pass = textBoxPass.Text,
+                    role = "employee"
                 };
                 data.Users.InsertOnSubmit(toUpdateUser);
                 data.SubmitChanges();
 
-                //do sprawdzania czy dodało użytkownika micek30
-                //var result = (from user in data.Users
-                //             where user.nick == "micek30"
-                //             select new { user.nick }).Single();
-                //MessageBox.Show(result.nick);
                 labelMsg.Visible = true;
             }
             else { MessageBox.Show("Enter login and password"); }            
