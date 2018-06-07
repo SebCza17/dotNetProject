@@ -114,7 +114,7 @@ namespace WindowsFormsApp3
             {
                 butAdmPnl.Visible = true;
                 butProfit.Visible = true;
-                labelConn.Text = "ZAlogowano jako admin";
+                labelConn.Text = "Zalogowano jako admin";
                 labelConn.Visible = true;
             }
 
@@ -503,6 +503,12 @@ namespace WindowsFormsApp3
             Loggedin = false;
             Admin = false;
             loadBox();
+        }
+
+        private void butAdmPnl_Click(object sender, EventArgs e)
+        {
+            FormAdmPnl formAdmPnl = new FormAdmPnl(this);
+            formAdmPnl.Show();
         }
 
         private void butReg_Click(object sender, EventArgs e)

@@ -408,12 +408,11 @@
             // 
             // labelConn
             // 
-            this.labelConn.AutoSize = true;
-            this.labelConn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.labelConn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.labelConn.ForeColor = System.Drawing.Color.YellowGreen;
-            this.labelConn.Location = new System.Drawing.Point(1344, 141);
+            this.labelConn.Location = new System.Drawing.Point(1349, 105);
             this.labelConn.Name = "labelConn";
-            this.labelConn.Size = new System.Drawing.Size(113, 25);
+            this.labelConn.Size = new System.Drawing.Size(112, 61);
             this.labelConn.TabIndex = 36;
             this.labelConn.Text = "Connected ";
             // 
@@ -426,6 +425,7 @@
             this.butAdmPnl.Text = "AdminPanel";
             this.butAdmPnl.UseVisualStyleBackColor = true;
             this.butAdmPnl.Visible = false;
+            this.butAdmPnl.Click += new System.EventHandler(this.butAdmPnl_Click);
             // 
             // butLogOut
             // 
