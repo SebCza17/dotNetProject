@@ -72,7 +72,8 @@ namespace WindowsFormsApp3
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::WindowsFormsApp3.Properties.Settings.Default.DataSourceConnectionString, mappingSource)
+				//base(global::windowsformsapp3.properties.settings.default.datasourceconnectionstring, mappingsource)
+				base(global::WindowsFormsApp3.Properties.Settings.Default.Database1ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

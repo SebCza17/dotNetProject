@@ -36,10 +36,7 @@ namespace WindowsFormsApp3
                     nick = textBoxLog.Text,
                     pass = textBoxPass.Text
                 };
-                //data.Users.InsertOnSubmit(toUpdateUser);
-                //data.SubmitChanges();
 
-                //do sprawdzania czy dodało użytkownika micek30
                 var result = (from user in data.Users
                               where user.nick == textBoxLog.Text
                               where user.pass == textBoxPass.Text
@@ -53,7 +50,13 @@ namespace WindowsFormsApp3
                 {
                     labelMsg.Text = "Zalogowano !!!";
                     labelMsg.Visible = true;
-                        }
+                    if (result.user.role.Equals("admin"))
+                    {
+                        form1.Admin = true;
+                    }
+                    form1.Loggedin = true;
+                    form1.loadBox();
+                 }
             }
             else { MessageBox.Show("Enter login and password"); }
         }

@@ -61,6 +61,8 @@
             this.butLog = new System.Windows.Forms.Button();
             this.butReg = new System.Windows.Forms.Button();
             this.labelConn = new System.Windows.Forms.Label();
+            this.butAdmPnl = new System.Windows.Forms.Button();
+            this.butLogOut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrder)).BeginInit();
             this.SuspendLayout();
             // 
@@ -341,13 +343,14 @@
             // 
             // butProfit
             // 
-            this.butProfit.Location = new System.Drawing.Point(1349, 211);
+            this.butProfit.Location = new System.Drawing.Point(1230, 214);
             this.butProfit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.butProfit.Name = "butProfit";
             this.butProfit.Size = new System.Drawing.Size(112, 35);
             this.butProfit.TabIndex = 30;
             this.butProfit.Text = "Profit";
             this.butProfit.UseVisualStyleBackColor = true;
+            this.butProfit.Visible = false;
             this.butProfit.Click += new System.EventHandler(this.butProfit_Click);
             // 
             // butLook
@@ -408,12 +411,32 @@
             this.labelConn.AutoSize = true;
             this.labelConn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.labelConn.ForeColor = System.Drawing.Color.YellowGreen;
-            this.labelConn.Location = new System.Drawing.Point(1348, 115);
+            this.labelConn.Location = new System.Drawing.Point(1344, 141);
             this.labelConn.Name = "labelConn";
             this.labelConn.Size = new System.Drawing.Size(113, 25);
             this.labelConn.TabIndex = 36;
             this.labelConn.Text = "Connected ";
-            this.labelConn.Visible = false;
+            // 
+            // butAdmPnl
+            // 
+            this.butAdmPnl.Location = new System.Drawing.Point(1349, 169);
+            this.butAdmPnl.Name = "butAdmPnl";
+            this.butAdmPnl.Size = new System.Drawing.Size(112, 34);
+            this.butAdmPnl.TabIndex = 37;
+            this.butAdmPnl.Text = "AdminPanel";
+            this.butAdmPnl.UseVisualStyleBackColor = true;
+            this.butAdmPnl.Visible = false;
+            // 
+            // butLogOut
+            // 
+            this.butLogOut.Location = new System.Drawing.Point(1349, 215);
+            this.butLogOut.Name = "butLogOut";
+            this.butLogOut.Size = new System.Drawing.Size(112, 34);
+            this.butLogOut.TabIndex = 38;
+            this.butLogOut.Text = "Log out";
+            this.butLogOut.UseVisualStyleBackColor = true;
+            this.butLogOut.Visible = false;
+            this.butLogOut.Click += new System.EventHandler(this.butLogOut_Click);
             // 
             // FormMain
             // 
@@ -421,6 +444,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1480, 693);
+            this.Controls.Add(this.butLogOut);
+            this.Controls.Add(this.butAdmPnl);
             this.Controls.Add(this.labelConn);
             this.Controls.Add(this.butReg);
             this.Controls.Add(this.butLog);
@@ -498,6 +523,8 @@
         private System.Windows.Forms.Button butLog;
         private System.Windows.Forms.Button butReg;
         private System.Windows.Forms.Label labelConn;
+        private System.Windows.Forms.Button butAdmPnl;
+        private System.Windows.Forms.Button butLogOut;
     }
 }
 

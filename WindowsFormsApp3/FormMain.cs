@@ -10,19 +10,28 @@ namespace WindowsFormsApp3
     public partial class FormMain : Form
     {
         DataClasses1DataContext data;
+        private bool loggedin=false,admin=false;
         private List<MyItems> myItems = new List<MyItems>();
         private int ndx = 0;
+
+        public bool Loggedin { get => loggedin; set => loggedin = value; }
+        public bool Admin { get => admin; set => admin = value; }
+
         public FormMain()
         {
             InitializeComponent();
             
             data = new DataClasses1DataContext();
-            labelConn.Text = "dsads";
-            labelConn.Visible = true;
+
             loadBox();
             
 
         }
+        public void SetLogged(bool value)
+        {
+            loggedin = value;
+        }
+
         public void loadBox()
         {
             var result = from dish in data.Dishes
@@ -87,6 +96,27 @@ namespace WindowsFormsApp3
             comboBoxStatus.DisplayMember = "text";
             comboBoxStatus.ValueMember = "Id";
             comboBoxStatus.DataSource = result7;
+
+            if (Loggedin.Equals(true))
+            {
+                butLogOut.Visible = true;
+                labelConn.Text = "Zalogowano !";
+                labelConn.Visible = true;
+            }
+            else
+            {
+                butLogOut.Visible = false;
+                labelConn.Visible = false;
+                butAdmPnl.Visible = false;
+                butProfit.Visible = false;
+            }
+            if (Admin.Equals(true))
+            {
+                butAdmPnl.Visible = true;
+                butProfit.Visible = true;
+                labelConn.Text = "ZAlogowano jako admin";
+                labelConn.Visible = true;
+            }
 
         }
         private int getSelectedIdx(DataGridView dataGridView, String columnName)
@@ -468,11 +498,19 @@ namespace WindowsFormsApp3
 
         }
 
+        private void butLogOut_Click(object sender, EventArgs e)
+        {
+            Loggedin = false;
+            Admin = false;
+            loadBox();
+        }
+
         private void butReg_Click(object sender, EventArgs e)
         {
             FormRegister form8 = new FormRegister(this);
             form8.Show();
         }
+
     }
     
 
