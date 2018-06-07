@@ -60,6 +60,7 @@
             this.butSize = new System.Windows.Forms.Button();
             this.butLog = new System.Windows.Forms.Button();
             this.butReg = new System.Windows.Forms.Button();
+            this.labelConn = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOrder)).BeginInit();
             this.SuspendLayout();
             // 
@@ -402,12 +403,25 @@
             this.butReg.UseVisualStyleBackColor = true;
             this.butReg.Click += new System.EventHandler(this.butReg_Click);
             // 
+            // labelConn
+            // 
+            this.labelConn.AutoSize = true;
+            this.labelConn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.labelConn.ForeColor = System.Drawing.Color.YellowGreen;
+            this.labelConn.Location = new System.Drawing.Point(1348, 115);
+            this.labelConn.Name = "labelConn";
+            this.labelConn.Size = new System.Drawing.Size(113, 25);
+            this.labelConn.TabIndex = 36;
+            this.labelConn.Text = "Connected ";
+            this.labelConn.Visible = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1480, 693);
+            this.Controls.Add(this.labelConn);
             this.Controls.Add(this.butReg);
             this.Controls.Add(this.butLog);
             this.Controls.Add(this.butSize);
@@ -483,6 +497,7 @@
         private System.Windows.Forms.Button butSize;
         private System.Windows.Forms.Button butLog;
         private System.Windows.Forms.Button butReg;
+        private System.Windows.Forms.Label labelConn;
     }
 }
 

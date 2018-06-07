@@ -17,7 +17,8 @@ namespace WindowsFormsApp3
             InitializeComponent();
             
             data = new DataClasses1DataContext();
-
+            labelConn.Text = "dsads";
+            labelConn.Visible = true;
             loadBox();
             
 
