@@ -9,6 +9,7 @@ namespace WindowsFormsApp3
 {
     public partial class FormMain : Form
     {
+        private FormLogin formLog;
         DataClasses1DataContext data;
         private bool loggedin=false,admin=false;
         private List<MyItems> myItems = new List<MyItems>();
@@ -19,14 +20,20 @@ namespace WindowsFormsApp3
 
         public FormMain()
         {
-            InitializeComponent();
-            
+            InitializeComponent();        
             data = new DataClasses1DataContext();
-
             loadBox();
+            FormFirst formFirst;
             
-
         }
+
+        public FormMain(FormLogin formLog)
+        {
+            InitializeComponent();
+            data = new DataClasses1DataContext();
+            loadBox();
+        }
+
         public void SetLogged(bool value)
         {
             loggedin = value;
@@ -503,12 +510,19 @@ namespace WindowsFormsApp3
             Loggedin = false;
             Admin = false;
             loadBox();
+            this.Close();
+            formFirst.Show();
         }
 
         private void butAdmPnl_Click(object sender, EventArgs e)
         {
             FormAdmPnl formAdmPnl = new FormAdmPnl(this);
             formAdmPnl.Show();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void butReg_Click(object sender, EventArgs e)

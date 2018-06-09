@@ -13,7 +13,15 @@ namespace WindowsFormsApp3
     public partial class FormLogin : Form
     {
         private FormMain form1;
+        private FormFirst form11;
         DataClasses1DataContext data;
+
+        public FormLogin(FormFirst form11)
+        {
+            InitializeComponent();
+            this.form11 = form11;
+            data = new DataClasses1DataContext();
+        }
 
         public FormLogin(FormMain form1)
         {
@@ -50,15 +58,24 @@ namespace WindowsFormsApp3
                 {
                     labelMsg.Text = "Zalogowano !!!";
                     labelMsg.Visible = true;
+                    FormMain formMain = new FormMain(this);
+                    formMain.Show();
+                    form11.Hide();
                     if (result.user.role.Equals("admin"))
                     {
-                        form1.Admin = true;
+                        formMain.Admin = true;
                     }
-                    form1.Loggedin = true;
-                    form1.loadBox();
+                    formMain.Loggedin = true;
+                    formMain.loadBox();
+                    this.Close();
                  }
             }
             else { MessageBox.Show("Enter login and password"); }
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

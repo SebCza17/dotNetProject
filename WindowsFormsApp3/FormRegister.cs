@@ -13,12 +13,20 @@ namespace WindowsFormsApp3
     public partial class FormRegister : Form
     {
         private FormMain form1;
+        private FormFirst form11;
         DataClasses1DataContext data;
 
         public FormRegister(FormMain form1)
         {
             InitializeComponent();
             this.form1 = form1;
+            data = new DataClasses1DataContext();
+        }
+
+        public FormRegister(FormFirst form11)
+        {
+            InitializeComponent();
+            this.form11 = form11;
             data = new DataClasses1DataContext();
         }
 
