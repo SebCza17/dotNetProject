@@ -58,7 +58,7 @@ namespace WindowsFormsApp3
                 {
                     labelMsg.Text = "Zalogowano !!!";
                     labelMsg.Visible = true;
-                    FormMain formMain = new FormMain(this);
+                    FormMain formMain = new FormMain(form11);
                     formMain.Show();
                     form11.Hide();
                     if (result.user.role.Equals("admin"))

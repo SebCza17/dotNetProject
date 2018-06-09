@@ -7,9 +7,10 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
+    
     public partial class FormMain : Form
     {
-        private FormLogin formLog;
+        private FormFirst formFirst;
         DataClasses1DataContext data;
         private bool loggedin=false,admin=false;
         private List<MyItems> myItems = new List<MyItems>();
@@ -27,11 +28,12 @@ namespace WindowsFormsApp3
             
         }
 
-        public FormMain(FormLogin formLog)
+        public FormMain(FormFirst formFirst)
         {
             InitializeComponent();
             data = new DataClasses1DataContext();
             loadBox();
+            this.formFirst = formFirst;
         }
 
         public void SetLogged(bool value)
