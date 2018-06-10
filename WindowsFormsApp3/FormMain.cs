@@ -562,6 +562,7 @@ namespace WindowsFormsApp3
             MessageBox.Show("Connection lost");
             this.Close();
         }
+       
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);

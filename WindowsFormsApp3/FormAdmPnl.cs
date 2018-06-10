@@ -145,14 +145,24 @@ namespace WindowsFormsApp3
 
             data.ExecuteCommand("INSERT INTO [dbo].[Description] ([decription]) VALUES (N'Sos pomidorowy, Ser')");
             data.ExecuteCommand("INSERT INTO [dbo].[Dish] ([name], [idDescription]) VALUES (N'Margarita', 1)");
-            data.ExecuteCommand("INSERT INTO [dbo].[DishDetail] ([availability], [idSize], [idKind], [price], [tax], [idDish]) VALUES (1,1,1,10,1,1)");
+            data.ExecuteCommand("INSERT INTO [dbo].[DishDetail] ([availability], [idSize], [idKind], [price], [tax], [idDish]) VALUES (1,1,1,10,8,1)");
 
             data.ExecuteCommand("INSERT INTO [dbo].[Description] ([decription]) VALUES (N'Sos pomidorowy, Ser, Ananas, Szynka')");
-            data.ExecuteCommand("INSERT INTO [dbo].[Dish] ([name], [idDescription]) VALUES (N'Hawajska', 2)");
-            data.ExecuteCommand("INSERT INTO [dbo].[DishDetail] ([availability], [idSize], [idKind], [price], [tax], [idDish]) VALUES (1,1,1,10,1,2)");
+            data.ExecuteCommand("INSERT INTO [dbo].[Dish] ([name], [idDescription]) VALUES (N'Neapoli', 2)");
+            data.ExecuteCommand("INSERT INTO [dbo].[DishDetail] ([availability], [idSize], [idKind], [price], [tax], [idDish]) VALUES (1,1,1,12,8,2)");
+
+            data.ExecuteCommand("INSERT INTO [dbo].[Description] ([decription]) VALUES (N'Prawie jak Cocacola')");
+            data.ExecuteCommand("INSERT INTO [dbo].[Drink] ([name], [idDescription]) VALUES (N'Pepsi', 3)");
+            data.ExecuteCommand("INSERT INTO [dbo].[DrinkDetail] ([availability], [idSize], [idKind], [price], [tax], [idDrink]) VALUES (1,11,15,5,26,1)");
+
+            data.ExecuteCommand("INSERT INTO [dbo].[Description] ([decription]) VALUES (N'Ty jestes pragnienie')");
+            data.ExecuteCommand("INSERT INTO [dbo].[Drink] ([name], [idDescription]) VALUES (N'Sprite', 4)");
+            data.ExecuteCommand("INSERT INTO [dbo].[DrinkDetail] ([availability], [idSize], [idKind], [price], [tax], [idDrink]) VALUES (1,11,15,6,26,2)");
+
 
             formHandler.Refresh();
             formHandler.loadBox();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

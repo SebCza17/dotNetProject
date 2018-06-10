@@ -35,6 +35,7 @@ namespace WindowsFormsApp3
             }
             catch (Exception ex)
             {
+                this.Close();
                 form1.lostConnection();
             }
         }
@@ -72,7 +73,7 @@ namespace WindowsFormsApp3
                               select size).First();
 
                 data.Sizes.DeleteOnSubmit(result);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
                 refresh();
                 form1.loadBox();
                 errorHide();
@@ -95,7 +96,7 @@ namespace WindowsFormsApp3
                 size.value = Convert.ToInt32(textBoxValue.Text);
 
                 data.Sizes.InsertOnSubmit(size);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
                 refresh();
                 errorHide();
                 form1.loadBox();
@@ -134,7 +135,7 @@ namespace WindowsFormsApp3
             {
                 toUpdate.text = textBoxText.Text;
                 toUpdate.value = Convert.ToInt32(textBoxValue.Text);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
                 refresh();
                 errorHide();
                 form1.loadBox();

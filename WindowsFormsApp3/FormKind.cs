@@ -35,6 +35,7 @@ namespace WindowsFormsApp3
             }
             catch (Exception ex)
             {
+                this.Close();
                 form1.lostConnection();
             }
         }
@@ -72,7 +73,7 @@ namespace WindowsFormsApp3
                               select kind).First();
 
                 data.Kinds.DeleteOnSubmit(result);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
                 refresh();
                 form1.loadBox();
                 errorHide();
@@ -93,7 +94,7 @@ namespace WindowsFormsApp3
                 kind.text = textBoxText.Text;
 
                 data.Kinds.InsertOnSubmit(kind);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
                 refresh();
                 errorHide();
                 form1.loadBox();
@@ -102,6 +103,7 @@ namespace WindowsFormsApp3
             {
                 Console.WriteLine(ex);
                 errorShow("Wrong data in!");
+
             }
         }
 
@@ -129,7 +131,7 @@ namespace WindowsFormsApp3
             try
             {
                 toUpdate.text = textBoxText.Text;
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
                 refresh();
                 errorHide();
                 form1.loadBox();

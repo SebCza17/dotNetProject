@@ -70,9 +70,13 @@ namespace WindowsFormsApp3
                         formMain.loadBox();
                         this.Close();
                     }
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
-                    form1.lostConnection();
+                    MessageBox.Show("Connection lost");
+                    this.Close();
+
+
                 }
             }
             else { MessageBox.Show("Enter login and password"); }

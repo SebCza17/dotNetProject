@@ -131,7 +131,7 @@ namespace WindowsFormsApp3
                 }
 
                 data.Descriptions.InsertOnSubmit(description);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
 
                 Drink drink = new Drink
                 {
@@ -141,7 +141,7 @@ namespace WindowsFormsApp3
                 };
 
                 data.Drinks.InsertOnSubmit(drink);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
 
                 DrinkDetail drinkDetail = new DrinkDetail
                 {
@@ -154,7 +154,7 @@ namespace WindowsFormsApp3
                 };
 
                 data.DrinkDetails.InsertOnSubmit(drinkDetail);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
 
                 loadDrink();
 
@@ -184,7 +184,7 @@ namespace WindowsFormsApp3
 
                 data.Drinks.DeleteOnSubmit(result);
 
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
 
                 errorHide();
                 loadDrink();
@@ -215,7 +215,7 @@ namespace WindowsFormsApp3
 
                 data.DrinkDetails.DeleteOnSubmit(result);
 
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
 
             }
             catch (Exception ex)
@@ -255,7 +255,7 @@ namespace WindowsFormsApp3
                 {
                     Console.Write(ex);
                }
-            data.SubmitChanges();
+            try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
             loadDrink();
         }
 
@@ -278,7 +278,7 @@ namespace WindowsFormsApp3
 
 
                 data.DrinkDetails.InsertOnSubmit(drinkDetail);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
 
                 loadDrinkDetail();
 
@@ -311,7 +311,7 @@ namespace WindowsFormsApp3
             toUpdateDetail.price = Convert.ToDecimal(textBoxPrice.Text);
             toUpdateDetail.tax = Convert.ToInt32(textBoxTax.Text);
 
-            data.SubmitChanges();
+            try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
             loadDrinkDetail();
         }
 

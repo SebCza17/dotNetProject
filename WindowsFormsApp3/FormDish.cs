@@ -144,7 +144,7 @@ namespace WindowsFormsApp3
                 };
 
                 data.Dishes.InsertOnSubmit(dish);
-                try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
 
                 DishDetail dishDetail = new DishDetail
                 {
@@ -157,7 +157,7 @@ namespace WindowsFormsApp3
                 };
 
                 data.DishDetails.InsertOnSubmit(dishDetail);
-                try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
 
                 loadDish();
 
@@ -188,7 +188,7 @@ namespace WindowsFormsApp3
 
                     data.Dishes.DeleteOnSubmit(result);
 
-                    try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
+                    try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
 
                     errorHide();
                     loadDish();
@@ -237,7 +237,7 @@ namespace WindowsFormsApp3
             }
 
 
-            try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
+            try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
             loadDish();
 
         }
@@ -252,7 +252,7 @@ namespace WindowsFormsApp3
 
                 data.DishDetails.DeleteOnSubmit(result);
 
-                try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
+                try{ data.SubmitChanges(); }catch(System.Data.SqlClient.SqlException ex) {Console.WriteLine(ex); }
                 
             }catch(Exception ex)
             {
