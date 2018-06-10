@@ -34,7 +34,8 @@ namespace WindowsFormsApp3
             data = new DataClasses1DataContext();
             loadBox();
             this.formFirst = formFirst;
-            this.ControlBox = false;
+            //X ON/OFF
+            //this.ControlBox = false;
         }
 
         public void SetLogged(bool value)
