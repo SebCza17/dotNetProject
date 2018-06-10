@@ -137,7 +137,7 @@ namespace WindowsFormsApp3
             }
 
             data.Descriptions.InsertOnSubmit(desc);
-            data.SubmitChanges();
+            try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
 
             Order order = new Order();
             order.Description = desc;
@@ -147,7 +147,7 @@ namespace WindowsFormsApp3
             
             
             data.Orders.InsertOnSubmit(order);
-            data.SubmitChanges();
+            try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
 
             foreach (var item in myItems)
             {
@@ -163,7 +163,7 @@ namespace WindowsFormsApp3
                         orderDish.idOrder = order.Id;
                         orderDish.idDishDetail = result.Id;
                         data.OrderDishes.InsertOnSubmit(orderDish);
-                        data.SubmitChanges();
+                        try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
                     }
                     else
                     {
@@ -176,7 +176,7 @@ namespace WindowsFormsApp3
                         orderDrink.idOrder = order.Id;
                         orderDrink.idDrinkDetail = result.Id;
                         data.OrderDrinks.InsertOnSubmit(orderDrink);
-                        data.SubmitChanges();
+                        try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
                     }
                 }catch(Exception ex)
                 {
