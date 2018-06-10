@@ -117,12 +117,6 @@ namespace WindowsFormsApp3
             data.ExecuteCommand("CREATE TABLE [dbo].[OrderDish] ([Id]           INT IDENTITY(1, 1) NOT NULL,[idOrder]      INT NOT NULL,[idDishDetail] INT NOT NULL,PRIMARY KEY CLUSTERED([Id] ASC),FOREIGN KEY([idDishDetail]) REFERENCES[dbo].[DishDetail]([Id]),FOREIGN KEY([idOrder]) REFERENCES[dbo].[Order]([Id])); ");
             data.ExecuteCommand("CREATE TABLE [dbo].[OrderDrink] ([Id]            INT IDENTITY(1, 1) NOT NULL,[idOrder]       INT NOT NULL,[idDrinkDetail] INT NOT NULL,PRIMARY KEY CLUSTERED([Id] ASC),FOREIGN KEY([idDrinkDetail]) REFERENCES[dbo].[DrinkDetail]([Id]),FOREIGN KEY([idOrder]) REFERENCES[dbo].[Order]([Id])); ");
 
-            formHandler.Hide();
-            formHandler.Show();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
             data.ExecuteCommand("INSERT INTO [dbo].[Kind] ([Id], [text]) VALUES (1, N'Thin')");
             data.ExecuteCommand("INSERT INTO [dbo].[Kind] ([Id], [text]) VALUES (2, N'Thick')");
             data.ExecuteCommand("INSERT INTO [dbo].[Kind] ([Id], [text]) VALUES (3, N'Italian')");
@@ -148,8 +142,13 @@ namespace WindowsFormsApp3
             data.ExecuteCommand("INSERT INTO [dbo].[Status] ([Id], [text]) VALUES (1, N'Open')");
             data.ExecuteCommand("INSERT INTO [dbo].[Status] ([Id], [text]) VALUES (2, N'Close')");
             data.ExecuteCommand("INSERT INTO [dbo].[Status] ([Id], [text]) VALUES (3, N'Canceled')");
-            formHandler.Hide();
-            formHandler.Show();
+
+            formHandler.Refresh();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
