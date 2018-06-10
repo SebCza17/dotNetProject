@@ -558,9 +558,19 @@ namespace WindowsFormsApp3
 
         public void lostConnection()
         {
-            FormFirst first = new FormFirst();
+            formFirst.Show();
             MessageBox.Show("Connection lost");
             this.Close();
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+
+            e.Cancel = true;
+            formFirst.Show();
+            this.Hide();
         }
 
     }
