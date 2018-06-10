@@ -143,7 +143,16 @@ namespace WindowsFormsApp3
             data.ExecuteCommand("INSERT INTO [dbo].[Status] ([Id], [text]) VALUES (2, N'Close')");
             data.ExecuteCommand("INSERT INTO [dbo].[Status] ([Id], [text]) VALUES (3, N'Canceled')");
 
+            data.ExecuteCommand("INSERT INTO [dbo].[Description] ([decription]) VALUES (N'Sos pomidorowy, Ser')");
+            data.ExecuteCommand("INSERT INTO [dbo].[Dish] ([name], [idDescription]) VALUES (N'Margarita', 1)");
+            data.ExecuteCommand("INSERT INTO [dbo].[DishDetail] ([availability], [idSize], [idKind], [price], [tax], [idDish]) VALUES (1,1,1,10,1,1)");
+
+            data.ExecuteCommand("INSERT INTO [dbo].[Description] ([decription]) VALUES (N'Sos pomidorowy, Ser, Ananas, Szynka')");
+            data.ExecuteCommand("INSERT INTO [dbo].[Dish] ([name], [idDescription]) VALUES (N'Hawajska', 2)");
+            data.ExecuteCommand("INSERT INTO [dbo].[DishDetail] ([availability], [idSize], [idKind], [price], [tax], [idDish]) VALUES (1,1,1,10,1,2)");
+
             formHandler.Refresh();
+            formHandler.loadBox();
         }
 
         private void button2_Click(object sender, EventArgs e)
