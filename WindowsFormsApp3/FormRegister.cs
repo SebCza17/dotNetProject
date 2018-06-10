@@ -39,31 +39,36 @@ namespace WindowsFormsApp3
         {
             if (!textBoxLog.Text.Equals("") || !textBoxPass.Text.Equals(""))
             {
-                var result = (from user in data.Users
-                              where user.nick == textBoxLog.Text
-                              select new { user }).FirstOrDefault();
-                if (result == null)
+                try
                 {
-                    User toUpdateUser = new User
+                    var result = (from user in data.Users
+                                  where user.nick == textBoxLog.Text
+                                  select new { user }).FirstOrDefault();
+                    if (result == null)
                     {
-                        nick = textBoxLog.Text,
-                        pass = textBoxPass.Text,
-                        role = "employees"
-                    };
-                    data.Users.InsertOnSubmit(toUpdateUser);
-                    data.SubmitChanges();
-                    labelMsg.Text = "User registred";
-                    labelMsg.Visible = true;
-                }
-                else
+                        User toUpdateUser = new User
+                        {
+                            nick = textBoxLog.Text,
+                            pass = textBoxPass.Text,
+                            role = "employees"
+                        };
+                        data.Users.InsertOnSubmit(toUpdateUser);
+                        data.SubmitChanges();
+                        labelMsg.Text = "User registred";
+                        labelMsg.Visible = true;
+                    }
+                    else
+                    {
+                        labelMsg.Text = "User already exist!";
+                        labelMsg.Visible = true;
+                    }
+
+                    //asdasiduasjnkasdasndjkasdnasjkdasdunkasjd
+
+                }catch(Exception ex)
                 {
-                    labelMsg.Text = "User already exist!";
-                    labelMsg.Visible = true;
+                    
                 }
-
-                //asdasiduasjnkasdasndjkasdnasjkdasdunkasjd
-
-
             }
             else { MessageBox.Show("Enter login and password"); }
         }

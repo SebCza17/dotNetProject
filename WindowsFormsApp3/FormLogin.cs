@@ -44,31 +44,36 @@ namespace WindowsFormsApp3
                     nick = textBoxLog.Text,
                     pass = textBoxPass.Text
                 };
-
-                var result = (from user in data.Users
-                              where user.nick == textBoxLog.Text
-                              where user.pass == textBoxPass.Text
-                              select new { user}).FirstOrDefault();
-                if (result == null)
+                try
                 {
-                    labelMsg.Text = "User not found";
-                    labelMsg.Visible = true;
-                }
-                else
-                {
-                    labelMsg.Text = "Zalogowano !!!";
-                    labelMsg.Visible = true;
-                    FormMain formMain = new FormMain(form11);
-                    formMain.Show();
-                    form11.Hide();
-                    if (result.user.role.Equals("admin"))
+                    var result = (from user in data.Users
+                                  where user.nick == textBoxLog.Text
+                                  where user.pass == textBoxPass.Text
+                                  select new { user }).FirstOrDefault();
+                    if (result == null)
                     {
-                        formMain.Admin = true;
+                        labelMsg.Text = "User not found";
+                        labelMsg.Visible = true;
                     }
-                    formMain.Loggedin = true;
-                    formMain.loadBox();
-                    this.Close();
-                 }
+                    else
+                    {
+                        labelMsg.Text = "Zalogowano !!!";
+                        labelMsg.Visible = true;
+                        FormMain formMain = new FormMain(form11);
+                        formMain.Show();
+                        form11.Hide();
+                        if (result.user.role.Equals("admin"))
+                        {
+                            formMain.Admin = true;
+                        }
+                        formMain.Loggedin = true;
+                        formMain.loadBox();
+                        this.Close();
+                    }
+                }catch(Exception ex)
+                {
+                    form1.lostConnection();
+                }
             }
             else { MessageBox.Show("Enter login and password"); }
         }
