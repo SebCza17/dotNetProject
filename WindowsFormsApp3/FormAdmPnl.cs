@@ -104,20 +104,21 @@ namespace WindowsFormsApp3
             data.ExecuteCommand("DROP TABLE [dbo].[Dish]");
             data.ExecuteCommand("DROP TABLE [dbo].[Description]");
 
+            data.ExecuteCommand("CREATE TABLE [dbo].[Description] ([Id]         INT           IDENTITY(1, 1) NOT NULL,[decription] VARCHAR(200) NULL,PRIMARY KEY CLUSTERED([Id] ASC)); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[Kind] ([Id]   TINYINT      NOT NULL,[text] VARCHAR(50) NULL,PRIMARY KEY CLUSTERED([Id] ASC)); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[Size] ([Id]    TINYINT      NOT NULL,[text]  VARCHAR(50) NULL, [value] INT          NULL,PRIMARY KEY CLUSTERED([Id] ASC)); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[Status] ([Id]   TINYINT      NOT NULL,[text] VARCHAR(50) NULL,PRIMARY KEY CLUSTERED([Id] ASC)); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[Profit] ([Id]     INT   IDENTITY(1, 1) NOT NULL,[date]   DATE  NULL,[inCash] MONEY NULL,[onHand] MONEY NULL,[tax]    MONEY NULL,PRIMARY KEY CLUSTERED([Id] ASC)); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[Drink] ([Id]            INT           IDENTITY(1, 1) NOT NULL,[name]          VARCHAR(100) NULL,[adults]        BIT           NULL,[idDescription] INT           NULL, PRIMARY KEY CLUSTERED([Id] ASC),FOREIGN KEY([idDescription]) REFERENCES[dbo].[Description]([Id])); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[Dish] ( [Id]            INT           IDENTITY(1, 1) NOT NULL,[name]          VARCHAR(100) NULL,[idDescription] INT           NULL, PRIMARY KEY CLUSTERED([Id] ASC),FOREIGN KEY([idDescription]) REFERENCES[dbo].[Description]([Id])); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[DishDetail] ([Id]           INT     IDENTITY(1, 1) NOT NULL,[availability] BIT     NULL,[idSize]       TINYINT NULL, [idKind]       TINYINT NULL,[price]        MONEY   NULL,[tax]          INT     NULL,[idDish]       INT     NOT NULL,PRIMARY KEY CLUSTERED([Id] ASC),FOREIGN KEY([idSize]) REFERENCES[dbo].[Size]([Id]),FOREIGN KEY([idKind]) REFERENCES[dbo].[Kind]([Id]),FOREIGN KEY([idDish]) REFERENCES[dbo].[Dish]([Id])); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[DrinkDetail] ([Id]           INT     IDENTITY(1, 1) NOT NULL,[availability] BIT     NULL,[idSize]       TINYINT NULL,[idKind]       TINYINT NULL, [price]        MONEY   NULL,[tax]          INT     NULL,[idDrink]      INT     NOT NULL,PRIMARY KEY CLUSTERED([Id] ASC),FOREIGN KEY([idSize]) REFERENCES[dbo].[Size]([Id]),FOREIGN KEY([idKind]) REFERENCES[dbo].[Kind]([Id]), FOREIGN KEY([idDrink]) REFERENCES[dbo].[Drink]([Id])); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[Order] ([Id]            INT      IDENTITY(1, 1) NOT NULL,[idStatus]      TINYINT  NULL,[idKind]        TINYINT  NULL,[startDateTime] DATETIME NULL,[endDateTime]   DATETIME NULL,[idDescription] INT      NULL,PRIMARY KEY CLUSTERED([Id] ASC), FOREIGN KEY([idDescription]) REFERENCES[dbo].[Description]([Id]),FOREIGN KEY([idKind]) REFERENCES[dbo].[Kind]([Id]),FOREIGN KEY([idStatus]) REFERENCES[dbo].[Status]([Id])); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[OrderDish] ([Id]           INT IDENTITY(1, 1) NOT NULL,[idOrder]      INT NOT NULL,[idDishDetail] INT NOT NULL,PRIMARY KEY CLUSTERED([Id] ASC),FOREIGN KEY([idDishDetail]) REFERENCES[dbo].[DishDetail]([Id]),FOREIGN KEY([idOrder]) REFERENCES[dbo].[Order]([Id])); ");
+            data.ExecuteCommand("CREATE TABLE [dbo].[OrderDrink] ([Id]            INT IDENTITY(1, 1) NOT NULL,[idOrder]       INT NOT NULL,[idDrinkDetail] INT NOT NULL,PRIMARY KEY CLUSTERED([Id] ASC),FOREIGN KEY([idDrinkDetail]) REFERENCES[dbo].[DrinkDetail]([Id]),FOREIGN KEY([idOrder]) REFERENCES[dbo].[Order]([Id])); ");
 
-            data.ExecuteCommand("create table [dbo].[description] ([id] int identity(1, 1) not null,[decription] varchar(200) null,primary key clustered([id] asc)); ");
-            data.ExecuteCommand("create table [dbo].[kind] ([id] tinyint not null,[text] varchar(50) null,primary key clustered([id] asc)); ");
-            data.ExecuteCommand("create table [dbo].[size] ([id] tinyint not null,[text]  varchar(50) null,[value] int null,primary key clustered([id] asc)); ");
-            data.ExecuteCommand("create table [dbo].[status] ([id] tinyint not null,[text] varchar(50) null,primary key clustered([id] asc)); ");
-            data.ExecuteCommand("create table [dbo].[profit] ([id] int identity(1, 1) not null,[date]   date  null,[incash] money null,[onhand] money null,[tax] money null,primary key clustered([id] asc)); ");
-            data.ExecuteCommand("create table [dbo].[drink] ([id] int identity(1, 1) not null,[name] varchar(100) null,[adults] bit null,[iddescription] int null,primary key clustered([id] asc),foreign key([iddescription]) references[dbo].[description]([id])); ");
-            data.ExecuteCommand("create table [dbo].[dish] ([id] int identity(1, 1) not null,[name] varchar(100) null,[iddescription] int null,primary key clustered([id] asc),foreign key([iddescription]) references[dbo].[description]([id])); ");
-            //data.executecommand("create table [dbo].[users] ([iduser] int identity(1, 1) not null,[nick]   varchar(50) not null,[pass]   varchar(50) not null,[role]   varchar(50) default('guest') null,primary key clustered([iduser] asc)); ");
-            data.ExecuteCommand("create table [dbo].[dishdetail] ([id] int identity(1, 1) not null,[availability] bit null,[idsize]  tinyint null,[idkind] tinyint null,[price] money null,[tax] int null,[iddish] int not null,primary key clustered([id] asc),foreign key([idsize]) references[dbo].[size]([id]),foreign key([idkind]) references[dbo].[kind]([id]),foreign key([iddish]) references[dbo].[dish]([id])); ");
-            data.ExecuteCommand("create table [dbo].[drinkdetail] ([id] int identity(1, 1) not null,[availability] bit null,[idsize] tinyint null,[idkind] tinyint null,[price] money null,[tax] int null,[iddrink] int not null,primary key clustered([id] asc),foreign key([idsize]) references[dbo].[size]([id]),foreign key([idkind]) references[dbo].[kind]([id]),foreign key([iddrink]) references[dbo].[drink]([id])); ");
-            data.ExecuteCommand("create table [dbo].[order] ([id]  int identity(1, 1) not null,[idstatus] tinyint null, [idkind] tinyint null,[startdatetime] datetime null,[enddatetime] datetime null,[iddescription] int null,primary key clustered([id] asc),foreign key([iddescription]) references[dbo].[description]([id]),foreign key([idkind]) references[dbo].[kind]([id]),foreign key([idstatus]) references[dbo].[status]([id])); ");
-            data.ExecuteCommand("create table [dbo].[orderdish] ([id] int identity(1, 1) not null,[idorder] int not null,[iddishdetail] int not null,primary key clustered([id] asc),foreign key([iddishdetail]) references[dbo].[dishdetail]([id]),foreign key([idorder]) references[dbo].[order]([id])); ");
-            data.ExecuteCommand("CREATE TABLE [dbo].[OrderDrink] ([Id] INT IDENTITY(1, 1) NOT NULL, [idOrder] INT NOT NULL,[idDrinkDetail] INT NOT NULL,PRIMARY KEY CLUSTERED([Id] ASC),FOREIGN KEY([idDrinkDetail]) REFERENCES[dbo].[DrinkDetail]([Id]),FOREIGN KEY([idOrder]) REFERENCES[dbo].[Order]([Id])); ");
+            formHandler.Hide();
+            formHandler.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -147,6 +148,8 @@ namespace WindowsFormsApp3
             data.ExecuteCommand("INSERT INTO [dbo].[Status] ([Id], [text]) VALUES (1, N'Open')");
             data.ExecuteCommand("INSERT INTO [dbo].[Status] ([Id], [text]) VALUES (2, N'Close')");
             data.ExecuteCommand("INSERT INTO [dbo].[Status] ([Id], [text]) VALUES (3, N'Canceled')");
+            formHandler.Hide();
+            formHandler.Show();
         }
     }
 }
