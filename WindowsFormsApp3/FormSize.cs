@@ -26,10 +26,17 @@ namespace WindowsFormsApp3
 
         private void refresh()
         {
-            var result = from size in data.Sizes
-                         select size;
+            try
+            {
+                var result = from size in data.Sizes
+                             select size;
 
-            dataGridSize.DataSource = result;
+                dataGridSize.DataSource = result;
+            }
+            catch (Exception ex)
+            {
+                form1.lostConnection();
+            }
         }
         private void errorShow(String s)
         {
@@ -73,6 +80,7 @@ namespace WindowsFormsApp3
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                form1.lostConnection();
                 errorShow("You can not delete while it is somewhere used");
             }
         }
@@ -102,15 +110,21 @@ namespace WindowsFormsApp3
         private void butEdit_Click(object sender, EventArgs e)
         {
             int idx = getSelectedIdx(dataGridSize, "Id");
+            try
+            {
+                var result = (from size in data.Sizes
+                              where size.Id == idx
+                              select size).First();
 
-            var result = (from size in data.Sizes
-                          where size.Id == idx
-                          select size).First();
+                textBoxText.Text = result.text.ToString();
+                textBoxValue.Text = result.value.ToString();
 
-            textBoxText.Text = result.text.ToString();
-            textBoxValue.Text = result.value.ToString();
-
-            toUpdate = result;
+                toUpdate = result;
+            }
+            catch (Exception ex)
+            {
+                form1.lostConnection();
+            }
 
         }
 

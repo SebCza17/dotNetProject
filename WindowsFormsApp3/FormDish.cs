@@ -18,55 +18,70 @@ namespace WindowsFormsApp3
         FormMain formHandler;
         public FormDish(FormMain form)
         {
-            InitializeComponent();
-            formHandler = form;
-            data = new DataClasses1DataContext();
+            try
+            {
+                InitializeComponent();
+                formHandler = form;
+                data = new DataClasses1DataContext();
 
-            loadDish();
+                loadDish();
 
-            var result = from size in data.Sizes
-                         where size.Id < 10
-                         select new { Id = size.Id, text = size.text, value = size.value + " d(cm)" };
+                var result = from size in data.Sizes
+                             where size.Id < 10
+                             select new { Id = size.Id, text = size.text, value = size.value + " d(cm)" };
 
 
-            comboBoxSize.DisplayMember = "value";
-            comboBoxSize.ValueMember = "Id";
-            comboBoxSize.DataSource = result;
+                comboBoxSize.DisplayMember = "value";
+                comboBoxSize.ValueMember = "Id";
+                comboBoxSize.DataSource = result;
 
-            var result2 = from kind in data.Kinds
-                          where kind.Id < 10
-                          select new { Id = kind.Id, text = kind.text };
+                var result2 = from kind in data.Kinds
+                              where kind.Id < 10
+                              select new { Id = kind.Id, text = kind.text };
 
-            comboBoxKind.DisplayMember = "text";
-            comboBoxKind.ValueMember = "Id";
-            comboBoxKind.DataSource = result2;
-
+                comboBoxKind.DisplayMember = "text";
+                comboBoxKind.ValueMember = "Id";
+                comboBoxKind.DataSource = result2;
+            }catch(Exception ex)
+            {
+                form.lostConnection();
+            }
         }
 
         private void loadDish()
         {
-            var result = from dish in data.Dishes
-                         select new { dish.Id, dish.name, dish.Description.decription };
-
-            dataGridView1.DataSource = result;
-
-            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            try
             {
-                dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                var result = from dish in data.Dishes
+                             select new { dish.Id, dish.name, dish.Description.decription };
+
+                dataGridView1.DataSource = result;
+
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+            }catch(Exception ex)
+            {
+                formHandler.lostConnection();
             }
         }
 
         private void loadDishDetail()
         {
-            
+            try
+            {
                 int selected = getSelectedIdx(dataGridView1, "Id");
-            
+
                 var result = from dishDetail in data.DishDetails
                              where dishDetail.idDish == selected
                              select new { dishDetail.Id, dishDetail.availability, Size = dishDetail.Size.text, Kind = dishDetail.Kind.text, dishDetail.price, dishDetail.tax };
 
                 dataGridView2.DataSource = result;
-           
+            }catch(Exception ex)
+            {
+                formHandler.lostConnection();
+            }
         }
 
         private int getSelectedIdx(DataGridView dataGridView, String columnName)
@@ -155,28 +170,35 @@ namespace WindowsFormsApp3
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int selected = getSelectedIdx(dataGridView1, "Id");
-
-            var count = (from dishDetails in data.DishDetails
-                         where dishDetails.idDish == selected
-                         select dishDetails).Count();
-            
-            if (count == 0) {
-                var result = (from dish in data.Dishes
-                              where dish.Id == selected
-                              select dish).First();
-
-
-                data.Dishes.DeleteOnSubmit(result);
-
-                data.SubmitChanges();
-
-                errorHide();
-                loadDish();
-            }
-            else
+            try
             {
-                errorShow("Before delete Dish, delete all Details");
+                int selected = getSelectedIdx(dataGridView1, "Id");
+
+                var count = (from dishDetails in data.DishDetails
+                             where dishDetails.idDish == selected
+                             select dishDetails).Count();
+
+                if (count == 0)
+                {
+                    var result = (from dish in data.Dishes
+                                  where dish.Id == selected
+                                  select dish).First();
+
+
+                    data.Dishes.DeleteOnSubmit(result);
+
+                    data.SubmitChanges();
+
+                    errorHide();
+                    loadDish();
+                }
+                else
+                {
+                    errorShow("Before delete Dish, delete all Details");
+                }
+            }catch(Exception ex)
+            {
+                formHandler.lostConnection();
             }
         }
 
