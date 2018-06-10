@@ -18,6 +18,7 @@ namespace WindowsFormsApp3
         FormMain formHandler;
         public FormDrink(FormMain form)
         {
+            try { 
             InitializeComponent();
             formHandler = form;
             data = new DataClasses1DataContext();
@@ -40,10 +41,15 @@ namespace WindowsFormsApp3
             comboBoxKind.DisplayMember = "text";
             comboBoxKind.ValueMember = "Id";
             comboBoxKind.DataSource = result2;
+            }
+            catch (Exception ex)
+            {
+                formHandler.lostConnection();
+            }
         }
         private void loadDrink()
         {
-            
+            try { 
             var result = from dish in data.Drinks
                          select new { dish.Id, dish.name, dish.Description.decription, dish.adults };
 
@@ -53,19 +59,29 @@ namespace WindowsFormsApp3
             {
                 dataGridDrink.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+            }
+            catch (Exception ex)
+            {
+                formHandler.lostConnection();
+            }
         }
 
         private void loadDrinkDetail()
         {
+            try
+            {
+                int selected = getSelectedIdx(dataGridDrink, "Id");
 
-            int selected = getSelectedIdx(dataGridDrink, "Id");
+                var result = from drinkDetail in data.DrinkDetails
+                             where drinkDetail.idDrink == selected
+                             select new { drinkDetail.Id, drinkDetail.availability, Size = drinkDetail.Size.text, Kind = drinkDetail.Kind.text, drinkDetail.price, drinkDetail.tax };
 
-            var result = from drinkDetail in data.DrinkDetails
-                         where drinkDetail.idDrink == selected
-                         select new { drinkDetail.Id, drinkDetail.availability, Size = drinkDetail.Size.text, Kind = drinkDetail.Kind.text, drinkDetail.price, drinkDetail.tax };
-
-            dataGridDetail.DataSource = result;
-
+                dataGridDetail.DataSource = result;
+            }
+            catch (Exception ex)
+            {
+                formHandler.lostConnection();
+            }
         }
 
         private int getSelectedIdx(DataGridView dataGridView, String columnName)
@@ -152,6 +168,7 @@ namespace WindowsFormsApp3
 
         private void butDelDrink_Click(object sender, EventArgs e)
         {
+            try { 
             int selected = getSelectedIdx(dataGridDrink, "Id");
 
             var count = (from drinkDetails in data.DrinkDetails
@@ -175,6 +192,11 @@ namespace WindowsFormsApp3
             else
             {
                 errorShow("Before delete Dish, delete all Details");
+            }
+            }
+            catch (Exception ex)
+            {
+                formHandler.lostConnection();
             }
         }
 
