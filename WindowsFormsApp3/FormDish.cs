@@ -63,6 +63,7 @@ namespace WindowsFormsApp3
                 }
             }catch(Exception ex)
             {
+                this.Close();
                 formHandler.lostConnection();
             }
         }
@@ -133,7 +134,7 @@ namespace WindowsFormsApp3
                 }
 
                 data.Descriptions.InsertOnSubmit(description);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(Exception ex) { Console.WriteLine(ex); }
 
                 Dish dish = new Dish
                 {
@@ -143,7 +144,7 @@ namespace WindowsFormsApp3
                 };
 
                 data.Dishes.InsertOnSubmit(dish);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
 
                 DishDetail dishDetail = new DishDetail
                 {
@@ -156,7 +157,7 @@ namespace WindowsFormsApp3
                 };
 
                 data.DishDetails.InsertOnSubmit(dishDetail);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
 
                 loadDish();
 
@@ -187,7 +188,7 @@ namespace WindowsFormsApp3
 
                     data.Dishes.DeleteOnSubmit(result);
 
-                    data.SubmitChanges();
+                    try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
 
                     errorHide();
                     loadDish();
@@ -236,7 +237,7 @@ namespace WindowsFormsApp3
             }
 
 
-            data.SubmitChanges();
+            try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
             loadDish();
 
         }
@@ -251,7 +252,7 @@ namespace WindowsFormsApp3
 
                 data.DishDetails.DeleteOnSubmit(result);
 
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex); }
                 
             }catch(Exception ex)
             {
@@ -282,7 +283,7 @@ namespace WindowsFormsApp3
 
 
                 data.DishDetails.InsertOnSubmit(dishDetail);
-                data.SubmitChanges();
+                try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex);  }
 
                 loadDishDetail();
 
@@ -318,7 +319,7 @@ namespace WindowsFormsApp3
             toUpdateDetail.price = Convert.ToDecimal(textBoxPrice.Text);
             toUpdateDetail.tax = Convert.ToInt32(textBoxTax.Text);
 
-            data.SubmitChanges();
+            try{ data.SubmitChanges(); }catch(Exception ex) {Console.WriteLine(ex);  }
             loadDishDetail();
         }
 
