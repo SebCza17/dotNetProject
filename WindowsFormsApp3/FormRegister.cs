@@ -39,18 +39,33 @@ namespace WindowsFormsApp3
         {
             if (!textBoxLog.Text.Equals("") || !textBoxPass.Text.Equals(""))
             {
-                User toUpdateUser = new User
+                var result = (from user in data.Users
+                              where user.nick == textBoxLog.Text
+                              select new { user }).FirstOrDefault();
+                if (result == null)
                 {
-                    nick = textBoxLog.Text,
-                    pass = textBoxPass.Text,
-                    role = "employee"
-                };
-                data.Users.InsertOnSubmit(toUpdateUser);
-                data.SubmitChanges();
+                    User toUpdateUser = new User
+                    {
+                        nick = textBoxLog.Text,
+                        pass = textBoxPass.Text,
+                        role = "employees"
+                    };
+                    data.Users.InsertOnSubmit(toUpdateUser);
+                    data.SubmitChanges();
+                    labelMsg.Text = "User registred";
+                    labelMsg.Visible = true;
+                }
+                else
+                {
+                    labelMsg.Text = "User already exist!";
+                    labelMsg.Visible = true;
+                }
 
-                labelMsg.Visible = true;
+                //asdasiduasjnkasdasndjkasdnasjkdasdunkasjd
+
+
             }
-            else { MessageBox.Show("Enter login and password"); }            
+            else { MessageBox.Show("Enter login and password"); }
         }
 
         private void buttonBack_Click(object sender, EventArgs e)

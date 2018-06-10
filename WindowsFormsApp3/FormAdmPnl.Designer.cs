@@ -73,7 +73,7 @@
             this.buttonSAve.Name = "buttonSAve";
             this.buttonSAve.Size = new System.Drawing.Size(171, 51);
             this.buttonSAve.TabIndex = 4;
-            this.buttonSAve.Text = "Save";
+            this.buttonSAve.Text = "Change role";
             this.buttonSAve.UseVisualStyleBackColor = true;
             this.buttonSAve.Click += new System.EventHandler(this.buttonSAve_Click);
             // 
