@@ -558,7 +558,7 @@ namespace WindowsFormsApp3
 
         public void lostConnection()
         {
-            FormFirst first = new FormFirst();
+            formFirst.Show();
             MessageBox.Show("Connection lost");
             this.Close();
         }
