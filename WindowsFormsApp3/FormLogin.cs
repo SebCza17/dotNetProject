@@ -46,17 +46,19 @@ namespace WindowsFormsApp3
                 };
                 try
                 {
+
+
                     var result = (from user in data.Users
                                   where user.nick == textBoxLog.Text
-                                  where user.pass == textBoxPass.Text
                                   select new { user }).FirstOrDefault();
                     if (result == null)
                     {
                         labelMsg.Text = "User not found";
                         labelMsg.Visible = true;
                     }
-                    else
+                    else if (PasswordHash.checkPassword(textBoxPass.Text, result.user.pass))
                     {
+                        
                         labelMsg.Text = "Zalogowano !!!";
                         labelMsg.Visible = true;
                         FormMain formMain = new FormMain(form11);
@@ -70,13 +72,20 @@ namespace WindowsFormsApp3
                         formMain.loadBox();
                         this.Close();
                     }
+                    else
+                    {
+                        labelMsg.Text = "Zly login lub haslo !!!";
+                        labelMsg.Visible = true;
+                    }
                 }
-                catch (Exception ex)
+                catch (System.Data.SqlClient.SqlException ex)
                 {
                     MessageBox.Show("Connection lost");
                     this.Close();
-
-
+                }catch(Exception ex)
+                {
+                    labelMsg.Text = "Zly login lub haslo !!!";
+                    labelMsg.Visible = true;
                 }
             }
             else { MessageBox.Show("Enter login and password"); }

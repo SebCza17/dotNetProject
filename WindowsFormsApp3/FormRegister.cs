@@ -49,7 +49,7 @@ namespace WindowsFormsApp3
                         User toUpdateUser = new User
                         {
                             nick = textBoxLog.Text,
-                            pass = textBoxPass.Text,
+                            pass = PasswordHash.getHash(textBoxPass.Text),
                             role = "employees"
                         };
                         data.Users.InsertOnSubmit(toUpdateUser);

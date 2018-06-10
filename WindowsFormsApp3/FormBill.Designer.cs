@@ -121,7 +121,7 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Kind: ";
             // 
-            // Form4
+            // FormBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -135,7 +135,7 @@
             this.Controls.Add(this.labelSum);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBoxOrder);
-            this.Name = "Form4";
+            this.Name = "FormBill";
             this.Text = "Form4";
             this.ResumeLayout(false);
             this.PerformLayout();

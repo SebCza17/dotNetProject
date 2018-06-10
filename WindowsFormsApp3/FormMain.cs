@@ -480,8 +480,9 @@ namespace WindowsFormsApp3
             int idx = getSelectedIdx(dataGridOrder, "Id");
             List<MyItems> myItems = new List<MyItems>();
             int ndx = 0;
+            var result = (Order)null;
             try {
-                var result = (from order in data.Orders
+                result = (from order in data.Orders
                               where order.Id == idx
                               select order).First();
 
@@ -500,7 +501,7 @@ namespace WindowsFormsApp3
             {
                 lostConnection();
             }
-            FormBill form4 = new FormBill(myItems);
+            FormBill form4 = new FormBill(myItems, result);
             form4.Show();
         }
 

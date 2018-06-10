@@ -65,7 +65,7 @@ namespace WindowsFormsApp3
         }
 
 
-        public FormBill(List<MyItems> menuItems)
+        public FormBill(List<MyItems> menuItems, Order order)
         {
             InitializeComponent();
             myItems = menuItems;
@@ -108,6 +108,9 @@ namespace WindowsFormsApp3
                 comboBoxKind.DataSource = result2;
                 comboBoxKind.Enabled = false;
 
+                textBoxOrderDesc.Text = order.Description.decription;
+
+                textBoxOrderDesc.Enabled = false;
                 butAdd.Enabled = false;
                 butBack.Enabled = false;
             }
