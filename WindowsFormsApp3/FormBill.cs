@@ -22,40 +22,46 @@ namespace WindowsFormsApp3
             myItems = menuItems;
             data = new DataClasses1DataContext();
             decimal toPay = 0;
-
-            foreach (var item in menuItems)
+            try
             {
-                if (item.type.Equals("Dish"))
+                foreach (var item in menuItems)
                 {
-                    var result = (from dishDetail in data.DishDetails
-                                  where dishDetail.Id == item.id
-                                  select dishDetail).First();
+                    if (item.type.Equals("Dish"))
+                    {
+                        var result = (from dishDetail in data.DishDetails
+                                      where dishDetail.Id == item.id
+                                      select dishDetail).First();
 
-                    listBoxOrder.Items.Insert(0, result.Dish.name + "\t\t" + (Convert.ToDecimal(result.Size.value) / 1000 + " L").Replace("0", string.Empty) + "\t" + result.Kind.text + "\t" + (result.price + " zł").Replace("000", string.Empty));
-                    toPay += (decimal)result.price;
-                }
-                else
-                {
-                    var result = (from drinkDetail in data.DrinkDetails
-                                  where drinkDetail.Id == item.id
-                                  select drinkDetail).First();
+                        listBoxOrder.Items.Insert(0, result.Dish.name + "\t\t" + (Convert.ToDecimal(result.Size.value) / 1000 + " L").Replace("0", string.Empty) + "\t" + result.Kind.text + "\t" + (result.price + " zł").Replace("000", string.Empty));
+                        toPay += (decimal)result.price;
+                    }
+                    else
+                    {
+                        var result = (from drinkDetail in data.DrinkDetails
+                                      where drinkDetail.Id == item.id
+                                      select drinkDetail).First();
 
-                    listBoxOrder.Items.Insert(0, result.Drink.name + "\t\t" + (Convert.ToDecimal(result.Size.value) / 1000 + " L").Replace("0", string.Empty) + "\t" + result.Kind.text + "\t" + (result.price + " zł").Replace("000", string.Empty));
-                    toPay += (decimal)result.price;
+                        listBoxOrder.Items.Insert(0, result.Drink.name + "\t\t" + (Convert.ToDecimal(result.Size.value) / 1000 + " L").Replace("0", string.Empty) + "\t" + result.Kind.text + "\t" + (result.price + " zł").Replace("000", string.Empty));
+                        toPay += (decimal)result.price;
+                    }
                 }
+
+
+                labelSum.Text = (toPay + " zł").Replace("000", string.Empty);
+
+
+                var result2 = from kind in data.Kinds
+                              where kind.Id > 50
+                              select new { kind.Id, kind.text };
+
+                comboBoxKind.DisplayMember = "text";
+                comboBoxKind.ValueMember = "Id";
+                comboBoxKind.DataSource = result2;
             }
-
-
-            labelSum.Text = (toPay + " zł").Replace("000", string.Empty);
-
-
-            var result2 = from kind in data.Kinds
-                         where kind.Id > 50
-                         select new { kind.Id, kind.text };
-            
-            comboBoxKind.DisplayMember = "text";
-            comboBoxKind.ValueMember = "Id";
-            comboBoxKind.DataSource = result2;
+            catch (Exception ex)
+            {
+                form1.lostConnection();
+            }
         }
 
 
@@ -65,44 +71,50 @@ namespace WindowsFormsApp3
             myItems = menuItems;
             data = new DataClasses1DataContext();
             decimal toPay = 0;
-
-            foreach (var item in menuItems)
+            try
             {
-                if (item.type.Equals("Dish"))
+                foreach (var item in menuItems)
                 {
-                    var result = (from dishDetail in data.DishDetails
-                                  where dishDetail.Id == item.id
-                                  select dishDetail).First();
+                    if (item.type.Equals("Dish"))
+                    {
+                        var result = (from dishDetail in data.DishDetails
+                                      where dishDetail.Id == item.id
+                                      select dishDetail).First();
 
-                    listBoxOrder.Items.Insert(0, result.Dish.name + "\t\t" + (Convert.ToDecimal(result.Size.value) / 1000 + " L").Replace("0", string.Empty) + "\t" + result.Kind.text + "\t" + (result.price + " zł").Replace("000", string.Empty));
-                    toPay += (decimal)result.price;
-                }
-                else
-                {
-                    var result = (from drinkDetail in data.DrinkDetails
-                                  where drinkDetail.Id == item.id
-                                  select drinkDetail).First();
+                        listBoxOrder.Items.Insert(0, result.Dish.name + "\t\t" + (Convert.ToDecimal(result.Size.value) / 1000 + " L").Replace("0", string.Empty) + "\t" + result.Kind.text + "\t" + (result.price + " zł").Replace("000", string.Empty));
+                        toPay += (decimal)result.price;
+                    }
+                    else
+                    {
+                        var result = (from drinkDetail in data.DrinkDetails
+                                      where drinkDetail.Id == item.id
+                                      select drinkDetail).First();
 
-                    listBoxOrder.Items.Insert(0, result.Drink.name + "\t\t" + (Convert.ToDecimal(result.Size.value) / 1000 + " L").Replace("0", string.Empty) + "\t" + result.Kind.text + "\t" + (result.price + " zł").Replace("000", string.Empty));
-                    toPay += (decimal)result.price;
+                        listBoxOrder.Items.Insert(0, result.Drink.name + "\t\t" + (Convert.ToDecimal(result.Size.value) / 1000 + " L").Replace("0", string.Empty) + "\t" + result.Kind.text + "\t" + (result.price + " zł").Replace("000", string.Empty));
+                        toPay += (decimal)result.price;
+                    }
                 }
+
+
+                labelSum.Text = (toPay + " zł").Replace("000", string.Empty);
+
+
+                var result2 = from kind in data.Kinds
+                              where kind.Id > 50
+                              select new { kind.Id, kind.text };
+
+                comboBoxKind.DisplayMember = "text";
+                comboBoxKind.ValueMember = "Id";
+                comboBoxKind.DataSource = result2;
+                comboBoxKind.Enabled = false;
+
+                butAdd.Enabled = false;
+                butBack.Enabled = false;
             }
-
-
-            labelSum.Text = (toPay + " zł").Replace("000", string.Empty);
-
-
-            var result2 = from kind in data.Kinds
-                          where kind.Id > 50
-                          select new { kind.Id, kind.text };
-
-            comboBoxKind.DisplayMember = "text";
-            comboBoxKind.ValueMember = "Id";
-            comboBoxKind.DataSource = result2;
-            comboBoxKind.Enabled = false;
-
-            butAdd.Enabled = false;
-            butBack.Enabled = false;
+            catch (Exception ex)
+            {
+                form1.lostConnection();
+            }
         }
 
         private void butBack_Click(object sender, EventArgs e)
@@ -139,30 +151,36 @@ namespace WindowsFormsApp3
 
             foreach (var item in myItems)
             {
-                if (item.type.Equals("Dish"))
+                try
                 {
-                    var result = (from dishDetail in data.DishDetails
-                                  where dishDetail.Id == item.id
-                                  select dishDetail).First();
+                    if (item.type.Equals("Dish"))
+                    {
+                        var result = (from dishDetail in data.DishDetails
+                                      where dishDetail.Id == item.id
+                                      select dishDetail).First();
 
-                    OrderDish orderDish = new OrderDish();
-                    orderDish.idOrder = order.Id;
-                    orderDish.idDishDetail = result.Id;
-                    data.OrderDishes.InsertOnSubmit(orderDish);
-                    data.SubmitChanges();
-                }
-                else
+                        OrderDish orderDish = new OrderDish();
+                        orderDish.idOrder = order.Id;
+                        orderDish.idDishDetail = result.Id;
+                        data.OrderDishes.InsertOnSubmit(orderDish);
+                        data.SubmitChanges();
+                    }
+                    else
+                    {
+                        var result = (from drinkDetail in data.DrinkDetails
+                                      where drinkDetail.Id == item.id
+                                      select drinkDetail).First();
+
+
+                        OrderDrink orderDrink = new OrderDrink();
+                        orderDrink.idOrder = order.Id;
+                        orderDrink.idDrinkDetail = result.Id;
+                        data.OrderDrinks.InsertOnSubmit(orderDrink);
+                        data.SubmitChanges();
+                    }
+                }catch(Exception ex)
                 {
-                    var result = (from drinkDetail in data.DrinkDetails
-                                  where drinkDetail.Id == item.id
-                                  select drinkDetail).First();
-
-
-                    OrderDrink orderDrink = new OrderDrink();
-                    orderDrink.idOrder = order.Id;
-                    orderDrink.idDrinkDetail = result.Id;
-                    data.OrderDrinks.InsertOnSubmit(orderDrink);
-                    data.SubmitChanges();
+                    form1.lostConnection();
                 }
             }
 

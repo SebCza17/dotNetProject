@@ -43,55 +43,53 @@ namespace WindowsFormsApp3
 
         public void loadBox()
         {
-            var result = from dish in data.Dishes
-                         select new { Id = dish.Id, name = dish.name };
-
-            comboBox1.DisplayMember = "name";
-            comboBox1.ValueMember = "Id";
-            comboBox1.DataSource = result;
-
-            var result2 = from size in data.Sizes
-                          where size.Id < 10
-                          select new { Id = size.Id, value = size.value + " d(cm)" };
-
-            comboBox2.DisplayMember = "value";
-            comboBox2.ValueMember = "Id";
-            comboBox2.DataSource = result2;
-
-            var result3 = from kind in data.Kinds
-                          where kind.Id < 10
-                          select new { Id = kind.Id, text = kind.text };
-
-            comboBox3.DisplayMember = "text";
-            comboBox3.ValueMember = "Id";
-            comboBox3.DataSource = result3;
-
-
-            var result4 = from drink in data.Drinks
-                          select new { drink.Id, drink.name };
-
-            comboBoxDrink.DisplayMember = "name";
-            comboBoxDrink.ValueMember = "Id";
-            comboBoxDrink.DataSource = result4;
-
-            var result5 = from size in data.Sizes
-                          where size.Id > 10
-                          select new { size.Id, value = (Convert.ToDecimal(size.value) / 1000 + " L").Replace("0", string.Empty) };
-
-            comboBoxDrinkSize.DisplayMember = "value";
-            comboBoxDrinkSize.ValueMember = "Id";
-            comboBoxDrinkSize.DataSource = result5;
-
             try
             {
+                var result = from dish in data.Dishes
+                             select new { Id = dish.Id, name = dish.name };
+
+                comboBox1.DisplayMember = "name";
+                comboBox1.ValueMember = "Id";
+                comboBox1.DataSource = result;
+
+                var result2 = from size in data.Sizes
+                              where size.Id < 10
+                              select new { Id = size.Id, value = size.value + " d(cm)" };
+
+                comboBox2.DisplayMember = "value";
+                comboBox2.ValueMember = "Id";
+                comboBox2.DataSource = result2;
+
+                var result3 = from kind in data.Kinds
+                              where kind.Id < 10
+                              select new { Id = kind.Id, text = kind.text };
+
+                comboBox3.DisplayMember = "text";
+                comboBox3.ValueMember = "Id";
+                comboBox3.DataSource = result3;
+
+
+                var result4 = from drink in data.Drinks
+                              select new { drink.Id, drink.name };
+
+                comboBoxDrink.DisplayMember = "name";
+                comboBoxDrink.ValueMember = "Id";
+                comboBoxDrink.DataSource = result4;
+
+                var result5 = from size in data.Sizes
+                              where size.Id > 10
+                              select new { size.Id, value = (Convert.ToDecimal(size.value) / 1000 + " L").Replace("0", string.Empty) };
+
+                comboBoxDrinkSize.DisplayMember = "value";
+                comboBoxDrinkSize.ValueMember = "Id";
+                comboBoxDrinkSize.DataSource = result5;
+
+
                 var result6 = from order in data.Orders
                               select new { order.Id, Kind = order.Kind.text, Status = order.Status.text, order.startDateTime, order.endDateTime, order.Description.decription };
 
                 dataGridOrder.DataSource = result6;
-            }catch(Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
+ 
 
             for (int i = 0; i < dataGridOrder.Columns.Count; i++)
             {
@@ -126,6 +124,12 @@ namespace WindowsFormsApp3
                 labelConn.Text = "Zalogowano jako admin";
                 labelConn.Visible = true;
             }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                lostConnection();
+            }
 
         }
         private int getSelectedIdx(DataGridView dataGridView, String columnName)
@@ -142,25 +146,39 @@ namespace WindowsFormsApp3
 
         private Boolean inDishStock()
         {
-            var result = from dishDetail in data.DishDetails
-                          where dishDetail.idDish == Convert.ToInt32(comboBox1.SelectedValue)
-                               && dishDetail.idSize == Convert.ToInt32(comboBox2.SelectedValue)
-                               && dishDetail.idKind == Convert.ToInt32(comboBox3.SelectedValue)
-                               && dishDetail.availability == true
-                          select dishDetail;
-
+            var result = (System.Linq.IQueryable<WindowsFormsApp3.DishDetail>)null;
+            try
+            {
+                result = from dishDetail in data.DishDetails
+                             where dishDetail.idDish == Convert.ToInt32(comboBox1.SelectedValue)
+                                  && dishDetail.idSize == Convert.ToInt32(comboBox2.SelectedValue)
+                                  && dishDetail.idKind == Convert.ToInt32(comboBox3.SelectedValue)
+                                  && dishDetail.availability == true
+                             select dishDetail;
+            }catch(Exception ex)
+            {
+                lostConnection();
+            }
             
             return result.Count() > 0;
         }
 
         private Boolean inDrinkStock()
         {
-            var result = from drinkDetail in data.DrinkDetails
-                         where drinkDetail.idDrink == Convert.ToInt32(comboBoxDrink.SelectedValue)
-                              && drinkDetail.idSize == Convert.ToInt16(comboBoxDrinkSize.SelectedValue)
-                              && drinkDetail.availability == true
-                         select drinkDetail;
-            
+            var result = (System.Linq.IQueryable<WindowsFormsApp3.DrinkDetail>)null;
+            try
+            {
+                result = from drinkDetail in data.DrinkDetails
+                             where drinkDetail.idDrink == Convert.ToInt32(comboBoxDrink.SelectedValue)
+                                  && drinkDetail.idSize == Convert.ToInt16(comboBoxDrinkSize.SelectedValue)
+                                  && drinkDetail.availability == true
+                             select drinkDetail;
+
+                
+            }catch(Exception ex)
+            {
+                lostConnection();
+            }
             return result.Count() > 0;
         }
 
@@ -238,9 +256,7 @@ namespace WindowsFormsApp3
                 Console.WriteLine(ex);
                 errorShow("Unavailable Dish");
             }
-            
-            
-            
+    
         }
 
         private void butAddDrink_Click(object sender, EventArgs e)
@@ -268,7 +284,7 @@ namespace WindowsFormsApp3
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                
+                lostConnection();
             }
             
         }
@@ -372,75 +388,79 @@ namespace WindowsFormsApp3
         private void butChangeStatus_Click(object sender, EventArgs e)
         {
             DateTime myDateTime = DateTime.Now;
-
-
             int idx = getSelectedIdx(dataGridOrder, "Id");
-
-            var result = (from order in data.Orders
-                          where order.Id == idx
-                          select order).First();
-
-            if (result.idStatus == 1)
+            try
             {
-                result.idStatus = (byte)comboBoxStatus.SelectedValue;
-                result.endDateTime = myDateTime;
+                var result = (from order in data.Orders
+                              where order.Id == idx
+                              select order).First();
 
-                data.SubmitChanges();
 
-                if (Convert.ToByte(comboBoxStatus.SelectedValue) == 2)
+                if (result.idStatus == 1)
                 {
+                    result.idStatus = (byte)comboBoxStatus.SelectedValue;
+                    result.endDateTime = myDateTime;
 
-                    var result2 = from profit in data.Profits
-                                  where profit.date == result.endDateTime.Value.Date
-                                  select profit;
+                    data.SubmitChanges();
 
-                    decimal toPay = 0;
-                    decimal withoutTax = 0;
-
-                    foreach (var dish in result.OrderDishes)
+                    if (Convert.ToByte(comboBoxStatus.SelectedValue) == 2)
                     {
-                        toPay += (decimal)dish.DishDetail.price;
-                        withoutTax += (decimal)(dish.DishDetail.price * 100 / (100 + dish.DishDetail.tax));
-                    }
-                    foreach (var drink in result.OrderDrinks)
-                    {
-                        toPay += (decimal)drink.DrinkDetail.price;
-                        withoutTax += (decimal)(drink.DrinkDetail.price * 100 / (100 + drink.DrinkDetail.tax));
-                    }
+                        var result2 = from profit in data.Profits
+                                      where profit.date == result.endDateTime.Value.Date
+                                      select profit;
 
-                    Console.WriteLine(toPay);
-                    Console.WriteLine(withoutTax);
+                        decimal toPay = 0;
+                        decimal withoutTax = 0;
 
-                    if (result2.Count() == 0)
-                    {
-                        Console.WriteLine("Nowy" + result2);
-
-                        Profit profit = new Profit();
-                        profit.date = result.endDateTime.Value.Date;
-                        profit.inCash = toPay;
-                        profit.onHand = withoutTax;
-                        profit.tax = toPay - withoutTax;
-
-                        data.Profits.InsertOnSubmit(profit);
-                        data.SubmitChanges();
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("Stary" + result2);
-
-                        foreach (var profit in result2)
+                        foreach (var dish in result.OrderDishes)
                         {
-                            profit.inCash += toPay;
-                            profit.onHand += withoutTax;
-                            profit.tax += toPay - withoutTax;
-
-                            data.SubmitChanges();
+                            toPay += (decimal)dish.DishDetail.price;
+                            withoutTax += (decimal)(dish.DishDetail.price * 100 / (100 + dish.DishDetail.tax));
+                        }
+                        foreach (var drink in result.OrderDrinks)
+                        {
+                            toPay += (decimal)drink.DrinkDetail.price;
+                            withoutTax += (decimal)(drink.DrinkDetail.price * 100 / (100 + drink.DrinkDetail.tax));
                         }
 
+                        Console.WriteLine(toPay);
+                        Console.WriteLine(withoutTax);
 
+                        if (result2.Count() == 0)
+                        {
+                            Console.WriteLine("Nowy" + result2);
+
+                            Profit profit = new Profit();
+                            profit.date = result.endDateTime.Value.Date;
+                            profit.inCash = toPay;
+                            profit.onHand = withoutTax;
+                            profit.tax = toPay - withoutTax;
+
+                            data.Profits.InsertOnSubmit(profit);
+                            data.SubmitChanges();
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Stary" + result2);
+
+                            foreach (var profit in result2)
+                            {
+                                profit.inCash += toPay;
+                                profit.onHand += withoutTax;
+                                profit.tax += toPay - withoutTax;
+
+                                data.SubmitChanges();
+                            }
+
+
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                lostConnection();
             }
 
             loadBox();
@@ -458,22 +478,26 @@ namespace WindowsFormsApp3
             int idx = getSelectedIdx(dataGridOrder, "Id");
             List<MyItems> myItems = new List<MyItems>();
             int ndx = 0;
+            try {
+                var result = (from order in data.Orders
+                              where order.Id == idx
+                              select order).First();
 
-            var result = (from order in data.Orders
-                         where order.Id == idx
-                         select order).First();
-
-            foreach (var dish in result.OrderDishes)
-            {
-                myItems.Add(new MyItems { id = dish.DishDetail.Id, n = ndx, type = "Dish" });
-                ndx++;
+                foreach (var dish in result.OrderDishes)
+                {
+                    myItems.Add(new MyItems { id = dish.DishDetail.Id, n = ndx, type = "Dish" });
+                    ndx++;
+                }
+                foreach (var drink in result.OrderDrinks)
+                {
+                    myItems.Add(new MyItems { id = drink.DrinkDetail.Id, n = ndx, type = "Drink" });
+                    ndx++;
+                }
             }
-            foreach (var drink in result.OrderDrinks)
+            catch (Exception ex)
             {
-                myItems.Add(new MyItems { id = drink.DrinkDetail.Id, n = ndx, type = "Drink" });
-                ndx++;
+                lostConnection();
             }
-
             FormBill form4 = new FormBill(myItems);
             form4.Show();
         }
@@ -522,15 +546,19 @@ namespace WindowsFormsApp3
             formAdmPnl.Show();
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void butReg_Click(object sender, EventArgs e)
         {
             FormRegister form8 = new FormRegister(this);
             form8.Show();
+        }
+
+        public void lostConnection()
+        {
+            FormFirst first = new FormFirst();
+            MessageBox.Show("Connection lost");
+            this.Close();
         }
 
     }
